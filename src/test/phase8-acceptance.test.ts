@@ -22,7 +22,7 @@ describe('Phase 8 acceptance', () => {
 
   it('keeps QR identifiers non-sensitive in farmer profiles', () => {
     for (const profile of demoSeedBundle.farmerProfiles) {
-      expect(profile.qrProfileId.startsWith('demo-')).toBe(true)
+      expect(profile.qrProfileId.startsWith('fp-')).toBe(true)
       expect(profile.qrProfileId).not.toMatch(/^01\d/)
     }
   })

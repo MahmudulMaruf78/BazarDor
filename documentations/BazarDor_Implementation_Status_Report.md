@@ -18,10 +18,8 @@ After pulling seed or schema changes, use **Admin → Reset demo dataset** so br
 | [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Master_Plan_v2.0.docx) | Business scope, rules, open decisions (OD-01 … OD-11), phase summary table |
 | [`BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx`](./BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx) | Eight implementation phases, exit checks, setup commands |
 | [`BazarDor_Simple_Data_Flow_Diagram_v2.0.docx`](./BazarDor_Simple_Data_Flow_Diagram_v2.0.docx) | Stakeholder data-flow narrative |
-| [`PACKAGE_README.txt`](./PACKAGE_README.txt) | Documentation package index |
-| [`DEMO_WALKTHROUGH.md`](./DEMO_WALKTHROUGH.md) | ~15 min demo script |
-| [`PHASE8_QA_CHECKLIST.md`](./PHASE8_QA_CHECKLIST.md) | QA gate and manual checklist status |
-| [`BANGLADESH_LOCATIONS_SOURCE.md`](./BANGLADESH_LOCATIONS_SOURCE.md), [`BANGLADESH_LOCATIONS_UNVERIFIED.md`](./BANGLADESH_LOCATIONS_UNVERIFIED.md) | Location import provenance and gaps |
+| [`DEMO_WALKTHROUGH.md`](./DEMO_WALKTHROUGH.md) | ~15 min demo script + Phase 8 QA checklist |
+| [`BANGLADESH_LOCATIONS_SOURCE.md`](./BANGLADESH_LOCATIONS_SOURCE.md) | Location import provenance, gaps snapshot, regeneration |
 | [`.cursor/rules/bazardor-project.mdc`](../.cursor/rules/bazardor-project.mdc) | Coding and non-negotiable price/consent rules |
 
 This report maps **what is implemented in the repo** to those sources. It does **not** replace the Master Plan or invent policy for open decisions.
@@ -35,7 +33,7 @@ This report maps **what is implemented in the repo** to those sources. It does *
 | **Phases 1–8 (prototype scope)** | Implemented with automated tests, e2e walkthrough, and Phase 8 checklist marked verified (2026-11-05) |
 | **Master Plan “included” frontend areas** | Core flows for all six roles + public home/explore; demo-labelled throughout |
 | **Master Plan “excluded” items** | Not built (real OTP, backend, payments, cross-device sync, live gov feeds, etc.) |
-| **Location data** | **Partial** — full division/district/upazila tree; unions from BD-JSON where matched; synthetic demo unions for 198 unmatched upazilas |
+| **Location data** | **Partial** — full division/district/upazila tree; **407** matched upazilas; **86** still synthetic-filled (was 198 baseline) |
 | **Beyond phase guide** | Richer demo catalog (16 products, images), home listing browse filters, official average on cards, `ProductCombobox`, expanded seed averages |
 | **Open decisions (OD-01 … OD-11)** | Prototype uses **provisional defaults** where documented; owner confirmation still required for production |
 
@@ -207,13 +205,10 @@ Aligned with **Master Plan §16** and **Full Build Phase Guide** exit checks. Ev
 
 **Done**
 
-- `npm run qa` — lint (oxlint), typecheck, vitest (~82 tests), production build
+- `npm run qa` — lint (oxlint), typecheck, vitest, production build
 - Playwright: [`e2e/smoke.spec.ts`](../e2e/smoke.spec.ts), [`e2e/walkthrough-flow.spec.ts`](../e2e/walkthrough-flow.spec.ts), CI [`.github/workflows/e2e.yml`](../.github/workflows/e2e.yml)
-- Checklist: [`PHASE8_QA_CHECKLIST.md`](./PHASE8_QA_CHECKLIST.md) (automated + manual items marked complete 2026-11-05)
+- Checklist + walkthrough: [`DEMO_WALKTHROUGH.md`](./DEMO_WALKTHROUGH.md) (automated + manual items verified 2026-11-05)
 - SPA deploy: [`public/_redirects`](../public/_redirects), [`vercel.json`](../vercel.json)
-- Walkthrough doc + e2e alignment: [`DEMO_WALKTHROUGH.md`](./DEMO_WALKTHROUGH.md)
-
-**Exit checks**
 
 | Check | Status |
 |-------|--------|
@@ -234,7 +229,7 @@ Work present in the repo but not spelled out as separate phases in the Phase Gui
 | **Category coverage test** (≥1 product + active listing per category) | [`marketplaceDemo.test.ts`](../src/data/seed/marketplaceDemo.test.ts) |
 | **Public home / explore listing browse** with division→union + category filters | [`HomeMarketProductsSection.tsx`](../src/features/home/HomeMarketProductsSection.tsx), [`ListingCatalogFilterBar.tsx`](../src/features/marketplace/ListingCatalogFilterBar.tsx), [`marketplace-browse.test.ts`](../src/test/services/marketplace-browse.test.ts) |
 | **ProductCombobox** (editable + dropdown, Popover + cmdk) | [`ProductCombobox.tsx`](../src/components/common/ProductCombobox.tsx), [`productComboboxResolve.ts`](../src/components/common/productComboboxResolve.ts) |
-| **BD-JSON union merge + synthetic unions** for unmatched upazilas | [`BANGLADESH_UNION_IMPORT_STATS.json`](./BANGLADESH_UNION_IMPORT_STATS.json) (295 matched, 198 synthetic-filled) |
+| **BD-JSON union merge + synthetic unions** for unmatched upazilas | [`BANGLADESH_UNION_IMPORT_STATS.json`](./BANGLADESH_UNION_IMPORT_STATS.json) (407 matched, 86 synthetic-filled) |
 | **shadcn CLI path fix** (Windows `@/` folder bug) | Root [`tsconfig.json`](../tsconfig.json) `paths`; UI: [`popover.tsx`](../src/components/ui/popover.tsx), [`command.tsx`](../src/components/ui/command.tsx), dependency `cmdk` |
 
 ---
@@ -254,7 +249,7 @@ Work present in the repo but not spelled out as separate phases in the Phase Gui
 
 | Item | Status |
 |------|--------|
-| Unions for all upazilas | **594 synthetic** unions for **198** unmatched upazilas — see [`BANGLADESH_LOCATIONS_UNVERIFIED.md`](./BANGLADESH_LOCATIONS_UNVERIFIED.md) |
+| Unions for all upazilas | **259** synthetic unions for **86** unmatched upazilas — see [`BANGLADESH_LOCATIONS_SOURCE.md`](./BANGLADESH_LOCATIONS_SOURCE.md) import snapshot |
 | Bangla location names nationwide | Curated Bangla in demo corridor; many nodes use `nameBn` = `nameEn` fallback |
 | BBS official numeric codes | Internal slugs only — see [`BANGLADESH_LOCATIONS_SOURCE.md`](./BANGLADESH_LOCATIONS_SOURCE.md) |
 | Authoritative map boundaries (OD-10) | Demo location data only |
@@ -265,7 +260,7 @@ These are **partially** covered by existing dashboards or omitted as YAGNI for t
 
 - Buyer “favourites” as a dedicated module
 - Seller bulk purchase records as a full accounting module
-- Admin: full location/product/unit CRUD, listing moderation UI, audit log browser (Admin page focuses on **schema version + reset + demo account table**)
+- Admin: read-only location/product/unit/user/listing browsers + listing moderation; full CRUD and audit log browser still roadmap
 - Department map/heatmap as a standalone production map product
 - National marketing pages beyond home/explore/browse
 
@@ -304,13 +299,33 @@ Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Mast
 
 **Done in repo (November 2026):** Slices A–E — `dataSource`, full union import, aliases (unmatched **86**, was 198 baseline); **4059** bd_json unions in JSON (`phase9SliceDUnmatched` baseline **94** for Slice E regression).
 
-**Still Phase 9:** BBS from OD-10, national Bangla tree — see [Phase 9–13 roadmap](./BazarDor_Remaining_Roadmap_Phase_9_13.md).
+**Still Phase 9:** BBS from OD-10, national Bangla tree, alias pass on remaining **86** unmatched upazilas (see remaining roadmap below).
 
 ---
 
 ## Phase 10 — Admin (started)
 
 **Done:** Read-only **location**, **product**, **unit**, **user**, and **listing** browsers on `/admin` (`admin.*.view`). **Listing moderation (demo):** `admin.listings.moderate` — approve/reject toggles `inactive` ↔ `active`/`sold_out` with reservation guard. CRUD and audit log browser still roadmap.
+
+---
+
+## Remaining roadmap (Phases 9–13)
+
+**Completed in repo:** Phases 1–8 per [Full Build Phase Guide](./BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx). **Agent workflow:** one phase per session → `npm run qa` → optional e2e → update this report.
+
+**Guardrails:** Frontend-only; mock repos + IndexedDB; no real backend/SMS/payment; do not invent Master Plan policy — see [Open decisions](#open-decisions-master-plan--do-not-treat-as-final-policy) and [`.cursor/rules/bazardor-project.mdc`](../.cursor/rules/bazardor-project.mdc).
+
+| Phase | Priority | Focus |
+|-------|----------|--------|
+| **9** | Very high | Finish union match (alias pass on **86** gaps), Bangla names, BBS codes when OD-10 arrives, map metadata hooks; regenerate JSON + reset demo dataset |
+| **10** | Very high | Admin CRUD (locations, products, units), role/user edit, verification demos, **audit log browser**, system settings — extend [`AdminDemoPage`](../src/features/admin/AdminDemoPage.tsx) pattern |
+| **11** | High | Buyer favourites/history; seller bulk/history/P&amp;L (OD-09); marketplace search UX |
+| **12** | High | Department map/heatmap demo, trends, anomaly UI (OD-05), export polish — averages only via [`officialMarketPriceService`](../src/services/officialMarketPriceService.ts) |
+| **13** | Final | Full handover QA — extends [`DEMO_WALKTHROUGH.md`](./DEMO_WALKTHROUGH.md) gate |
+
+**Recommended order:** 9 → 10 → 11 → 12 → 13. Resolve **OD-10**, **OD-11** before treating location/verification as production-ready.
+
+**Per-phase agent checklist:** YAGNI scope; business rules in `src/services/`; tests for new rules; `npm run qa` green; refresh this report when behaviour changes.
 
 ---
 
@@ -329,13 +344,10 @@ Before stakeholder demos after UI/seed changes: **Admin → Reset demo dataset**
 
 ## Related documentation
 
-- [Demo walkthrough (~15 min)](./DEMO_WALKTHROUGH.md)
-- [Phase 8 QA checklist](./PHASE8_QA_CHECKLIST.md)
-- [Bangladesh locations — source](./BANGLADESH_LOCATIONS_SOURCE.md)
-- [Bangladesh locations — unverified / synthetic](./BANGLADESH_LOCATIONS_UNVERIFIED.md)
-- [Package readme](./PACKAGE_README.txt)
+- [Demo walkthrough + QA](./DEMO_WALKTHROUGH.md)
+- [Bangladesh locations — source + import snapshot](./BANGLADESH_LOCATIONS_SOURCE.md)
+- [Master Plan v2.0](./BazarDor_Project_Master_Plan_v2.0.docx), [Phase Guide](./BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx), [Data flow](./BazarDor_Simple_Data_Flow_Diagram_v2.0.docx)
 - [Project README](../README.md)
-- [Remaining roadmap Phase 9–13](./BazarDor_Remaining_Roadmap_Phase_9_13.md)
 
 ---
 

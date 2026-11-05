@@ -22,7 +22,6 @@ export function calculateOfficialMarketAverage(
       windowStart: query.windowStart,
       windowEnd: query.windowEnd,
       calculatedAt: query.calculatedAt,
-      demoLabel: 'Demo / Sample',
     }
   }
 
@@ -37,6 +36,5 @@ export function calculateOfficialMarketAverage(
     windowStart: query.windowStart,
     windowEnd: query.windowEnd,
     calculatedAt: query.calculatedAt,
-    demoLabel: 'Demo / Sample',
   }
 }

@@ -37,6 +37,13 @@ import {
   selectionFromLocationId,
   type BangladeshLocationSelection,
 } from '@/data/bangladeshLocationIndex'
+import {
+  ActivityMetricTiles,
+  OfficialAverageKpi,
+  RegionalBarChart,
+  RegionalSampleHeatmap,
+  TrendBarChart,
+} from '@/features/department/DepartmentAnalyticsVisuals'
 import { sanitizeBangladeshLocationSelection } from '@/services/bangladeshLocationValidation'
 
 function downloadBlob(blob: Blob, filename: string) {
@@ -72,12 +79,25 @@ export function DepartmentAnalyticsPage() {
   const [trend, setTrend] = useState<TrendPoint[]>([])
   const [regional, setRegional] = useState<RegionalRow[]>([])
   const [activity, setActivity] = useState<ActivitySummary | null>(null)
+  const [selectedTrendLabel, setSelectedTrendLabel] = useState<string | null>(null)
 
   const reload = (next: DepartmentFilters = filters, granularity: TrendGranularity = trendGranularity) => {
     void fetchOfficialAverage(next).then((result) => result.ok && setAverage(result.data))
     void fetchTrend(next, granularity).then((result) => result.ok && setTrend(result.data))
     void fetchRegionalComparison(next, D.districtJashore).then((result) => result.ok && setRegional(result.data))
     void fetchActivitySummary().then((result) => result.ok && setActivity(result.data))
+  }
+
+  const applyChartScope = (locationId: string) => {
+    setLocationSel(
+      sanitizeBangladeshLocationSelection(
+        selectionFromLocationId(locationId) ?? { divisionId: D.divisionKhulna },
+      ),
+    )
+    const nextFilters = { ...filters, locationScopeId: locationId }
+    setFilters(nextFilters)
+    reload(nextFilters, trendGranularity)
+    toast.message(t('deptScopeFromChart'))
   }
 
   useEffect(() => {
@@ -199,21 +219,15 @@ export function DepartmentAnalyticsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {!average ? (
-            <p className="text-sm text-bazardor-muted">{t('loading')}</p>
-          ) : average.status === 'calculated' ? (
-            <div className="space-y-1">
-              <p className="text-3xl font-semibold">{formatNumber(average.averagePricePerKg)} BDT/kg</p>
-              <p className="text-sm text-bazardor-muted">
-                {formatNumber(average.sampleCount, 0)} {t('farmerSamples')} ·{' '}
-                {average.windowStart.slice(0, 10)} → {average.windowEnd.slice(0, 10)}
-              </p>
-            </div>
-          ) : (
-            <p className="text-lg font-medium">
-              {t('insufficientData')} · {average.sampleCount} · {average.distinctFarmerCount}
-            </p>
-          )}
+          <OfficialAverageKpi
+            average={average}
+            formatNumber={formatNumber}
+            t={t}
+            scopeLabel={
+              scopeLocation ? pickName(scopeLocation) : scopeLabel(locations, filters.locationScopeId)
+            }
+            calculatedAt={filters.calculatedAt}
+          />
         </CardContent>
       </Card>
 
@@ -223,8 +237,15 @@ export function DepartmentAnalyticsPage() {
             <CardTitle>{t('priceTrend')}</CardTitle>
             <CardDescription>{t('priceTrendDesc')}</CardDescription>
           </CardHeader>
-          <CardContent>
-            <Table>
+          <CardContent className="space-y-4">
+            <TrendBarChart
+              points={trend}
+              formatNumber={formatNumber}
+              t={t}
+              selectedLabel={selectedTrendLabel}
+              onSelectPoint={(point) => setSelectedTrendLabel(point?.label ?? null)}
+            />
+            <Table className="text-xs">
               <TableHeader>
                 <TableRow>
                   <TableHead>{t('period')}</TableHead>
@@ -234,7 +255,10 @@ export function DepartmentAnalyticsPage() {
               </TableHeader>
               <TableBody>
                 {trend.map((point) => (
-                  <TableRow key={point.label}>
+                  <TableRow
+                    key={point.label}
+                    className={point.label === selectedTrendLabel ? 'bg-bazardor-green/8' : undefined}
+                  >
                     <TableCell>{point.label.split(':').pop()}</TableCell>
                     <TableCell>{point.result.status}</TableCell>
                     <TableCell>
@@ -252,8 +276,17 @@ export function DepartmentAnalyticsPage() {
             <CardTitle>{t('regionalComparison')}</CardTitle>
             <CardDescription>{t('regionalDesc')}</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-3">
-            <Table>
+          <CardContent className="space-y-4">
+            <RegionalBarChart
+              rows={regional}
+              locations={locations}
+              pickName={pickName}
+              formatNumber={formatNumber}
+              t={t}
+              activeLocationId={filters.locationScopeId}
+              onDrillLocation={applyChartScope}
+            />
+            <Table className="text-xs">
               <TableHeader>
                 <TableRow>
                   <TableHead>{t('region')}</TableHead>
@@ -279,22 +312,7 @@ export function DepartmentAnalyticsPage() {
               </TableBody>
             </Table>
             {hasMapGeometry(locations) && mapDots.length > 0 ? (
-              <div>
-                <p className="mb-2 text-xs text-bazardor-muted">{t('demoHeatmap')}</p>
-                <svg viewBox="0 0 100 100" className="h-40 w-full rounded-md border bg-muted/30" role="img" aria-label="Demo regional sample heatmap">
-                  {mapDots.map((dot) => (
-                    <g key={dot.id}>
-                      <circle
-                        cx={dot.x}
-                        cy={dot.y}
-                        r={Math.max(4, Math.min(16, dot.samples * 3))}
-                        className="fill-bazardor-green/50 stroke-bazardor-green"
-                      />
-                      <title>{`${dot.name}: ${dot.samples} samples`}</title>
-                    </g>
-                  ))}
-                </svg>
-              </div>
+              <RegionalSampleHeatmap dots={mapDots} t={t} onSelectLocation={applyChartScope} />
             ) : null}
           </CardContent>
         </Card>
@@ -304,16 +322,8 @@ export function DepartmentAnalyticsPage() {
         <CardHeader>
           <CardTitle>{t('marketplaceActivity')}</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-6 text-sm">
-          <span>
-            {t('activeListings')}: {activity?.activeListings ?? '…'}
-          </span>
-          <span>
-            {t('demoTransactions')}: {activity?.demoTransactions ?? '…'}
-          </span>
-          <span>
-            {t('approvedPriceObs')}: {activity?.approvedPriceEntries ?? '…'}
-          </span>
+        <CardContent>
+          <ActivityMetricTiles activity={activity} t={t} />
         </CardContent>
       </Card>
 
@@ -324,7 +334,7 @@ export function DepartmentAnalyticsPage() {
           onClick={() => {
             if (!average) return
             void exportWorkbookCsvBlob(filters, average, regional).then((blob) => {
-              downloadBlob(blob, 'bazardor-demo-export.csv')
+              downloadBlob(blob, 'bazardor-export.csv')
               toast.success(t('exportCsv'))
             })
           }}
@@ -337,7 +347,7 @@ export function DepartmentAnalyticsPage() {
           onClick={() => {
             if (!average) return
             void exportWorkbookXlsxBlob(filters, average, regional).then((blob) => {
-              downloadBlob(blob, 'bazardor-demo-export.xlsx')
+              downloadBlob(blob, 'bazardor-export.xlsx')
               toast.success(t('exportExcel'))
             })
           }}
@@ -350,7 +360,7 @@ export function DepartmentAnalyticsPage() {
           onClick={() => {
             if (!average) return
             void exportPdfBlob(filters, average, regional).then((blob) => {
-              downloadBlob(blob, 'bazardor-demo-report.pdf')
+              downloadBlob(blob, 'bazardor-report.pdf')
               toast.success(t('exportPdf'))
             })
           }}

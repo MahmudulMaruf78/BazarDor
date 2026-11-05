@@ -21,7 +21,6 @@ describe('Phase 7 department analytics', () => {
     const result = await fetchOfficialAverage(filters)
     expect(result.ok).toBe(true)
     if (!result.ok) return
-    expect(result.data.demoLabel).toBe('Demo / Sample')
     if (result.data.status === 'calculated') {
       expect(result.data.sampleCount).toBeGreaterThanOrEqual(2)
     }
@@ -34,17 +33,17 @@ describe('Phase 7 department analytics', () => {
     if (!regional.ok) return
     expect(regional.data.length).toBeGreaterThan(0)
     for (const row of regional.data) {
-      expect(row.result.demoLabel).toBe('Demo / Sample')
+      expect(row.result.status).toMatch(/calculated|insufficient_data/)
     }
   })
 
-  it('csv export includes demo disclaimer', async () => {
+  it('csv export includes product metadata', async () => {
     const filters = defaultDepartmentFilters()
     const avg = await fetchOfficialAverage(filters)
     const regional = await fetchRegionalComparison(filters, D.districtJashore)
     if (!avg.ok || !regional.ok) throw new Error('setup failed')
     const csv = buildCsvExport(filters, avg.data, regional.data)
-    expect(csv).toContain('not government-verified')
+    expect(csv).toContain('BazarDor price export')
   })
 
   it('enables map layer when seed has centroids', () => {

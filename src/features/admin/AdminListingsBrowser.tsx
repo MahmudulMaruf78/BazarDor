@@ -169,9 +169,6 @@ export function AdminListingsBrowser() {
                         <TableRow key={listing.id}>
                           <TableCell>
                             {product ? pickName(product) : listing.productId}
-                            <Badge className="ml-2" variant="secondary">
-                              {t('demoLabel')}
-                            </Badge>
                           </TableCell>
                           <TableCell>{seller?.displayName ?? listing.sellerUserId}</TableCell>
                           <TableCell>{location ? pickName(location) : listing.locationId}</TableCell>

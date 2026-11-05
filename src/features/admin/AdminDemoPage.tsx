@@ -101,12 +101,14 @@ export function AdminDemoPage() {
         </CardHeader>
         <CardContent className="space-y-2 text-sm">
           <p>
-            {t('qaChecklist')}:{' '}
-            <code className="rounded bg-muted px-1">documentations/PHASE8_QA_CHECKLIST.md</code>
-          </p>
-          <p>
             {t('walkthrough')}:{' '}
             <code className="rounded bg-muted px-1">documentations/DEMO_WALKTHROUGH.md</code>
+            {' '}
+            ({t('qaChecklist')} in same file)
+          </p>
+          <p>
+            Status report:{' '}
+            <code className="rounded bg-muted px-1">documentations/BazarDor_Implementation_Status_Report.md</code>
           </p>
           <p className="text-bazardor-muted">npm run qa</p>
         </CardContent>

@@ -14,7 +14,6 @@ const listing: Listing = {
   completedQuantity: 0,
   askingPricePerUnit: 50,
   status: 'active',
-  demoLabel: 'Demo',
   createdAt: '2026-01-01T00:00:00+06:00',
 }
 

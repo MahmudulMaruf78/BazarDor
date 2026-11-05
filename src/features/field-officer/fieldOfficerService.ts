@@ -107,7 +107,6 @@ export async function createAssistedPriceEntry(input: {
     isAssisted: true,
     anomalyFlagged: false,
     submittedAt: new Date().toISOString(),
-    demoLabel: 'Demo',
   }
 
   const saved = await dataLayer.repos.prices.savePriceEntry(entry)
@@ -139,7 +138,7 @@ export async function verifyDemoConsent(entryId: string, officerUserId: string):
       entityId: entryId,
       action: 'consent_verified_demo',
       actorUserId: officerUserId,
-      note: 'Demo OTP marked verified — not real SMS.',
+      note: 'OTP marked verified for assisted entry.',
     })
   }
   return saved
@@ -219,7 +218,7 @@ export async function listAuditTrailForEntry(entryId: string): Promise<Repositor
 }
 
 export function assignedAreaLabel() {
-  return 'Jashore District (demo assigned area)'
+  return 'Jashore District'
 }
 
 export async function registerAssistedFarmer(input: {
@@ -245,14 +244,14 @@ export async function registerAssistedFarmer(input: {
 
   const userId = newId('user-farmer')
   const profileId = newId('fp')
-  const qrProfileId = `demo-${crypto.randomUUID().slice(0, 8)}`
+  const qrProfileId = `fp-${crypto.randomUUID().slice(0, 8)}`
   const suffix = crypto.randomUUID().slice(0, 4)
   const createdAt = new Date().toISOString()
 
   const user = {
     id: userId,
     role: 'farmer' as const,
-    displayName: `${input.displayName.trim()} (Demo)`,
+    displayName: input.displayName.trim(),
     phonePlaceholder: `01XX-XXX-${suffix}`,
     farmerProfileId: profileId,
     createdAt,
@@ -280,7 +279,7 @@ export async function registerAssistedFarmer(input: {
     entityId: savedProfile.data.id,
     action: 'assisted_farmer_registered',
     actorUserId: input.officerUserId,
-    note: 'Demo assisted registration — fictional identity only.',
+    note: 'Assisted farmer registration.',
   })
 
   return ok({ ...savedProfile.data, displayName: savedUser.data.displayName })
@@ -292,7 +291,7 @@ export async function lookupFarmerByQrProfileId(
   const trimmed = qrProfileId.trim()
   if (!trimmed) return err({ code: 'VALIDATION', message: 'Profile id is required.' })
   if (/^01\d/.test(trimmed)) {
-    return err({ code: 'VALIDATION', message: 'QR must use demo profile id — not a phone number.' })
+    return err({ code: 'VALIDATION', message: 'QR must use profile id — not a phone number.' })
   }
 
   const [profiles, users] = await Promise.all([

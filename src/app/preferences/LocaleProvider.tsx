@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useMemo, useState, type PropsWithChildren } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type PropsWithChildren } from 'react'
 import { dataLayer } from '@/data'
 import type { AppLocale } from '@/lib/formatLocale'
 import { formatDemoNumber } from '@/lib/formatLocale'
@@ -46,6 +46,10 @@ export function LocaleProvider({ children }: PropsWithChildren) {
       roleLabel: (role) => ROLE_LABELS[role][locale === 'bn' ? 'bn' : 'en'],
     }
   }, [locale, setLocale])
+
+  useEffect(() => {
+    document.documentElement.lang = locale === 'bn' ? 'bn' : 'en'
+  }, [locale])
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
 }

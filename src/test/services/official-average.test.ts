@@ -66,7 +66,6 @@ describe('officialMarketPriceService', () => {
     if (result.status === 'calculated') {
       expect(result.sampleCount).toBe(2)
       expect(result.averagePricePerKg).toBeCloseTo(80.5, 5)
-      expect(result.demoLabel).toBe('Demo / Sample')
     }
   })
 

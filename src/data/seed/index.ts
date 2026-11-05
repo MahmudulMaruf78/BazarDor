@@ -123,7 +123,7 @@ export const seedFarmerProfiles: readonly FarmerProfile[] = [
     upazilaId: D.upazilaKeshabpur,
     unionId: D.unionGhona,
     hasPhone: true,
-    qrProfileId: 'demo-fp-rahim',
+    qrProfileId: 'fp-rahim',
   },
   {
     id: 'fp-salma',
@@ -135,7 +135,7 @@ export const seedFarmerProfiles: readonly FarmerProfile[] = [
     upazilaId: D.upazilaKeshabpur,
     unionId: D.unionGhona,
     hasPhone: true,
-    qrProfileId: 'demo-fp-salma',
+    qrProfileId: 'fp-salma',
   },
   {
     id: 'fp-karim',
@@ -145,7 +145,7 @@ export const seedFarmerProfiles: readonly FarmerProfile[] = [
     divisionId: D.divisionKhulna,
     districtId: D.districtJashore,
     hasPhone: false,
-    qrProfileId: 'demo-fp-karim',
+    qrProfileId: 'fp-karim',
   },
   {
     id: 'fp-habib',
@@ -157,7 +157,7 @@ export const seedFarmerProfiles: readonly FarmerProfile[] = [
     upazilaId: D.upazilaMonirampur,
     unionId: D.unionDurgapur,
     hasPhone: true,
-    qrProfileId: 'demo-fp-habib',
+    qrProfileId: 'fp-habib',
   },
 ]
 
@@ -174,7 +174,6 @@ export const seedListings: readonly Listing[] = [
     completedQuantity: 30,
     askingPricePerUnit: 38,
     status: 'active',
-    demoLabel: 'Demo',
     createdAt: T1,
   },
   {
@@ -189,7 +188,6 @@ export const seedListings: readonly Listing[] = [
     completedQuantity: 200,
     askingPricePerUnit: 72,
     status: 'sold_out',
-    demoLabel: 'Demo',
     createdAt: T0,
   },
   {
@@ -204,7 +202,6 @@ export const seedListings: readonly Listing[] = [
     completedQuantity: 50,
     askingPricePerUnit: 84,
     status: 'active',
-    demoLabel: 'Demo',
     createdAt: T1,
   },
   {
@@ -219,7 +216,6 @@ export const seedListings: readonly Listing[] = [
     completedQuantity: 20,
     askingPricePerUnit: 68,
     status: 'active',
-    demoLabel: 'Demo',
     createdAt: T2,
   },
 ]
@@ -245,7 +241,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     submittedAt: T0,
     approvedAt: T0,
     expiresAt: '2026-11-05T06:00:00+06:00',
-    demoLabel: 'Demo',
   },
   {
     id: 'pe-rice-rahim-latest',
@@ -266,7 +261,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     submittedAt: T2,
     approvedAt: T2,
     expiresAt: '2026-11-05T07:30:00+06:00',
-    demoLabel: 'Demo',
   },
   {
     id: 'pe-rice-salma',
@@ -287,7 +281,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     submittedAt: T1,
     approvedAt: T1,
     expiresAt: '2026-11-04T08:00:00+06:00',
-    demoLabel: 'Demo',
   },
   {
     id: 'pe-rice-pending',
@@ -306,7 +299,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     isAssisted: true,
     anomalyFlagged: true,
     submittedAt: T2,
-    demoLabel: 'Demo',
   },
   {
     id: 'pe-rice-rejected',
@@ -326,8 +318,7 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     anomalyFlagged: false,
     submittedAt: T0,
     rejectedAt: T1,
-    rejectionReason: 'Demo rejection — price out of plausible range.',
-    demoLabel: 'Demo',
+    rejectionReason: 'Rejected — price out of plausible range.',
   },
   {
     id: 'pe-rice-expired',
@@ -348,7 +339,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     submittedAt: '2026-10-28T06:00:00+06:00',
     approvedAt: '2026-10-28T06:30:00+06:00',
     expiresAt: '2026-10-29T06:30:00+06:00',
-    demoLabel: 'Demo',
   },
   {
     id: 'pe-rice-habib',
@@ -369,7 +359,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     submittedAt: T1,
     approvedAt: T1,
     expiresAt: '2026-11-05T08:00:00+06:00',
-    demoLabel: 'Demo',
   },
   {
     id: 'pe-potato-salma',
@@ -390,7 +379,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     submittedAt: T2,
     approvedAt: T2,
     expiresAt: '2026-11-05T07:30:00+06:00',
-    demoLabel: 'Demo',
   },
   {
     id: 'pe-potato-habib',
@@ -411,7 +399,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     submittedAt: T2,
     approvedAt: T2,
     expiresAt: '2026-11-05T07:30:00+06:00',
-    demoLabel: 'Demo',
   },
   {
     id: 'pe-onion-habib',
@@ -432,7 +419,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     submittedAt: T1,
     approvedAt: T1,
     expiresAt: '2026-11-05T08:00:00+06:00',
-    demoLabel: 'Demo',
   },
   {
     id: 'pe-onion-rahim',
@@ -453,7 +439,6 @@ export const seedPriceEntries: readonly PriceEntry[] = [
     submittedAt: T2,
     approvedAt: T2,
     expiresAt: '2026-11-05T07:30:00+06:00',
-    demoLabel: 'Demo',
   },
 ]
 
@@ -467,7 +452,6 @@ export const seedBids: readonly Bid[] = [
     offeredPricePerUnit: 36,
     status: 'pending',
     createdAt: T2,
-    demoLabel: 'Demo',
   },
   {
     id: 'bid-2',
@@ -478,7 +462,6 @@ export const seedBids: readonly Bid[] = [
     offeredPricePerUnit: 83,
     status: 'pending',
     createdAt: T2,
-    demoLabel: 'Demo',
   },
   {
     id: 'bid-3',
@@ -489,7 +472,6 @@ export const seedBids: readonly Bid[] = [
     offeredPricePerUnit: 66,
     status: 'accepted',
     createdAt: T2,
-    demoLabel: 'Demo',
   },
 ]
 
@@ -507,7 +489,6 @@ export const seedTransactions: readonly Transaction[] = [
     buyerConfirmedAt: T1,
     sellerConfirmedAt: T1,
     createdAt: T1,
-    demoLabel: 'Demo',
   },
   {
     id: 'txn-2',
@@ -520,7 +501,6 @@ export const seedTransactions: readonly Transaction[] = [
     pricePerUnit: 66,
     status: 'awaiting_completion_confirmation',
     createdAt: T2,
-    demoLabel: 'Demo',
   },
 ]
 
@@ -528,29 +508,26 @@ export const seedNotifications: readonly Notification[] = [
   {
     id: 'notif-1',
     userId: 'user-farmer-1',
-    title: 'Demo price recorded',
-    body: 'Your sample rice observation was saved for demo review.',
+    title: 'Price recorded',
+    body: 'Your rice observation was saved for review.',
     read: false,
     createdAt: T2,
-    demoLabel: 'Demo',
   },
   {
     id: 'notif-2',
     userId: 'user-buyer-1',
-    title: 'Demo offer accepted',
-    body: 'Sample onion offer accepted — confirm completion in demo transaction flow.',
+    title: 'Offer accepted',
+    body: 'Onion offer accepted — confirm completion in the transaction flow.',
     read: false,
     createdAt: T2,
-    demoLabel: 'Demo',
   },
   {
     id: 'notif-3',
     userId: 'user-fo-1',
     title: 'Verification queue',
-    body: 'One assisted rice entry awaits consent or approval (demo).',
+    body: 'One assisted rice entry awaits consent or approval.',
     read: true,
     createdAt: T2,
-    demoLabel: 'Demo',
   },
 ]
 
@@ -562,7 +539,7 @@ export const seedAuditLogs: readonly AuditLogEntry[] = [
     action: 'assisted_submitted',
     actorUserId: 'user-fo-1',
     at: T2,
-    note: 'Demo assisted entry — consent pending.',
+    note: 'Assisted entry — consent pending.',
   },
   {
     id: 'audit-pe-reject',
@@ -571,7 +548,7 @@ export const seedAuditLogs: readonly AuditLogEntry[] = [
     action: 'rejected',
     actorUserId: 'user-fo-2',
     at: T1,
-    note: 'Demo rejection — price out of plausible range.',
+    note: 'Rejected — price out of plausible range.',
   },
 ]
 
@@ -579,14 +556,14 @@ export const seedSyncQueue: readonly SyncQueueItem[] = [
   {
     clientEntryId: 'client-pe-draft-1',
     entityType: 'priceEntry',
-    payload: { productId: 'prod-paddy', note: 'Offline draft demo' },
+    payload: { productId: 'prod-paddy', note: 'Offline draft' },
     status: 'DRAFT',
     updatedAt: T2,
   },
   {
     clientEntryId: 'client-pe-pending-sync-1',
     entityType: 'priceEntry',
-    payload: { farmerId: 'user-farmer-4', productId: 'prod-onion', note: 'Queued offline demo' },
+    payload: { farmerId: 'user-farmer-4', productId: 'prod-onion', note: 'Queued offline' },
     status: 'PENDING_SYNC',
     updatedAt: T2,
   },

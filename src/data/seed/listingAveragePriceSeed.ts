@@ -50,7 +50,6 @@ function makePriceEntry(
     submittedAt,
     approvedAt: submittedAt,
     expiresAt: EXPIRES,
-    demoLabel: 'Demo',
   }
 }
 

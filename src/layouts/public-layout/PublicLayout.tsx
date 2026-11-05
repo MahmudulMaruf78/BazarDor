@@ -1,6 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { useI18n } from '@/app/preferences/LocaleProvider'
-import { DemoPrototypeNotice } from '@/components/common/DemoPrototypeNotice'
 import { AppLogo } from '@/components/common/AppLogo'
 import { LocaleSwitcher } from '@/components/common/LocaleSwitcher'
 import { buttonVariants } from '@/components/ui/button'
@@ -23,9 +22,6 @@ export function PublicLayout() {
               {t('demoSignIn')}
             </Link>
           </nav>
-        </div>
-        <div className="mx-auto max-w-6xl px-4 pb-3">
-          <DemoPrototypeNotice className="rounded-md" />
         </div>
       </header>
       <main className="flex-1">

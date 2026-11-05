@@ -89,7 +89,6 @@ export const listingSchema = z.object({
   completedQuantity: z.number().nonnegative(),
   askingPricePerUnit: z.number().positive(),
   status: z.enum(LISTING_STATUSES),
-  demoLabel: z.literal('Demo'),
   createdAt: isoDate,
 })
 
@@ -114,7 +113,6 @@ export const priceEntrySchema = z.object({
   rejectedAt: isoDate.optional(),
   rejectionReason: z.string().min(1).optional(),
   expiresAt: isoDate.optional(),
-  demoLabel: z.literal('Demo'),
 })
 
 export const bidSchema = z.object({
@@ -126,7 +124,6 @@ export const bidSchema = z.object({
   offeredPricePerUnit: z.number().positive(),
   status: z.enum(BID_STATUSES),
   createdAt: isoDate,
-  demoLabel: z.literal('Demo'),
 })
 
 export const transactionSchema = z.object({
@@ -142,7 +139,6 @@ export const transactionSchema = z.object({
   buyerConfirmedAt: isoDate.optional(),
   sellerConfirmedAt: isoDate.optional(),
   createdAt: isoDate,
-  demoLabel: z.literal('Demo'),
 })
 
 export const notificationSchema = z.object({
@@ -152,7 +148,6 @@ export const notificationSchema = z.object({
   body: z.string().min(1),
   read: z.boolean(),
   createdAt: isoDate,
-  demoLabel: z.literal('Demo'),
 })
 
 export const auditLogSchema = z.object({

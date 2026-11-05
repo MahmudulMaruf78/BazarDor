@@ -22,7 +22,6 @@ const listing: Listing = {
   completedQuantity: 0,
   askingPricePerUnit: 40,
   status: 'active',
-  demoLabel: 'Demo',
   createdAt: '2026-11-01T06:00:00+06:00',
 }
 
@@ -72,7 +71,6 @@ describe('stockService', () => {
       buyerConfirmedAt: '2026-11-04T08:00:00+06:00',
       sellerConfirmedAt: '2026-11-04T08:05:00+06:00',
       createdAt: '2026-11-04T08:00:00+06:00',
-      demoLabel: 'Demo',
     }
 
     expect(isTransactionCompleted(txn)).toBe(true)

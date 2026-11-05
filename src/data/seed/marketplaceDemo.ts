@@ -222,8 +222,8 @@ function farmerProfileFromLeaf(
 }
 
 export const marketplaceExtraFarmerProfiles: readonly FarmerProfile[] = [
-  farmerProfileFromLeaf('fp-nasir', 'user-farmer-5', 'নাসির হোসেন', demoMarketLocations.savar, 'demo-fp-nasir'),
-  farmerProfileFromLeaf('fp-fatema', 'user-farmer-6', 'ফাতেমা খাতুন', demoMarketLocations.balaganj, 'demo-fp-fatema'),
+  farmerProfileFromLeaf('fp-nasir', 'user-farmer-5', 'নাসির হোসেন', demoMarketLocations.savar, 'fp-nasir'),
+  farmerProfileFromLeaf('fp-fatema', 'user-farmer-6', 'ফাতেমা খাতুন', demoMarketLocations.balaganj, 'fp-fatema'),
 ]
 
 function listing(
@@ -248,7 +248,6 @@ function listing(
     completedQuantity: qty - available,
     askingPricePerUnit: price,
     status: available > 0 ? 'active' : 'sold_out',
-    demoLabel: 'Demo',
     createdAt,
   }
 }
@@ -320,7 +319,6 @@ function priceEntry(
     submittedAt,
     approvedAt: submittedAt,
     expiresAt: '2026-11-05T08:00:00+06:00',
-    demoLabel: 'Demo',
   }
 }
 

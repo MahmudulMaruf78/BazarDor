@@ -27,7 +27,6 @@ import { toast } from 'sonner'
 import { ROLE_DASHBOARD_PATH, ROLES } from '@/constants/roles'
 import { ROLE_NAV_ACTIVE } from '@/constants/roleVisual'
 import { notificationDisplayText } from '@/lib/i18n/userFacingText'
-import { DemoPrototypeNotice } from '@/components/common/DemoPrototypeNotice'
 import { documentTitleKeyForPath } from '@/lib/documentTitle'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
@@ -202,7 +201,6 @@ export function DashboardLayout() {
 
           <main className="flex-1 bg-bazardor-surface p-4 md:p-6">
             <div className="mx-auto flex w-full max-w-7xl flex-col gap-4">
-              <DemoPrototypeNotice className="rounded-md" />
               <Outlet />
             </div>
           </main>

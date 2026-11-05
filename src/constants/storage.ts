@@ -1,4 +1,4 @@
-export const STORAGE_SCHEMA_VERSION = 8
+export const STORAGE_SCHEMA_VERSION = 9
 
 export const LOCAL_STORAGE_KEYS = {
   demoSession: 'bazardor.demoSession.v1',

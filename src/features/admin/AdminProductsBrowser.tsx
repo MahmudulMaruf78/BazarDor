@@ -130,7 +130,6 @@ export function AdminProductsBrowser() {
                         <TableRow key={p.id}>
                           <TableCell>
                             <span className="mr-2">{pickName(p)}</span>
-                            <Badge variant="secondary">{t('demoLabel')}</Badge>
                           </TableCell>
                           <TableCell>{cat ? pickName(cat) : p.categoryId}</TableCell>
                           <TableCell className="font-mono text-xs">{p.allowedUnitIds.join(', ')}</TableCell>

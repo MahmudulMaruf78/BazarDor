@@ -69,7 +69,7 @@ describe('Phase 6 field officer', () => {
     })
     expect(registered.ok).toBe(true)
     if (!registered.ok) return
-    expect(registered.data.qrProfileId.startsWith('demo-')).toBe(true)
+    expect(registered.data.qrProfileId.startsWith('fp-')).toBe(true)
 
     const lookup = await lookupFarmerByQrProfileId(registered.data.qrProfileId)
     expect(lookup.ok && lookup.data.userId).toBe(registered.data.userId)

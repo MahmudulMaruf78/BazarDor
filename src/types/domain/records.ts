@@ -88,7 +88,6 @@ export type Listing = {
   completedQuantity: number
   askingPricePerUnit: number
   status: ListingStatus
-  demoLabel: 'Demo'
   createdAt: string
 }
 
@@ -113,7 +112,6 @@ export type PriceEntry = {
   rejectedAt?: string
   rejectionReason?: string
   expiresAt?: string
-  demoLabel: 'Demo'
 }
 
 export type Bid = {
@@ -125,7 +123,6 @@ export type Bid = {
   offeredPricePerUnit: number
   status: BidStatus
   createdAt: string
-  demoLabel: 'Demo'
 }
 
 export type Transaction = {
@@ -141,7 +138,6 @@ export type Transaction = {
   buyerConfirmedAt?: string
   sellerConfirmedAt?: string
   createdAt: string
-  demoLabel: 'Demo'
 }
 
 export type Notification = {
@@ -151,7 +147,6 @@ export type Notification = {
   body: string
   read: boolean
   createdAt: string
-  demoLabel: 'Demo'
 }
 
 export type SyncQueueItem = {

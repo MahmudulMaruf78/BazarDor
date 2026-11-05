@@ -78,7 +78,6 @@ export function AdminUnitsBrowser() {
                       <TableRow key={u.id}>
                         <TableCell>
                           <span className="mr-2">{pickName(u)}</span>
-                          <Badge variant="secondary">{t('demoLabel')}</Badge>
                         </TableCell>
                         <TableCell className="font-mono text-xs">{u.code}</TableCell>
                         <TableCell>{formatNumber(u.kgPerUnit)}</TableCell>

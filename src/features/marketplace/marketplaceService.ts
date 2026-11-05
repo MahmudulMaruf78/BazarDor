@@ -14,12 +14,11 @@ function newId(prefix: string) {
   return `${prefix}-${crypto.randomUUID()}`
 }
 
-async function pushNotification(input: Omit<Notification, 'id' | 'createdAt' | 'demoLabel' | 'read'>) {
+async function pushNotification(input: Omit<Notification, 'id' | 'createdAt' | 'read'>) {
   const notification: Notification = {
     id: newId('notif'),
     read: false,
     createdAt: new Date().toISOString(),
-    demoLabel: 'Demo',
     ...input,
   }
   await dataLayer.repos.notifications.saveNotification(notification)
@@ -160,7 +159,6 @@ export async function createListing(input: {
     completedQuantity: 0,
     askingPricePerUnit: input.askingPricePerUnit,
     status: 'active',
-    demoLabel: 'Demo',
     createdAt: new Date().toISOString(),
   }
 
@@ -168,8 +166,8 @@ export async function createListing(input: {
   if (saved.ok) {
     await pushNotification({
       userId: input.sellerUserId,
-      title: 'Demo listing created',
-      body: 'Your sample listing is visible in the marketplace catalog.',
+      title: 'Listing created',
+      body: 'Your listing is visible in the marketplace catalog.',
     })
   }
   return saved
@@ -198,15 +196,14 @@ export async function submitBid(input: {
     offeredPricePerUnit: input.offeredPricePerUnit,
     status: 'pending',
     createdAt: new Date().toISOString(),
-    demoLabel: 'Demo',
   }
 
   const saved = await dataLayer.repos.marketplace.saveBid(bid)
   if (saved.ok) {
     await pushNotification({
       userId: listingResult.data.sellerUserId,
-      title: 'Demo offer received',
-      body: 'A buyer submitted a sample offer on your listing.',
+      title: 'Offer received',
+      body: 'A buyer submitted an offer on your listing.',
     })
   }
   return saved
@@ -235,8 +232,8 @@ export async function decideBid(input: {
     if (!saved.ok) return saved
     await pushNotification({
       userId: bid.buyerUserId,
-      title: 'Demo offer rejected',
-      body: 'Your sample offer was rejected. Stock was not reserved.',
+      title: 'Offer rejected',
+      body: 'Your offer was rejected. Stock was not reserved.',
     })
     return ok({ bid: saved.data })
   }
@@ -264,15 +261,14 @@ export async function decideBid(input: {
     pricePerUnit: bid.offeredPricePerUnit,
     status: 'awaiting_completion_confirmation',
     createdAt: new Date().toISOString(),
-    demoLabel: 'Demo',
   }
   const savedTxn = await dataLayer.repos.marketplace.saveTransaction(transaction)
   if (!savedTxn.ok) return savedTxn
 
   await pushNotification({
     userId: bid.buyerUserId,
-    title: 'Demo offer accepted',
-    body: 'Stock reserved for this sample transaction. Confirm completion in My Bids.',
+    title: 'Offer accepted',
+    body: 'Stock reserved for this transaction. Confirm completion in My Bids.',
   })
 
   return ok({ bid: savedBid.data, listing: savedListing.data, transaction: savedTxn.data })
@@ -394,15 +390,14 @@ export async function createFarmerPriceEntry(input: {
     isAssisted: false,
     anomalyFlagged: false,
     submittedAt,
-    demoLabel: 'Demo',
   }
 
   const saved = await dataLayer.repos.prices.savePriceEntry(entry)
   if (saved.ok) {
     await pushNotification({
       userId: input.farmerId,
-      title: 'Demo price submitted',
-      body: 'Observation saved for review. Official averages use shared services later.',
+      title: 'Price submitted',
+      body: 'Observation saved for review.',
     })
   }
   return saved

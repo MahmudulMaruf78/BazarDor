@@ -28,7 +28,7 @@ const sample: Location[] = [
   {
     id: 'bd-uni-barishal-barisal-uzirpur-sample-1',
     parentId: 'bd-upz-barishal-barisal-uzirpur',
-    nameEn: 'Sample Union 1 (Demo)',
+    nameEn: 'Union 1',
     nameBn: 'নমুনা',
     type: 'union',
     dataSource: 'demo_synthetic',

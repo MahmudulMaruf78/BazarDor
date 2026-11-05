@@ -28,7 +28,6 @@ export type OfficialAverageSuccess = {
   windowStart: string
   windowEnd: string
   calculatedAt: string
-  demoLabel: 'Demo / Sample'
 }
 
 export type OfficialAverageInsufficient = {
@@ -40,7 +39,6 @@ export type OfficialAverageInsufficient = {
   windowStart: string
   windowEnd: string
   calculatedAt: string
-  demoLabel: 'Demo / Sample'
 }
 
 export type OfficialAverageResult = OfficialAverageSuccess | OfficialAverageInsufficient

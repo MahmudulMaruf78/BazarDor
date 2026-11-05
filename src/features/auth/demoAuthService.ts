@@ -28,5 +28,5 @@ export async function signOutDemoUser(): Promise<RepositoryResult<void>> {
 
 export async function resolveDemoDisplayName(userId: string): Promise<string> {
   const user = await dataLayer.repos.users.getUserById(userId)
-  return user.ok ? user.data.displayName : 'Demo user'
+  return user.ok ? user.data.displayName : 'User'
 }

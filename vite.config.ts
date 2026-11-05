@@ -11,9 +11,9 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'BazarDor Demo',
+        name: 'BazarDor',
         short_name: 'BazarDor',
-        description: 'Frontend-only agricultural marketplace prototype',
+        description: 'Agricultural marketplace for Bangladesh',
         theme_color: '#17324D',
         background_color: '#FFFFFF',
         display: 'standalone',

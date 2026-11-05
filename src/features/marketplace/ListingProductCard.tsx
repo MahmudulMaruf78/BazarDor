@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { ProductImage } from '@/components/common/ProductImage'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from 'cn'
 
 type ListingProductCardProps = {
@@ -9,6 +9,7 @@ type ListingProductCardProps = {
   imageAlt: string
   description?: string
   size?: 'default' | 'sm'
+  /** ponytail: off by default — accent only when caller needs emphasis */
   accentBorder?: boolean
   className?: string
   contentClassName?: string
@@ -21,7 +22,7 @@ export function ListingProductCard({
   imageAlt,
   description,
   size = 'default',
-  accentBorder = true,
+  accentBorder = false,
   className,
   contentClassName,
   children,
@@ -30,17 +31,34 @@ export function ListingProductCard({
     <Card
       size={size}
       className={cn(
-        'overflow-hidden pt-0',
-        accentBorder && 'border-bazardor-green/15',
+        'flex h-full flex-col overflow-hidden pt-0 transition-colors hover:border-border',
+        accentBorder && 'border-l-[3px] border-l-bazardor-green/70',
         className,
       )}
     >
-      <ProductImage imageUrl={imageUrl} alt={imageAlt} />
-      <CardHeader className="pb-2">
-        <CardTitle className="text-base leading-snug">{title}</CardTitle>
-        {description ? <CardDescription>{description}</CardDescription> : null}
+      <div className="border-b border-border/60 bg-muted/20">
+        <ProductImage
+          imageUrl={imageUrl}
+          alt={imageAlt}
+          className={size === 'sm' ? 'aspect-[4/3]' : 'aspect-[5/3]'}
+        />
+      </div>
+      <CardHeader className="gap-1 pb-0 pt-3">
+        <CardTitle
+          className={cn(
+            'line-clamp-2 font-semibold text-bazardor-navy',
+            size === 'sm' ? 'text-sm' : 'text-base',
+          )}
+        >
+          {title}
+        </CardTitle>
+        {description ? <p className="text-xs text-bazardor-muted">{description}</p> : null}
       </CardHeader>
-      {children ? <CardContent className={contentClassName}>{children}</CardContent> : null}
+      {children ? (
+        <CardContent className={cn('flex flex-1 flex-col gap-3 pb-4 pt-2', contentClassName)}>
+          {children}
+        </CardContent>
+      ) : null}
     </Card>
   )
 }

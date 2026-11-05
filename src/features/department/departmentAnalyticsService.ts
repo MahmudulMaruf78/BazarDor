@@ -29,9 +29,8 @@ export type TrendGranularity = 'day' | 'week' | 'month'
 
 export type ActivitySummary = {
   activeListings: number
-  demoTransactions: number
+  transactionCount: number
   approvedPriceEntries: number
-  demoLabel: 'Demo / Sample'
 }
 
 export async function loadDepartmentCatalog(): Promise<
@@ -151,14 +150,13 @@ export async function fetchActivitySummary(): Promise<RepositoryResult<ActivityS
 
   return ok({
     activeListings: listings.data.filter((l) => l.status === 'active').length,
-    demoTransactions: transactions.data.length,
+    transactionCount: transactions.data.length,
     approvedPriceEntries: prices.data.filter((p) => p.approvalStatus === 'approved').length,
-    demoLabel: 'Demo / Sample',
   })
 }
 
 export function buildCsvExport(filters: DepartmentFilters, average: OfficialAverageResult, rows: RegionalRow[]) {
-  const header = 'BazarDor Demo Export — not government-verified data'
+  const header = 'BazarDor price export'
   const meta = [
     `productId,${filters.productId}`,
     `locationScopeId,${filters.locationScopeId}`,
@@ -234,7 +232,7 @@ export async function exportWorkbookXlsxBlob(
 ) {
   const XLSX = await import('xlsx')
   const summary = [
-    ['BazarDor Demo Export — not government-verified data'],
+    ['BazarDor price export'],
     ['productId', filters.productId],
     ['locationScopeId', filters.locationScopeId],
     ['windowStart', filters.windowStart],
@@ -271,7 +269,7 @@ export async function exportPdfBlob(
   const autoTable = (await import('jspdf-autotable')).default
   const doc = new jsPDF()
   doc.setFontSize(10)
-  doc.text('BazarDor Demo Report — Sample data only', 14, 14)
+  doc.text('BazarDor regional price report', 14, 14)
   doc.text(`Product: ${filters.productId}`, 14, 22)
   doc.text(`Scope: ${filters.locationScopeId}`, 14, 28)
   doc.text(`Window: ${filters.windowStart} → ${filters.windowEnd}`, 14, 34)

@@ -8,7 +8,7 @@
     "jumman04": "Division/district/upazila tree from Jumman04 English file",
     "bd_json": "Union from BD-JSON where upazila names match (full list per upazila)",
     "demo_corridor": "Curated demo unions with centroids",
-    "demo_synthetic": "Placeholder Sample Union (Demo) — not government verification"
+    "demo_synthetic": "Synthetic union placeholder for upazilas without union lists"
   },
   "unionImportStats": {
     "upazilasTotal": 493,
@@ -1513,7 +1513,7 @@
                 {
                   "id": "bd-uni-barishal-bhola-daulatkhan-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -1521,7 +1521,7 @@
                 {
                   "id": "bd-uni-barishal-bhola-daulatkhan-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -1529,7 +1529,7 @@
                 {
                   "id": "bd-uni-barishal-bhola-daulatkhan-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -2513,7 +2513,7 @@
                 {
                   "id": "bd-uni-barishal-patuakhali-mirjaganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -2521,7 +2521,7 @@
                 {
                   "id": "bd-uni-barishal-patuakhali-mirjaganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -2529,7 +2529,7 @@
                 {
                   "id": "bd-uni-barishal-patuakhali-mirjaganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -4104,7 +4104,7 @@
                 {
                   "id": "bd-uni-chattogram-bandarban-alikadam-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -9700,7 +9700,7 @@
                 {
                   "id": "bd-uni-chattogram-khagrachari-guimara-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -9708,7 +9708,7 @@
                 {
                   "id": "bd-uni-chattogram-khagrachari-guimara-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -9716,7 +9716,7 @@
                 {
                   "id": "bd-uni-chattogram-khagrachari-guimara-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -10134,7 +10134,7 @@
                 {
                   "id": "bd-uni-chattogram-laxmipur-laxmipur-s-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -10142,7 +10142,7 @@
                 {
                   "id": "bd-uni-chattogram-laxmipur-laxmipur-s-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -10150,7 +10150,7 @@
                 {
                   "id": "bd-uni-chattogram-laxmipur-laxmipur-s-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -13074,7 +13074,7 @@
                 {
                   "id": "bd-uni-dhaka-gazipur-kaliakoir-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -13082,7 +13082,7 @@
                 {
                   "id": "bd-uni-dhaka-gazipur-kaliakoir-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -13090,7 +13090,7 @@
                 {
                   "id": "bd-uni-dhaka-gazipur-kaliakoir-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -13528,7 +13528,7 @@
                 {
                   "id": "bd-uni-dhaka-gopalganj-kasiani-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -13536,7 +13536,7 @@
                 {
                   "id": "bd-uni-dhaka-gopalganj-kasiani-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -13544,7 +13544,7 @@
                 {
                   "id": "bd-uni-dhaka-gopalganj-kasiani-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -13561,7 +13561,7 @@
                 {
                   "id": "bd-uni-dhaka-gopalganj-kotwalipara-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -13569,7 +13569,7 @@
                 {
                   "id": "bd-uni-dhaka-gopalganj-kotwalipara-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -13577,7 +13577,7 @@
                 {
                   "id": "bd-uni-dhaka-gopalganj-kotwalipara-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -14162,7 +14162,7 @@
                 {
                   "id": "bd-uni-dhaka-kishoreganj-karimganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -14170,7 +14170,7 @@
                 {
                   "id": "bd-uni-dhaka-kishoreganj-karimganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -14178,7 +14178,7 @@
                 {
                   "id": "bd-uni-dhaka-kishoreganj-karimganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15240,7 +15240,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-daulatpur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15248,7 +15248,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-daulatpur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15256,7 +15256,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-daulatpur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15273,7 +15273,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-ghior-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15281,7 +15281,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-ghior-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15289,7 +15289,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-ghior-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15589,7 +15589,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-shivalaya-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15597,7 +15597,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-shivalaya-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15605,7 +15605,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-shivalaya-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15622,7 +15622,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-singair-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15630,7 +15630,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-singair-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15638,7 +15638,7 @@
                 {
                   "id": "bd-uni-dhaka-manikganj-singair-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15664,7 +15664,7 @@
                 {
                   "id": "bd-uni-dhaka-munshiganj-gazaria-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15672,7 +15672,7 @@
                 {
                   "id": "bd-uni-dhaka-munshiganj-gazaria-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15680,7 +15680,7 @@
                 {
                   "id": "bd-uni-dhaka-munshiganj-gazaria-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15697,7 +15697,7 @@
                 {
                   "id": "bd-uni-dhaka-munshiganj-lauhajong-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15705,7 +15705,7 @@
                 {
                   "id": "bd-uni-dhaka-munshiganj-lauhajong-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -15713,7 +15713,7 @@
                 {
                   "id": "bd-uni-dhaka-munshiganj-lauhajong-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16525,7 +16525,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-belabo-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16533,7 +16533,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-belabo-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16541,7 +16541,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-belabo-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16558,7 +16558,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-monohardi-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16566,7 +16566,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-monohardi-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16574,7 +16574,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-monohardi-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16591,7 +16591,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-narshingdi-s-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16599,7 +16599,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-narshingdi-s-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16607,7 +16607,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-narshingdi-s-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16624,7 +16624,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-palash-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16632,7 +16632,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-palash-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16640,7 +16640,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-palash-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16657,7 +16657,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-raipura-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16665,7 +16665,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-raipura-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16673,7 +16673,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-raipura-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16690,7 +16690,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-shibpur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16698,7 +16698,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-shibpur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16706,7 +16706,7 @@
                 {
                   "id": "bd-uni-dhaka-narshingdi-shibpur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16911,7 +16911,7 @@
                 {
                   "id": "bd-uni-dhaka-rajbari-pangsha-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16919,7 +16919,7 @@
                 {
                   "id": "bd-uni-dhaka-rajbari-pangsha-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -16927,7 +16927,7 @@
                 {
                   "id": "bd-uni-dhaka-rajbari-pangsha-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -17187,7 +17187,7 @@
                 {
                   "id": "bd-uni-dhaka-shariatpur-damuddya-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -17195,7 +17195,7 @@
                 {
                   "id": "bd-uni-dhaka-shariatpur-damuddya-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -17203,7 +17203,7 @@
                 {
                   "id": "bd-uni-dhaka-shariatpur-damuddya-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -17220,7 +17220,7 @@
                 {
                   "id": "bd-uni-dhaka-shariatpur-goshairhat-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -17228,7 +17228,7 @@
                 {
                   "id": "bd-uni-dhaka-shariatpur-goshairhat-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -17236,7 +17236,7 @@
                 {
                   "id": "bd-uni-dhaka-shariatpur-goshairhat-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -17253,7 +17253,7 @@
                 {
                   "id": "bd-uni-dhaka-shariatpur-janjira-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -17261,7 +17261,7 @@
                 {
                   "id": "bd-uni-dhaka-shariatpur-janjira-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -17269,7 +17269,7 @@
                 {
                   "id": "bd-uni-dhaka-shariatpur-janjira-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -18315,7 +18315,7 @@
                 {
                   "id": "bd-uni-dhaka-tangail-shakhipur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -18323,7 +18323,7 @@
                 {
                   "id": "bd-uni-dhaka-tangail-shakhipur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -18331,7 +18331,7 @@
                 {
                   "id": "bd-uni-dhaka-tangail-shakhipur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19115,7 +19115,7 @@
                 {
                   "id": "bd-uni-khulna-bagerhat-sharankhola-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19123,7 +19123,7 @@
                 {
                   "id": "bd-uni-khulna-bagerhat-sharankhola-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19131,7 +19131,7 @@
                 {
                   "id": "bd-uni-khulna-bagerhat-sharankhola-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19486,7 +19486,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-abhoynagar-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19494,7 +19494,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-abhoynagar-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19502,7 +19502,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-abhoynagar-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19600,7 +19600,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-chowgacha-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19608,7 +19608,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-chowgacha-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19616,7 +19616,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-chowgacha-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19633,7 +19633,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-jashore-s-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19641,7 +19641,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-jashore-s-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -19649,7 +19649,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-jashore-s-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20021,7 +20021,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-sarsha-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20029,7 +20029,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-sarsha-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20037,7 +20037,7 @@
                 {
                   "id": "bd-uni-khulna-jashore-sarsha-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20063,7 +20063,7 @@
                 {
                   "id": "bd-uni-khulna-jhenaidah-harinakunda-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20071,7 +20071,7 @@
                 {
                   "id": "bd-uni-khulna-jhenaidah-harinakunda-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20079,7 +20079,7 @@
                 {
                   "id": "bd-uni-khulna-jhenaidah-harinakunda-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20622,7 +20622,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-batiaghata-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20630,7 +20630,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-batiaghata-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20638,7 +20638,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-batiaghata-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20655,7 +20655,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-dacope-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20663,7 +20663,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-dacope-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20671,7 +20671,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-dacope-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20688,7 +20688,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-dighalia-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20696,7 +20696,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-dighalia-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20704,7 +20704,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-dighalia-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20842,7 +20842,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-koira-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20850,7 +20850,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-koira-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20858,7 +20858,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-koira-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20875,7 +20875,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-paikgacha-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20883,7 +20883,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-paikgacha-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20891,7 +20891,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-paikgacha-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20908,7 +20908,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-phultala-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20916,7 +20916,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-phultala-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20924,7 +20924,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-phultala-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20941,7 +20941,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-rupsa-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20949,7 +20949,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-rupsa-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -20957,7 +20957,7 @@
                 {
                   "id": "bd-uni-khulna-khulna-rupsa-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -21218,7 +21218,7 @@
                 {
                   "id": "bd-uni-khulna-kushtia-khoksha-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -21226,7 +21226,7 @@
                 {
                   "id": "bd-uni-khulna-kushtia-khoksha-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -21234,7 +21234,7 @@
                 {
                   "id": "bd-uni-khulna-kushtia-khoksha-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -21777,7 +21777,7 @@
                 {
                   "id": "bd-uni-khulna-magura-salikha-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -21785,7 +21785,7 @@
                 {
                   "id": "bd-uni-khulna-magura-salikha-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -21793,7 +21793,7 @@
                 {
                   "id": "bd-uni-khulna-magura-salikha-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -22022,7 +22022,7 @@
                 {
                   "id": "bd-uni-khulna-meherpur-mujib-nagar-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -22030,7 +22030,7 @@
                 {
                   "id": "bd-uni-khulna-meherpur-mujib-nagar-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -22038,7 +22038,7 @@
                 {
                   "id": "bd-uni-khulna-meherpur-mujib-nagar-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23117,7 +23117,7 @@
                 {
                   "id": "bd-uni-mymensingh-jamalpur-bakshiganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23125,7 +23125,7 @@
                 {
                   "id": "bd-uni-mymensingh-jamalpur-bakshiganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23133,7 +23133,7 @@
                 {
                   "id": "bd-uni-mymensingh-jamalpur-bakshiganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23150,7 +23150,7 @@
                 {
                   "id": "bd-uni-mymensingh-jamalpur-dewanganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23158,7 +23158,7 @@
                 {
                   "id": "bd-uni-mymensingh-jamalpur-dewanganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23166,7 +23166,7 @@
                 {
                   "id": "bd-uni-mymensingh-jamalpur-dewanganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23482,7 +23482,7 @@
                 {
                   "id": "bd-uni-mymensingh-jamalpur-melendah-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23490,7 +23490,7 @@
                 {
                   "id": "bd-uni-mymensingh-jamalpur-melendah-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23498,7 +23498,7 @@
                 {
                   "id": "bd-uni-mymensingh-jamalpur-melendah-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23872,7 +23872,7 @@
                 {
                   "id": "bd-uni-mymensingh-mymensingh-gaffargaon-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23880,7 +23880,7 @@
                 {
                   "id": "bd-uni-mymensingh-mymensingh-gaffargaon-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -23888,7 +23888,7 @@
                 {
                   "id": "bd-uni-mymensingh-mymensingh-gaffargaon-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -24099,7 +24099,7 @@
                 {
                   "id": "bd-uni-mymensingh-mymensingh-ishwarganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -24107,7 +24107,7 @@
                 {
                   "id": "bd-uni-mymensingh-mymensingh-ishwarganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -24115,7 +24115,7 @@
                 {
                   "id": "bd-uni-mymensingh-mymensingh-ishwarganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25242,7 +25242,7 @@
                 {
                   "id": "bd-uni-mymensingh-netrokona-mohanganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25250,7 +25250,7 @@
                 {
                   "id": "bd-uni-mymensingh-netrokona-mohanganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25258,7 +25258,7 @@
                 {
                   "id": "bd-uni-mymensingh-netrokona-mohanganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25275,7 +25275,7 @@
                 {
                   "id": "bd-uni-mymensingh-netrokona-netrakona-s-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25283,7 +25283,7 @@
                 {
                   "id": "bd-uni-mymensingh-netrokona-netrakona-s-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25291,7 +25291,7 @@
                 {
                   "id": "bd-uni-mymensingh-netrokona-netrakona-s-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25479,7 +25479,7 @@
                 {
                   "id": "bd-uni-mymensingh-sherpur-nakla-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25487,7 +25487,7 @@
                 {
                   "id": "bd-uni-mymensingh-sherpur-nakla-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25495,7 +25495,7 @@
                 {
                   "id": "bd-uni-mymensingh-sherpur-nakla-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25902,7 +25902,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-bogura-s-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25910,7 +25910,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-bogura-s-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -25918,7 +25918,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-bogura-s-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26024,7 +26024,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-dhupchancia-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26032,7 +26032,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-dhupchancia-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26040,7 +26040,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-dhupchancia-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26235,7 +26235,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-nandigram-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26243,7 +26243,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-nandigram-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26251,7 +26251,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-nandigram-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26268,7 +26268,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-sariakandi-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26276,7 +26276,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-sariakandi-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26284,7 +26284,7 @@
                 {
                   "id": "bd-uni-rajshahi-bogura-sariakandi-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26650,7 +26650,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-bholahat-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26658,7 +26658,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-bholahat-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26666,7 +26666,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-bholahat-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26683,7 +26683,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-gomostapur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26691,7 +26691,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-gomostapur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26699,7 +26699,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-gomostapur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26716,7 +26716,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-nachol-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26724,7 +26724,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-nachol-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26732,7 +26732,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-nachol-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26749,7 +26749,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-nawabganj-s-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26757,7 +26757,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-nawabganj-s-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26765,7 +26765,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-nawabganj-s-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26782,7 +26782,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-shibganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26790,7 +26790,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-shibganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -26798,7 +26798,7 @@
                 {
                   "id": "bd-uni-rajshahi-c-nawabganj-shibganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -27968,7 +27968,7 @@
                 {
                   "id": "bd-uni-rajshahi-naogaon-shapahar-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -27976,7 +27976,7 @@
                 {
                   "id": "bd-uni-rajshahi-naogaon-shapahar-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -27984,7 +27984,7 @@
                 {
                   "id": "bd-uni-rajshahi-naogaon-shapahar-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -28270,7 +28270,7 @@
                 {
                   "id": "bd-uni-rajshahi-natore-naldanga-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -28278,7 +28278,7 @@
                 {
                   "id": "bd-uni-rajshahi-natore-naldanga-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -28286,7 +28286,7 @@
                 {
                   "id": "bd-uni-rajshahi-natore-naldanga-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -28855,7 +28855,7 @@
                 {
                   "id": "bd-uni-rajshahi-pabna-ishwardi-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -28863,7 +28863,7 @@
                 {
                   "id": "bd-uni-rajshahi-pabna-ishwardi-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -28871,7 +28871,7 @@
                 {
                   "id": "bd-uni-rajshahi-pabna-ishwardi-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -29561,7 +29561,7 @@
                 {
                   "id": "bd-uni-rajshahi-rajshahi-mohanpur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -29569,7 +29569,7 @@
                 {
                   "id": "bd-uni-rajshahi-rajshahi-mohanpur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -29577,7 +29577,7 @@
                 {
                   "id": "bd-uni-rajshahi-rajshahi-mohanpur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -29855,7 +29855,7 @@
                 {
                   "id": "bd-uni-rajshahi-sirajganj-chowhali-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -29863,7 +29863,7 @@
                 {
                   "id": "bd-uni-rajshahi-sirajganj-chowhali-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -29871,7 +29871,7 @@
                 {
                   "id": "bd-uni-rajshahi-sirajganj-chowhali-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -30034,7 +30034,7 @@
                 {
                   "id": "bd-uni-rajshahi-sirajganj-raiganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -30042,7 +30042,7 @@
                 {
                   "id": "bd-uni-rajshahi-sirajganj-raiganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -30050,7 +30050,7 @@
                 {
                   "id": "bd-uni-rajshahi-sirajganj-raiganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -30067,7 +30067,7 @@
                 {
                   "id": "bd-uni-rajshahi-sirajganj-shahzadpur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -30075,7 +30075,7 @@
                 {
                   "id": "bd-uni-rajshahi-sirajganj-shahzadpur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -30083,7 +30083,7 @@
                 {
                   "id": "bd-uni-rajshahi-sirajganj-shahzadpur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -31099,7 +31099,7 @@
                 {
                   "id": "bd-uni-rangpur-dinajpur-khanshama-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -31107,7 +31107,7 @@
                 {
                   "id": "bd-uni-rangpur-dinajpur-khanshama-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -31115,7 +31115,7 @@
                 {
                   "id": "bd-uni-rangpur-dinajpur-khanshama-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -31311,7 +31311,7 @@
                 {
                   "id": "bd-uni-rangpur-gaibandha-fulchari-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -31319,7 +31319,7 @@
                 {
                   "id": "bd-uni-rangpur-gaibandha-fulchari-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -31327,7 +31327,7 @@
                 {
                   "id": "bd-uni-rangpur-gaibandha-fulchari-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -32153,7 +32153,7 @@
                 {
                   "id": "bd-uni-rangpur-kurigram-fulbari-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -32161,7 +32161,7 @@
                 {
                   "id": "bd-uni-rangpur-kurigram-fulbari-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -32169,7 +32169,7 @@
                 {
                   "id": "bd-uni-rangpur-kurigram-fulbari-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -32259,7 +32259,7 @@
                 {
                   "id": "bd-uni-rangpur-kurigram-nageswari-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -32267,7 +32267,7 @@
                 {
                   "id": "bd-uni-rangpur-kurigram-nageswari-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -32275,7 +32275,7 @@
                 {
                   "id": "bd-uni-rangpur-kurigram-nageswari-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -32357,7 +32357,7 @@
                 {
                   "id": "bd-uni-rangpur-kurigram-rajibpur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -32365,7 +32365,7 @@
                 {
                   "id": "bd-uni-rangpur-kurigram-rajibpur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -32373,7 +32373,7 @@
                 {
                   "id": "bd-uni-rangpur-kurigram-rajibpur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -33250,7 +33250,7 @@
                 {
                   "id": "bd-uni-rangpur-nilphamari-kishoreganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -33258,7 +33258,7 @@
                 {
                   "id": "bd-uni-rangpur-nilphamari-kishoreganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -33266,7 +33266,7 @@
                 {
                   "id": "bd-uni-rangpur-nilphamari-kishoreganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -33412,7 +33412,7 @@
                 {
                   "id": "bd-uni-rangpur-nilphamari-sayedpur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -33420,7 +33420,7 @@
                 {
                   "id": "bd-uni-rangpur-nilphamari-sayedpur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -33428,7 +33428,7 @@
                 {
                   "id": "bd-uni-rangpur-nilphamari-sayedpur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -33852,7 +33852,7 @@
                 {
                   "id": "bd-uni-rangpur-rangpur-badarganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -33860,7 +33860,7 @@
                 {
                   "id": "bd-uni-rangpur-rangpur-badarganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -33868,7 +33868,7 @@
                 {
                   "id": "bd-uni-rangpur-rangpur-badarganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -34257,7 +34257,7 @@
                 {
                   "id": "bd-uni-rangpur-rangpur-pirganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -34265,7 +34265,7 @@
                 {
                   "id": "bd-uni-rangpur-rangpur-pirganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -34273,7 +34273,7 @@
                 {
                   "id": "bd-uni-rangpur-rangpur-pirganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -34387,7 +34387,7 @@
                 {
                   "id": "bd-uni-rangpur-rangpur-taraganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -34395,7 +34395,7 @@
                 {
                   "id": "bd-uni-rangpur-rangpur-taraganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -34403,7 +34403,7 @@
                 {
                   "id": "bd-uni-rangpur-rangpur-taraganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -34916,7 +34916,7 @@
                 {
                   "id": "bd-uni-sylhet-habiganj-azmiriganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -34924,7 +34924,7 @@
                 {
                   "id": "bd-uni-sylhet-habiganj-azmiriganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -34932,7 +34932,7 @@
                 {
                   "id": "bd-uni-sylhet-habiganj-azmiriganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -35588,7 +35588,7 @@
                 {
                   "id": "bd-uni-sylhet-habiganj-sayestaganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -35596,7 +35596,7 @@
                 {
                   "id": "bd-uni-sylhet-habiganj-sayestaganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -35604,7 +35604,7 @@
                 {
                   "id": "bd-uni-sylhet-habiganj-sayestaganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -35776,7 +35776,7 @@
                 {
                   "id": "bd-uni-sylhet-moulvibazar-kamalganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -35784,7 +35784,7 @@
                 {
                   "id": "bd-uni-sylhet-moulvibazar-kamalganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -35792,7 +35792,7 @@
                 {
                   "id": "bd-uni-sylhet-moulvibazar-kamalganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36190,7 +36190,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-biswamvarpur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36198,7 +36198,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-biswamvarpur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36206,7 +36206,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-biswamvarpur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36223,7 +36223,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-chatak-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36231,7 +36231,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-chatak-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36239,7 +36239,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-chatak-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36256,7 +36256,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-dakhin-sunamganj-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36264,7 +36264,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-dakhin-sunamganj-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36272,7 +36272,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-dakhin-sunamganj-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36459,7 +36459,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-doarabazar-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36467,7 +36467,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-doarabazar-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36475,7 +36475,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-doarabazar-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36614,7 +36614,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-sulla-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36622,7 +36622,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-sulla-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36630,7 +36630,7 @@
                 {
                   "id": "bd-uni-sylhet-sunamganj-sulla-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36948,7 +36948,7 @@
                 {
                   "id": "bd-uni-sylhet-sylhet-biswanath-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36956,7 +36956,7 @@
                 {
                   "id": "bd-uni-sylhet-sylhet-biswanath-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -36964,7 +36964,7 @@
                 {
                   "id": "bd-uni-sylhet-sylhet-biswanath-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -37038,7 +37038,7 @@
                 {
                   "id": "bd-uni-sylhet-sylhet-dakshin-surma-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -37046,7 +37046,7 @@
                 {
                   "id": "bd-uni-sylhet-sylhet-dakshin-surma-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -37054,7 +37054,7 @@
                 {
                   "id": "bd-uni-sylhet-sylhet-dakshin-surma-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -37290,7 +37290,7 @@
                 {
                   "id": "bd-uni-sylhet-sylhet-jointiapur-sample-1",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
+                  "nameEn": "Union 1",
                   "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -37298,7 +37298,7 @@
                 {
                   "id": "bd-uni-sylhet-sylhet-jointiapur-sample-2",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
+                  "nameEn": "Union 2",
                   "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []
@@ -37306,7 +37306,7 @@
                 {
                   "id": "bd-uni-sylhet-sylhet-jointiapur-sample-3",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
+                  "nameEn": "Union 3",
                   "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
                   "dataSource": "demo_synthetic",
                   "children": []

@@ -15,8 +15,7 @@ const baseEntry = {
   freshnessStatus: 'active' as const,
   isAssisted: false,
   anomalyFlagged: false,
-  demoLabel: 'Demo' as const,
-}
+  }
 
 export const fixtureLocations: readonly Location[] = seedLocations
 

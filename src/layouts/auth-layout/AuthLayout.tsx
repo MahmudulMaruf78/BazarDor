@@ -1,7 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { useI18n } from '@/app/preferences/LocaleProvider'
 import { AppLogo } from '@/components/common/AppLogo'
-import { DemoPrototypeNotice } from '@/components/common/DemoPrototypeNotice'
 import { LocaleSwitcher } from '@/components/common/LocaleSwitcher'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { documentTitleKeyForPath } from '@/lib/documentTitle'
@@ -20,7 +19,6 @@ export function AuthLayout() {
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-10">
         <div className="mb-6 w-full max-w-md space-y-4">
           <AppLogo />
-          <DemoPrototypeNotice className="rounded-md" />
         </div>
         <Card className="w-full max-w-md border-border/80 shadow-none">
           <CardHeader className="border-b pb-4">

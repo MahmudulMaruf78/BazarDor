@@ -39,7 +39,6 @@ describe('Phase 2 domain schemas', () => {
       isAssisted: false,
       anomalyFlagged: false,
       submittedAt: '2026-11-04T07:30:00+06:00',
-      demoLabel: 'Demo',
     })
     expect(parsed.success).toBe(false)
   })
