@@ -1,0 +1,30 @@
+{
+  "upazilasTotal": 493,
+  "upazilasMatched": 384,
+  "upazilasUnmatched": 109,
+  "upazilasWithAtLeast1Union": 493,
+  "upazilasWithAtLeast3Unions": 493,
+  "unionsImported": 3984,
+  "syntheticUnionsAdded": 328,
+  "upazilasFilledWithSynthetic": 109,
+  "unmatchedSamples": [
+    "bd-upz-barishal-barisal-uzirpur",
+    "bd-upz-barishal-bhola-daulatkhan",
+    "bd-upz-barishal-patuakhali-mirjaganj",
+    "bd-upz-chattogram-feni-chhagalniya",
+    "bd-upz-chattogram-feni-porshuram",
+    "bd-upz-chattogram-khagrachari-dighinala",
+    "bd-upz-chattogram-khagrachari-guimara",
+    "bd-upz-chattogram-khagrachari-khagrachari-s",
+    "bd-upz-chattogram-khagrachari-laxmichari",
+    "bd-upz-chattogram-khagrachari-mahalchari",
+    "bd-upz-chattogram-khagrachari-manikchari",
+    "bd-upz-chattogram-khagrachari-matiranga",
+    "bd-upz-chattogram-khagrachari-panchari",
+    "bd-upz-chattogram-khagrachari-ramgarh",
+    "bd-upz-chattogram-laxmipur-komol-nagar"
+  ],
+  "phase9BaselineUnmatched": 198,
+  "phase9SliceAUnmatched": 155,
+  "phase9SliceBUnmatched": 129
+}

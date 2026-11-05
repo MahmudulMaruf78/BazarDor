@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240">
+<rect width="900" height="240" fill="none"/>
+<svg x="8" y="15" width="220" height="210" viewBox="0 0 240 210">
+<g stroke="#0B6B3A" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M120 42 C93 20 68 20 55 27 C61 55 84 69 112 63" fill="#4CAF50" stroke="none"/>
+  <path d="M120 42 C142 14 169 10 188 17 C183 48 158 66 127 63" fill="#4CAF50" stroke="none"/>
+  <path d="M120 44 L120 78" fill="none"/>
+  <path d="M34 82 L205 82 L185 165 Q120 190 55 165 Z" fill="white"/>
+  <path d="M52 112 Q120 80 188 112" fill="none" stroke="#FF7A00" stroke-width="12"/>
+  <path d="M58 139 Q120 111 181 139" fill="none" stroke="#4CAF50" stroke-width="10"/>
+  <path d="M68 158 L95 132 M111 169 L139 132 M154 163 L174 143" fill="none" stroke="#0B6B3A" stroke-width="7"/>
+  <path d="M26 80 L8 65 M207 82 L225 65" fill="none"/>
+  <circle cx="62" cy="190" r="12" fill="#0B6B3A" stroke="none"/>
+  <circle cx="178" cy="190" r="12" fill="#0B6B3A" stroke="none"/>
+</g></svg>
+<text x="250" y="132" font-family="Arial, sans-serif" font-size="104" font-weight="700" fill="#0B6B3A">BazarDor</text>
+<path d="M255 158 Q440 210 650 160" fill="none" stroke="#FF7A00" stroke-width="9" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,68 @@
+import { Link, useLocation } from 'react-router-dom'
+import { buttonVariants } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useAppSelector } from '@/app/store/hooks'
+import { useI18n } from '@/app/preferences/LocaleProvider'
+import { selectAuthRole, selectAuthSession } from '@/features/auth/authSlice'
+import { ROLE_DASHBOARD_PATH } from '@/constants/roles'
+import { rolesAllowedForPath } from '@/features/auth/routeAccess'
+
+export function AccessDeniedPage() {
+  const role = useAppSelector(selectAuthRole)
+  const location = useLocation()
+  const allowed = rolesAllowedForPath(location.pathname)
+  const { t, roleLabel } = useI18n()
+
+  return (
+    <div className="mx-auto flex min-h-[60vh] max-w-lg items-center px-4 py-10">
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>{t('accessDeniedDemo')}</CardTitle>
+          <CardDescription>{t('accessDeniedBody')}</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4 text-sm">
+          <p>
+            {t('signedInAsRole')}{' '}
+            <span className="font-medium">{role ? roleLabel(role) : t('unknownRole')}</span>.
+          </p>
+          {allowed ? (
+            <p className="text-bazardor-muted">
+              {t('allowedRolesHere')}: {allowed.map((r) => roleLabel(r)).join(', ')}
+            </p>
+          ) : null}
+          {role ? (
+            <Link to={ROLE_DASHBOARD_PATH[role]} className={buttonVariants({ variant: 'default' })}>
+              {t('goMyDashboard')}
+            </Link>
+          ) : (
+            <Link to="/login" className={buttonVariants({ variant: 'default' })}>
+              {t('demoSignIn')}
+            </Link>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+export function NotFoundPage() {
+  const session = useAppSelector(selectAuthSession)
+  const { t } = useI18n()
+
+  return (
+    <div className="mx-auto flex min-h-[60vh] max-w-lg flex-col items-start justify-center gap-4 px-4 py-10">
+      <h1 className="text-2xl font-semibold">{t('notFoundTitle')}</h1>
+      <p className="text-sm text-bazardor-muted">{t('unknownRoute')}</p>
+      <div className="flex gap-2">
+        <Link to="/" className={buttonVariants({ variant: 'outline' })}>
+          {t('publicHome')}
+        </Link>
+        {session ? (
+          <Link to={ROLE_DASHBOARD_PATH[session.role]} className={buttonVariants({ variant: 'default' })}>
+            {t('myDashboard')}
+          </Link>
+        ) : null}
+      </div>
+    </div>
+  )
+}

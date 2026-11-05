@@ -1,0 +1,1 @@
+BazarDor vector/transparent assets. SVG files are editable vector artwork. PNG files have transparent backgrounds. Brand colors: #0B6B3A, #4CAF50, #FF7A00, #FFC107. The SVG logo uses editable text; replace font styling as needed in your design tool.

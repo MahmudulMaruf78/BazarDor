@@ -1,0 +1,140 @@
+---
+alwaysApply: true
+---
+# BazarDor — Cursor Project Rules
+
+## 1. Project scope and source of truth
+
+- Build BazarDor as a frontend-only React + Vite + TypeScript prototype.
+- The authoritative business specification is `documentations/BazarDor_Project_Master_Plan_v2.0.docx`.
+- Use `documentations/BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx` for implementation order and phase acceptance.
+- UI components live under `src/components` (shared `common/`, shadcn `ui/`). Business docs live under `documentations/`.
+- Keep every feature within the agreed prototype scope unless the project owner explicitly changes it.
+- Do not silently invent business policies for items listed as open decisions in the Master Plan.
+- If a requirement is unclear or conflicts with the Master Plan, stop and explain the conflict before changing business behaviour.
+
+## 2. Required architecture
+
+- Use feature-based modules and layered data flow.
+- Keep Presentation, Application, State, Business Logic, Data Access, and Storage responsibilities separate.
+- Use React + TypeScript, React Router, Redux Toolkit, Tailwind CSS, and shadcn/ui.
+- Put reusable business rules in pure TypeScript services.
+- Use repository interfaces and mock adapters for domain data access.
+- React components, pages, and selectors must never read/write `localStorage`, IndexedDB, or mutate JSON seed data directly.
+- LocalStorage is for the demo session and small preferences only.
+- IndexedDB is for offline domain records and the sync queue.
+- Keep UI-only state separate from domain records.
+- Use typed Redux hooks and typed repository/service contracts.
+- Validate user input with Zod schemas and validate business transitions in business services.
+- Avoid adding dependencies unless the feature genuinely needs them. Explain new dependencies in the implementation summary.
+
+## 3. Non-negotiable price rules
+
+- Keep `officialMarketPrice`, `askingPrice`, and `biddingPrice` separate. Never merge their records or calculations.
+- Asking Price and Bidding Price must never affect the Official Market Price average.
+- Only approved, eligible, non-expired farmer price observations can contribute to the average.
+- Assisted entries must have verified consent before approval or average eligibility.
+- A record must match product, geographic scope, standard unit, and selected time window.
+- Use only the latest eligible approved entry per distinct farmer within each calculation group.
+- Require at least two different farmers. Otherwise return and display `Insufficient Data`.
+- Never invent, interpolate, or guess a price when the sample count is insufficient.
+- For a parent geographic scope, pool underlying eligible records from descendant locations. Never calculate a parent average by averaging child averages.
+- Deduplicate by farmer across the requested geographic scope so one farmer is counted once in that group.
+- Show sample count, location scope, time window, calculation timestamp, and Demo/Sample label with every average.
+- Do not implement a fixed anomaly threshold unless it is approved/configured. Anomaly highlighting must not automatically reject or exclude an entry.
+
+## 4. Unit and price normalization
+
+- The standard base unit is kilogram (kg).
+- Use the configured conversion table: 1 maund = 40 kg; 1 quintal = 100 kg; 1 tonne = 1,000 kg.
+- Do not assume that every unit is valid for every product. Check product-unit compatibility.
+- Market-price entry must capture reported quantity, reported unit, and total price for that quantity.
+- Calculate `normalizedQuantityKg = reportedQuantity * kgPerUnit`.
+- Calculate `normalizedPricePerKg = reportedTotalPrice / normalizedQuantityKg`.
+- Reject zero/negative quantities, zero/negative prices, invalid conversions, and incompatible units.
+- Do not calculate official averages inside React components.
+
+## 5. Price entry, consent, and approval
+
+- Keep `farmerId` (the farmer the observation belongs to) separate from `submittedByUserId` (the person who entered it).
+- Keep `consentStatus`, `approvalStatus`, and `freshnessStatus` as separate fields.
+- Use separate approval and freshness states. An approved entry can later expire.
+- Store timestamps and audit events for submission, approval, rejection, and assisted entry.
+- A rejection must have a reason.
+- Block a Field Officer from approving an entry that the same officer submitted or created through Assisted Entry.
+- Do not make an assisted entry eligible while consent is pending or unavailable.
+- If the farmer has no phone, show `Consent Not Available`; do not invent an alternative consent process.
+- Treat the 24-hour expiry duration as a configurable prototype default, not a final government policy. The Master Plan lists it as an open decision.
+
+## 6. Listings, bids, transactions, and stock
+
+- Validate listing quantity, bid quantity, units, and offered price.
+- Never allow available stock to become negative.
+- Accepting an offer reserves stock.
+- Completing a transaction requires both buyer and seller confirmation.
+- On completion, move the reserved quantity to completed/sold quantity.
+- On cancellation before completion, release the reservation.
+- Rejected bids do not reserve stock.
+- A bid or transaction must never change Official Market Price.
+- Clearly label transactions as Demo records; do not imply payment, delivery, or legal proof.
+
+## 7. Roles, privacy, and demo security
+
+- The six roles are Farmer, Buyer, Seller/Trader, Field Officer, Agriculture Department, and Admin.
+- Use role guards and permission keys for the prototype UI.
+- Do not describe frontend route guards as real security.
+- Do not expose a farmer's personal phone number publicly.
+- Do not embed personal data in QR codes; use only a non-sensitive profile identifier.
+- Never add real passwords, OTP secrets, identity documents, API secrets, or credentials to seed data or browser storage.
+- Use fictional demo identities and clearly labelled sample data.
+- Do not claim real SMS OTP, real government approval, payment processing, push notifications, or cross-device synchronization.
+
+## 8. Offline workflow
+
+- Store offline entries and sync queue items in IndexedDB through an adapter/repository.
+- Give every offline record a unique `clientEntryId`.
+- Support queue states: `DRAFT`, `PENDING_SYNC`, `SYNCING`, `SYNCED`, `FAILED`, and `CONFLICT`.
+- Keep failed/conflicted items with error details; never silently discard them.
+- The prototype sync is limited to the same browser/device.
+- Cache the application shell for offline reopening if the offline feature is being implemented.
+- Do not claim cross-device sync or production background synchronization.
+
+## 9. UI and accessibility
+
+- Use responsive, mobile-first layouts for Farmer and Field Officer workflows.
+- Support Bangla and English labels and number formatting.
+- Use accessible labels, keyboard navigation, visible focus, readable contrast, and touch-friendly controls.
+- Provide loading, empty, validation, error, success, confirmation, and offline states.
+- Use plain language in farmer-facing screens.
+- Label mock data, charts, prices, reports, and transactions as Demo/Sample where appropriate.
+- Do not use the phrase “Live Market Prices” unless a real live source is connected.
+- Voice input is Coming Soon and must remain non-functional in this prototype.
+
+## 10. Testing requirements
+
+- Add unit tests for unit conversion, normalization, consent eligibility, approval rules, self-approval blocking, expiry, latest-entry selection, minimum sample count, geographic pooling, anomaly handling, and stock transitions.
+- Add integration tests for role access, listing creation, bidding, offer acceptance, completion, cancellation, and offline queue behaviour.
+- Include fixtures for two or more distinct farmers, repeated entries from one farmer, pending/rejected/expired records, and insufficient-data cases.
+- Do not mark a phase complete if its acceptance tests fail.
+- Run lint, typecheck, tests, and production build after meaningful changes.
+
+## 11. Code quality and change discipline
+
+- Prefer small, focused changes that match the current development phase.
+- Do not build later-phase features early unless needed by a documented dependency.
+- Keep names consistent with domain terms in the Master Plan.
+- Avoid duplicate calculations, duplicated permission logic, and direct storage access.
+- Do not remove existing working behaviour without explaining the reason.
+- Do not add fake data that looks like verified government data.
+- When changing a business rule, update the relevant tests and documentation.
+- At the end of each task, summarize files changed, behaviour implemented, tests run, and any unresolved decisions.
+
+## 12. Stable demo state values
+
+- Bid: `pending`, `accepted`, `rejected`.
+- Transaction: `awaiting_completion_confirmation`, `completed`, `cancelled`.
+- Approval: `pending`, `approved`, `rejected`.
+- Consent: `not_required`, `pending`, `verified`, `unavailable`.
+- Freshness: `active`, `expired`.
+- Sync queue: `DRAFT`, `PENDING_SYNC`, `SYNCING`, `SYNCED`, `FAILED`, `CONFLICT`.
+- A transaction is completed only when both `buyerConfirmedAt` and `sellerConfirmedAt` exist.
