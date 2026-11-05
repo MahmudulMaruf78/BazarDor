@@ -1,6 +1,12 @@
 import { dataLayer } from '@/data'
-import { expandLocationScope } from '@/services/locationScope'
+import {
+  buildProductBrowseCards,
+  filterListingsForBrowse,
+  paginateProductBrowseCards,
+  type ProductBrowsePage,
+} from '@/services/productCatalogBrowse'
 import { normalizeMarketPrice } from '@/services/priceNormalization'
+import { validateListingEligibleForBid } from '@/services/listingOfferEligibility'
 import {
   completeListingSale,
   releaseListingReservation,
@@ -31,6 +37,8 @@ export type ListingFilters = {
   locationId?: string
   /** Expand listings under this scope id (division → descendants). */
   locationScopeId?: string
+  /** Effective product variant id from catalog. */
+  variantId?: string
   sort?: 'newest' | 'price-asc' | 'price-desc'
   page?: number
   pageSize?: number
@@ -43,49 +51,27 @@ export type ListingPage = {
   pageSize: number
 }
 
+export type { ProductBrowsePage } from '@/services/productCatalogBrowse'
+
 export async function browseListings(filters: ListingFilters = {}): Promise<RepositoryResult<ListingPage>> {
-  const [listings, products, locations] = await Promise.all([
+  const [listings, products, locations, variants] = await Promise.all([
     dataLayer.repos.marketplace.listListings(),
     dataLayer.repos.catalog.listProducts(),
     dataLayer.repos.catalog.listLocations(),
+    dataLayer.repos.catalog.listProductVariants(),
   ])
   if (!listings.ok) return listings
   if (!products.ok) return products
   if (!locations.ok) return locations
+  if (!variants.ok) return variants
 
-  const productById = new Map(products.data.map((product) => [product.id, product]))
-  const locationById = new Map(locations.data.map((location) => [location.id, location]))
-
-  let items = listings.data.filter((listing) => listing.status !== 'inactive')
-
-  if (filters.categoryId) {
-    items = items.filter((listing) => productById.get(listing.productId)?.categoryId === filters.categoryId)
-  }
-  if (filters.locationId) {
-    items = items.filter((listing) => listing.locationId === filters.locationId)
-  }
-  if (filters.locationScopeId) {
-    const scope = new Set(expandLocationScope(filters.locationScopeId, locations.data))
-    items = items.filter((listing) => scope.has(listing.locationId))
-  }
-  if (filters.search?.trim()) {
-    const q = filters.search.trim().toLowerCase()
-    items = items.filter((listing) => {
-      const product = productById.get(listing.productId)
-      const location = locationById.get(listing.locationId)
-      return (
-        product?.nameEn.toLowerCase().includes(q) ||
-        product?.nameBn.includes(filters.search!.trim()) ||
-        location?.nameEn.toLowerCase().includes(q)
-      )
-    })
-  }
-
-  if (filters.sort === 'price-asc') items = [...items].sort((a, b) => a.askingPricePerUnit - b.askingPricePerUnit)
-  if (filters.sort === 'price-desc') items = [...items].sort((a, b) => b.askingPricePerUnit - a.askingPricePerUnit)
-  if (!filters.sort || filters.sort === 'newest') {
-    items = [...items].sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-  }
+  const items = filterListingsForBrowse(
+    listings.data,
+    filters,
+    products.data,
+    locations.data,
+    variants.data,
+  )
 
   const pageSize = filters.pageSize ?? 6
   const page = Math.max(1, filters.page ?? 1)
@@ -97,6 +83,43 @@ export async function browseListings(filters: ListingFilters = {}): Promise<Repo
     page,
     pageSize,
   })
+}
+
+export async function browseProductCatalog(
+  filters: ListingFilters = {},
+): Promise<RepositoryResult<ProductBrowsePage>> {
+  const [listings, products, locations, units, priceEntries, variants] = await Promise.all([
+    dataLayer.repos.marketplace.listListings(),
+    dataLayer.repos.catalog.listProducts(),
+    dataLayer.repos.catalog.listLocations(),
+    dataLayer.repos.catalog.listUnits(),
+    dataLayer.repos.prices.listPriceEntries(),
+    dataLayer.repos.catalog.listProductVariants(),
+  ])
+  if (!listings.ok) return listings
+  if (!products.ok) return products
+  if (!locations.ok) return locations
+  if (!units.ok) return units
+  if (!priceEntries.ok) return priceEntries
+  if (!variants.ok) return variants
+
+  const filtered = filterListingsForBrowse(
+    listings.data,
+    filters,
+    products.data,
+    locations.data,
+    variants.data,
+  )
+  const cards = buildProductBrowseCards(
+    filtered,
+    products.data,
+    variants.data,
+    priceEntries.data,
+    locations.data,
+    units.data,
+    filters.locationScopeId,
+  )
+  return ok(paginateProductBrowseCards(cards, filters))
 }
 
 export async function restockListing(input: {
@@ -181,6 +204,11 @@ export async function submitBid(input: {
 }): Promise<RepositoryResult<Bid>> {
   const listingResult = await dataLayer.repos.marketplace.getListingById(input.listingId)
   if (!listingResult.ok) return listingResult
+
+  const eligible = validateListingEligibleForBid(listingResult.data)
+  if (!eligible.ok) {
+    return err({ code: 'VALIDATION', message: eligible.error.message, details: eligible.error.details })
+  }
 
   const stockCheck = validateAvailableStock(listingResult.data, input.quantity)
   if (!stockCheck.ok) {

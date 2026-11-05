@@ -153,7 +153,7 @@ export function BangladeshLocationSelector({
       ) : null}
 
       {showNoUnionsHint ? (
-        <p className={compact ? 'col-span-full text-xs text-bazardor-muted' : 'text-sm text-bazardor-muted md:col-span-2'}>
+        <p className={compact ? 'col-span-full text-xs text-muted-foreground' : 'text-sm text-muted-foreground md:col-span-2'}>
           {t('noUnionsForUpazila')}
         </p>
       ) : null}

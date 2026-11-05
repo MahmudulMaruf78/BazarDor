@@ -6,6 +6,10 @@ describe('statusLabel', () => {
     expect(statusLabel('bn', 'approvalStatus', 'approved')).toBe('অনুমোদিত')
   })
 
+  it('returns Bangla sync queue status when locale is bn', () => {
+    expect(statusLabel('bn', 'syncStatus', 'PENDING_SYNC')).toBe('সিঙ্ক অপেক্ষমান')
+  })
+
   it('falls back to raw status when key is missing', () => {
     expect(statusLabel('en', 'approvalStatus', 'unknown')).toBe('unknown')
   })

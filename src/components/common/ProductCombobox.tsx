@@ -34,7 +34,7 @@ type ProductComboboxProps = {
 
 /** Type or pick from list — stores catalog `productId`. */
 export function ProductCombobox({ label, products, value, onChange, className }: ProductComboboxProps) {
-  const { pickName, locale } = useI18n()
+  const { pickName, locale, t } = useI18n()
   const anchorRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const cmdkInputRef = useRef<HTMLInputElement>(null)
@@ -191,7 +191,7 @@ export function ProductCombobox({ label, products, value, onChange, className }:
               />
               <CommandList id={listId}>
                 {filtered.length === 0 ? (
-                  <CommandEmpty>No match</CommandEmpty>
+                  <CommandEmpty>{t('comboboxNoMatch')}</CommandEmpty>
                 ) : (
                   filtered.map((p) => (
                     <CommandItem

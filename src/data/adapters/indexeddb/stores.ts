@@ -6,6 +6,7 @@ export const IDB_STORES = {
   units: 'units',
   locations: 'locations',
   products: 'products',
+  productVariants: 'productVariants',
   listings: 'listings',
   priceEntries: 'priceEntries',
   bids: 'bids',

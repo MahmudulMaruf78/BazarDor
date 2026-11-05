@@ -6,9 +6,9 @@ alwaysApply: true
 ## 1. Project scope and source of truth
 
 - Build BazarDor as a frontend-only React + Vite + TypeScript prototype.
-- The authoritative business specification is `documentations/BazarDor_Project_Master_Plan_v2.0.docx`.
-- Use `documentations/BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx` for implementation order and phase acceptance.
-- UI components live under `src/components` (shared `common/`, shadcn `ui/`). Business docs live under `documentations/`.
+- The authoritative business specification is `docs/spec/BazarDor_Project_Master_Plan_v2.0.docx`.
+- Use `docs/spec/BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx` for implementation order and phase acceptance.
+- UI components live under `src/components` (shared `common/`, shadcn `ui/`). Business docs live under `docs/`.
 - Keep every feature within the agreed prototype scope unless the project owner explicitly changes it.
 - Do not silently invent business policies for items listed as open decisions in the Master Plan.
 - If a requirement is unclear or conflicts with the Master Plan, stop and explain the conflict before changing business behaviour.

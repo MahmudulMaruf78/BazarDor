@@ -12,7 +12,7 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
   return (
     <div
       className={cn(
-        'relative inline-grid h-9 w-[5.5rem] grid-cols-2 cursor-pointer rounded-full border border-bazardor-green/25 bg-bazardor-green p-0.5',
+        'relative inline-grid h-9 w-[5.5rem] grid-cols-2 cursor-pointer rounded-full border border-primary/25 bg-primary p-0.5',
         className,
       )}
       role="group"
@@ -29,7 +29,7 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
         type="button"
         className={cn(
           'relative z-10 cursor-pointer rounded-full text-sm font-bold tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground/80',
-          isBn ? 'text-bazardor-green' : 'text-primary-foreground',
+          isBn ? 'text-primary' : 'text-primary-foreground',
         )}
         aria-pressed={isBn}
         onClick={() => setLocale('bn')}
@@ -40,7 +40,7 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
         type="button"
         className={cn(
           'relative z-10 cursor-pointer rounded-full text-sm font-bold tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground/80',
-          !isBn ? 'text-bazardor-green' : 'text-primary-foreground',
+          !isBn ? 'text-primary' : 'text-primary-foreground',
         )}
         aria-pressed={!isBn}
         onClick={() => setLocale('en')}

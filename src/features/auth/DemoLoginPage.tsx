@@ -21,7 +21,7 @@ export function DemoLoginPage() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const location = useLocation()
-  const { t, roleLabel } = useI18n()
+  const { t, roleLabel, translateError } = useI18n()
   const [users, setUsers] = useState<User[]>([])
   const [selectedUserId, setSelectedUserId] = useState('')
   const [loadingUsers, setLoadingUsers] = useState(true)
@@ -29,7 +29,7 @@ export function DemoLoginPage() {
   useEffect(() => {
     void dataLayer.repos.users.listUsers().then((result) => {
       if (!result.ok) {
-        toast.error(result.error.message)
+        toast.error(translateError(result.error.message))
         setLoadingUsers(false)
         return
       }
@@ -47,7 +47,7 @@ export function DemoLoginPage() {
 
   return (
     <div className="space-y-6">
-      <p className="text-sm text-bazardor-muted">{t('pickAccount')}</p>
+      <p className="text-sm text-muted-foreground">{t('pickAccount')}</p>
 
       <form
         className="space-y-4"
@@ -63,7 +63,7 @@ export function DemoLoginPage() {
                 replace: true,
               })
             })
-            .catch((error: Error) => toast.error(error.message))
+            .catch((error: Error) => toast.error(translateError(error.message)))
         }}
       >
         <div className="space-y-2">
@@ -90,7 +90,7 @@ export function DemoLoginPage() {
         </Button>
       </form>
 
-      <p className="text-xs text-bazardor-muted">{t('sessionNote')}</p>
+      <p className="text-xs text-muted-foreground">{t('sessionNote')}</p>
     </div>
   )
 }

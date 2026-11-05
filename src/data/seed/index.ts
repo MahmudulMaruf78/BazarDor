@@ -8,6 +8,7 @@ import type {
   Notification,
   PriceEntry,
   Product,
+  ProductVariant,
   SyncQueueItem,
   Transaction,
   Unit,
@@ -26,6 +27,7 @@ import {
   marketplaceExtraListings,
   marketplaceExtraPriceEntries,
   marketplaceExtraUsers,
+  marketplaceProductVariants,
   marketplaceProducts,
 } from '@/data/seed/marketplaceDemo'
 import { buildSupplementalAveragePriceEntries } from '@/data/seed/listingAveragePriceSeed'
@@ -574,6 +576,7 @@ export type DemoSeedBundle = {
   units: readonly Unit[]
   locations: readonly Location[]
   products: readonly Product[]
+  productVariants: readonly ProductVariant[]
   users: readonly User[]
   farmerProfiles: readonly FarmerProfile[]
   listings: readonly Listing[]
@@ -598,6 +601,7 @@ export const demoSeedBundle: DemoSeedBundle = {
   units: seedUnits,
   locations: seedLocations,
   products: marketplaceProducts,
+  productVariants: marketplaceProductVariants,
   users: [...seedUsers, ...marketplaceExtraUsers],
   farmerProfiles: [...seedFarmerProfiles, ...marketplaceExtraFarmerProfiles],
   listings: seedListingsMerged,

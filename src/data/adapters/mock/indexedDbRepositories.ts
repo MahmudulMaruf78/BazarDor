@@ -32,6 +32,7 @@ import type {
   Notification,
   PriceEntry,
   Product,
+  ProductVariant,
   SyncQueueItem,
   Transaction,
   Unit,
@@ -79,6 +80,7 @@ const catalogRepository: CatalogRepository = {
   listUnits: () => loadStore<Unit>('units', 'units'),
   listLocations: () => loadStore<Location>('locations', 'locations'),
   listProducts: () => loadStore<Product>('products', 'products'),
+  listProductVariants: () => loadStore<ProductVariant>('productVariants', 'product variants'),
 }
 
 const userRepository: UserRepository = {

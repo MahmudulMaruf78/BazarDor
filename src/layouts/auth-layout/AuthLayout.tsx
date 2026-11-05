@@ -12,7 +12,7 @@ export function AuthLayout() {
   useDocumentTitle(documentTitleKeyForPath(pathname), t)
 
   return (
-    <div className="flex min-h-dvh flex-col bg-bazardor-surface">
+    <div className="flex min-h-dvh flex-col bg-background">
       <div className="absolute right-4 top-4 z-10">
         <LocaleSwitcher />
       </div>
@@ -20,15 +20,15 @@ export function AuthLayout() {
         <div className="mb-6 w-full max-w-md space-y-4">
           <AppLogo />
         </div>
-        <Card className="w-full max-w-md border-border/80 shadow-none">
+        <Card className="w-full max-w-md border-border/80 border-l-[3px] border-l-primary/50 shadow-none">
           <CardHeader className="border-b pb-4">
             <CardTitle>{t('authTitle')}</CardTitle>
             <CardDescription>{t('authDesc')}</CardDescription>
           </CardHeader>
           <CardContent className="pt-4">
             <Outlet />
-            <p className="mt-4 text-center text-sm text-bazardor-muted">
-              <Link to="/" className="text-bazardor-green underline-offset-4 hover:underline">
+            <p className="mt-4 text-center text-sm text-muted-foreground">
+              <Link to="/" className="text-primary underline-offset-4 hover:underline">
                 {t('backHome')}
               </Link>
             </p>

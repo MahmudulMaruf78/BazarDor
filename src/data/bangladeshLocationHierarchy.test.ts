@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import importStats from '../../documentations/BANGLADESH_UNION_IMPORT_STATS.json'
+import importStats from '../../docs/BANGLADESH_UNION_IMPORT_STATS.json'
 import { DEMO_LOCATION_IDS as D } from '@/data/demoLocationIds'
 import {
   countBangladeshLocationsByType,

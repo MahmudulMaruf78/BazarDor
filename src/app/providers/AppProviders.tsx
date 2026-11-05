@@ -10,6 +10,7 @@ import { hydrateAuth } from '@/features/auth/authSlice'
 
 function DemoDataGate({ children }: PropsWithChildren) {
   const init = useDemoDataBootstrap()
+  const { translateError } = useI18n()
 
   if (init.status === 'loading' || init.status === 'idle') {
     return <DemoDataLoading />
@@ -18,7 +19,7 @@ function DemoDataGate({ children }: PropsWithChildren) {
   if (init.status === 'error') {
     return (
       <div className="flex min-h-dvh items-center justify-center p-6 text-sm text-destructive">
-        {init.message}
+        {translateError(init.message)}
       </div>
     )
   }
@@ -29,7 +30,7 @@ function DemoDataGate({ children }: PropsWithChildren) {
 function DemoDataLoading() {
   const { t } = useI18n()
   return (
-    <div className="flex min-h-dvh items-center justify-center p-6 text-sm text-bazardor-muted">
+    <div className="flex min-h-dvh items-center justify-center p-6 text-sm text-muted-foreground">
       {t('loadingDataset')}
     </div>
   )

@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { cn } from "cn"
+import { useOptionalI18n } from "@/app/preferences/LocaleProvider"
 
 import { Button } from "@/components/ui/button"
 import { XIcon } from "lucide-react"
@@ -39,6 +40,11 @@ function DialogOverlay({
   )
 }
 
+function DialogCloseLabel() {
+  const i18n = useOptionalI18n()
+  return <span className="sr-only">{i18n ? i18n.t('close') : 'Close'}</span>
+}
+
 function DialogContent({
   className,
   children,
@@ -72,7 +78,7 @@ function DialogContent({
           >
             <XIcon
             />
-            <span className="sr-only">Close</span>
+            <DialogCloseLabel />
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Popup>

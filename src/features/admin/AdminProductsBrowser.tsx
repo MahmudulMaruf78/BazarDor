@@ -3,6 +3,7 @@ import { useI18n } from '@/app/preferences/LocaleProvider'
 import { dataLayer } from '@/data'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { EmptyState } from '@/components/common/EmptyState'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -72,7 +73,7 @@ export function AdminProductsBrowser() {
       </CardHeader>
       <CardContent className="space-y-4">
         {loading ? (
-          <p className="text-sm text-bazardor-muted">{t('loading')}</p>
+          <p className="text-sm text-muted-foreground">{t('loading')}</p>
         ) : (
           <>
             <div className="grid gap-3 md:grid-cols-2">
@@ -103,13 +104,13 @@ export function AdminProductsBrowser() {
               </div>
             </div>
 
-            <p className="text-xs text-bazardor-muted">
+            <p className="text-xs text-muted-foreground">
               {t('adminLocationsShowing')} {rangeStart}–{rangeEnd} {t('adminLocationsOf')} {filtered.length}{' '}
               ({t('adminLocationsFiltered')}, {t('adminLocationsTotal')} {products.length})
             </p>
 
             {filtered.length === 0 ? (
-              <p className="text-sm text-bazardor-muted">{t('adminProductsEmpty')}</p>
+              <EmptyState title={t('adminProductsEmpty')} />
             ) : (
               <div className="overflow-x-auto rounded-md border">
                 <Table>
@@ -157,7 +158,7 @@ export function AdminProductsBrowser() {
                 >
                   {t('adminLocationsPrev')}
                 </Button>
-                <span className="text-sm text-bazardor-muted">
+                <span className="text-sm text-muted-foreground">
                   {t('adminLocationsPage')} {effectivePage + 1} / {pageCount}
                 </span>
                 <Button

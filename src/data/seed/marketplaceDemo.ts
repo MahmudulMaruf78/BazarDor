@@ -1,5 +1,6 @@
-import type { Category, FarmerProfile, Listing, PriceEntry, Product, User } from '@/types/domain/records'
+import type { Category, FarmerProfile, Listing, PriceEntry, Product, ProductVariant, User } from '@/types/domain/records'
 import { demoProductImageUrl } from '@/constants/demo-product-assets'
+import { defaultVariantId } from '@/services/productVariantCatalog'
 import { getBangladeshChildren, selectionFromLocationId } from '@/data/bangladeshLocationIndex'
 import { DEMO_LOCATION_IDS as D } from '@/data/demoLocationIds'
 
@@ -166,6 +167,38 @@ export const marketplaceProducts: readonly Product[] = [
   },
 ]
 
+export const POTATO_PREMIUM_VARIANT_ID = 'var-prod-potato-premium'
+export const TOMATO_PREMIUM_VARIANT_ID = 'var-prod-tomato-premium'
+
+function standardVariantForProduct(product: Product): ProductVariant {
+  return {
+    id: defaultVariantId(product.id),
+    productId: product.id,
+    quality: 'Standard (demo sample)',
+    descriptionBn: 'স্ট্যান্ডার্ড (ডেমো নমুনা)',
+  }
+}
+
+export const marketplaceProductVariants: readonly ProductVariant[] = [
+  ...marketplaceProducts.map(standardVariantForProduct),
+  {
+    id: POTATO_PREMIUM_VARIANT_ID,
+    productId: 'prod-potato',
+    grade: 'Grade A (demo sample)',
+    quality: 'Sorted pack (demo sample)',
+    descriptionEn: 'Demo sorting label only — not official grading.',
+    descriptionBn: 'ডেমো সাজানো লেবেল — সরকারি গ্রেড নয়।',
+  },
+  {
+    id: TOMATO_PREMIUM_VARIANT_ID,
+    productId: 'prod-tomato',
+    grade: 'Premium (demo sample)',
+    variety: 'Greenhouse round (demo sample)',
+    descriptionEn: 'Demo greenhouse label — sample data.',
+    descriptionBn: 'ডেমো গ্রিনহাউস লেবেল — নমুনা তথ্য।',
+  },
+]
+
 export const marketplaceExtraUsers: readonly User[] = [
   {
     id: 'user-farmer-5',
@@ -235,11 +268,13 @@ function listing(
   available: number,
   price: number,
   createdAt: string,
+  variantId?: string,
 ): Listing {
   return {
     id,
     sellerUserId,
     productId,
+    ...(variantId ? { variantId } : {}),
     locationId,
     quantity: qty,
     unitId: 'unit-kg',
@@ -253,7 +288,7 @@ function listing(
 }
 
 export const marketplaceExtraListings: readonly Listing[] = [
-  listing('list-dhaka-tomato', 'user-seller-2', 'prod-tomato', demoMarketLocations.savar, 400, 360, 45, T1),
+  listing('list-dhaka-tomato', 'user-seller-2', 'prod-tomato', demoMarketLocations.savar, 400, 360, 45, T1, TOMATO_PREMIUM_VARIANT_ID),
   listing('list-dhaka-garlic', 'user-seller-2', 'prod-garlic', demoMarketLocations.gazipur, 150, 140, 210, T2),
   listing('list-dhaka-rice', 'user-farmer-5', 'prod-rice-milled', demoMarketLocations.savar, 600, 520, 62, T1),
   listing('list-raj-lentil', 'user-seller-1', 'prod-lentil', demoMarketLocations.singra, 300, 280, 95, T2),
@@ -263,12 +298,12 @@ export const marketplaceExtraListings: readonly Listing[] = [
   listing('list-ctg-chili', 'user-seller-2', 'prod-chili', demoMarketLocations.anwara, 80, 70, 120, T2),
   listing('list-ctg-brinjal', 'user-seller-1', 'prod-brinjal', demoMarketLocations.anwara, 350, 300, 32, T1),
   listing('list-khul-paddy', 'user-farmer-2', 'prod-paddy', demoMarketLocations.ghona, 900, 800, 81, T1),
-  listing('list-khul-potato-2', 'user-farmer-3', 'prod-potato', demoMarketLocations.keshabpur, 450, 400, 36, T2),
+  listing('list-khul-potato-2', 'user-farmer-3', 'prod-potato', demoMarketLocations.keshabpur, 450, 400, 36, T2, POTATO_PREMIUM_VARIANT_ID),
   listing('list-khul-onion-2', 'user-seller-1', 'prod-onion', demoMarketLocations.durgapur, 220, 200, 65, T3),
   listing('list-dhaka-paddy', 'user-farmer-5', 'prod-paddy', demoMarketLocations.gazipur, 500, 480, 79, T0),
   listing('list-raj-rice', 'user-seller-1', 'prod-rice-milled', demoMarketLocations.singra, 400, 350, 64, T1),
   listing('list-syl-lentil', 'user-seller-3', 'prod-lentil', demoMarketLocations.balaganj, 120, 100, 92, T3),
-  listing('list-ctg-potato', 'user-seller-2', 'prod-potato', demoMarketLocations.anwara, 600, 550, 39, T0),
+  listing('list-ctg-potato', 'user-seller-2', 'prod-potato', demoMarketLocations.anwara, 600, 550, 39, T0, POTATO_PREMIUM_VARIANT_ID),
   listing('list-dhaka-brinjal', 'user-farmer-5', 'prod-brinjal', demoMarketLocations.savar, 280, 260, 28, T2),
   listing('list-raj-tomato', 'user-farmer-4', 'prod-tomato', demoMarketLocations.singra, 320, 300, 44, T1),
   listing('list-syl-chili', 'user-farmer-6', 'prod-chili', demoMarketLocations.balaganj, 60, 55, 115, T2),

@@ -2,19 +2,39 @@ import type { RoleKey } from '@/constants/roles'
 
 /** Left accent on role workspace headers */
 export const ROLE_PAGE_ACCENT: Record<RoleKey, string> = {
-  farmer: 'border-l-bazardor-green',
-  buyer: 'border-l-[#1e4d8c]',
-  seller: 'border-l-bazardor-gold',
-  fieldOfficer: 'border-l-[#0f766e]',
-  department: 'border-l-bazardor-navy',
-  admin: 'border-l-bazardor-muted',
+  farmer: 'border-l-primary',
+  buyer: 'border-l-role-buyer',
+  seller: 'border-l-accent-harvest',
+  fieldOfficer: 'border-l-role-field-officer',
+  department: 'border-l-foreground',
+  admin: 'border-l-muted-foreground',
+}
+
+/** Top accent bar on dashboard sidebar */
+export const ROLE_SIDEBAR_BAR: Record<RoleKey, string> = {
+  farmer: 'bg-primary',
+  buyer: 'bg-role-buyer',
+  seller: 'bg-accent-harvest',
+  fieldOfficer: 'bg-role-field-officer',
+  department: 'bg-foreground/80',
+  admin: 'bg-muted-foreground',
+}
+
+/** Very light main background tint per role workspace */
+export const ROLE_MAIN_BG: Record<RoleKey, string> = {
+  farmer: 'bg-primary/[0.02]',
+  buyer: 'bg-role-buyer/[0.03]',
+  seller: 'bg-accent-harvest/[0.04]',
+  fieldOfficer: 'bg-role-field-officer/[0.03]',
+  department: 'bg-muted/20',
+  admin: 'bg-muted/15',
 }
 
 export const ROLE_NAV_ACTIVE: Record<RoleKey, string> = {
-  farmer: 'bg-bazardor-green/12 font-medium text-bazardor-green',
-  buyer: 'bg-[#1e4d8c]/10 font-medium text-[#1e4d8c]',
-  seller: 'bg-bazardor-gold/15 font-medium text-[#8a6914]',
-  fieldOfficer: 'bg-[#0f766e]/10 font-medium text-[#0f766e]',
-  department: 'bg-bazardor-navy/8 font-medium text-bazardor-navy',
-  admin: 'bg-muted font-medium text-bazardor-navy',
+  farmer: 'bg-primary/12 font-medium text-primary',
+  buyer: 'bg-role-buyer/10 font-medium text-role-buyer',
+  seller: 'bg-accent-harvest/15 font-medium text-role-seller',
+  fieldOfficer: 'bg-role-field-officer/10 font-medium text-role-field-officer',
+  department: 'bg-foreground/8 font-medium text-foreground',
+  admin: 'bg-muted font-medium text-foreground',
 }

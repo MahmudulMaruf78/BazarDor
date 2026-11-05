@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { toast } from 'sonner'
 import { useI18n } from '@/app/preferences/LocaleProvider'
 import {
@@ -22,7 +22,7 @@ import {
 } from '@/features/department/departmentAnalyticsService'
 import type { OfficialAverageResult } from '@/services/types'
 import type { Location, Product } from '@/types/domain/records'
-import { PageHeader } from '@/components/common/PageHeader'
+import { RoleWorkspaceShell } from '@/components/common/RoleWorkspaceShell'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -62,7 +62,7 @@ const SCOPE_PRESET_KEYS = [
 ]
 
 export function DepartmentAnalyticsPage() {
-  const { t, formatNumber, pickName } = useI18n()
+  const { t, formatNumber, formatBdtPerKg, pickName, locale, formatDate, formatTrendAxisLabel } = useI18n()
   const [filters, setFilters] = useState<DepartmentFilters>(defaultDepartmentFilters())
   const [locationSel, setLocationSel] = useState<BangladeshLocationSelection>(() =>
     sanitizeBangladeshLocationSelection(
@@ -109,26 +109,33 @@ export function DepartmentAnalyticsPage() {
     reload()
   }, [])
 
-  const mapDots = useMemo(() => regionalMapDots(locations, regional), [locations, regional])
+  const mapDots = useMemo(() => regionalMapDots(locations, regional, pickName), [locations, regional, pickName])
+
+  const resolveRegionalRowName = useCallback(
+    (row: RegionalRow) => {
+      const loc = locations.find((l) => l.id === row.locationId)
+      return loc ? pickName(loc) : row.locationName
+    },
+    [locations, pickName],
+  )
 
   const scopeLocation = locations.find((loc) => loc.id === filters.locationScopeId)
 
   return (
-    <div className="space-y-6">
-      <PageHeader
-        eyebrow={t('deptBadge')}
-        title={t('deptTitle')}
-        subtitle={t('deptSubtitle')}
-        role="department"
-      />
-
-      <Card>
+    <RoleWorkspaceShell
+      role="department"
+      eyebrow={t('deptBadge')}
+      title={t('deptTitle')}
+      subtitle={t('deptSubtitle')}
+    >
+      <div className="grid gap-6 lg:grid-cols-[minmax(260px,300px)_1fr]">
+        <Card className="h-fit border-border/80 shadow-xs lg:sticky lg:top-4">
         <CardHeader>
           <CardTitle>{t('filters')}</CardTitle>
           <CardDescription>{t('officialAvgDesc')}</CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-3 md:grid-cols-2">
-          <div className="flex flex-wrap gap-2 md:col-span-2">
+        <CardContent className="grid gap-3">
+          <div className="flex flex-wrap gap-2">
             {SCOPE_PRESET_KEYS.map((preset) => (
               <Button
                 key={preset.scopeId}
@@ -198,7 +205,7 @@ export function DepartmentAnalyticsPage() {
           </div>
           <Button
             type="button"
-            className="md:col-span-2"
+            className="w-full"
             onClick={() => {
               const next = { ...filters, calculatedAt: new Date().toISOString() }
               setFilters(next)
@@ -208,31 +215,43 @@ export function DepartmentAnalyticsPage() {
             {t('applyFilters')}
           </Button>
         </CardContent>
-      </Card>
+        </Card>
 
-      <Card>
+        <div className="min-w-0 space-y-4">
+          <Card className="border-border/80 shadow-xs">
+            <CardHeader>
+              <CardTitle>{t('marketplaceActivity')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ActivityMetricTiles activity={activity} t={t} formatNumber={formatNumber} />
+            </CardContent>
+          </Card>
+
+      <Card className="border-border/80 shadow-xs">
         <CardHeader>
           <CardTitle>{t('officialMarketAvg')}</CardTitle>
           <CardDescription>
-            {scopeLocation ? pickName(scopeLocation) : scopeLabel(locations, filters.locationScopeId)} ·{' '}
-            {t('calculated')}: {filters.calculatedAt.slice(0, 19)}
+            {scopeLocation ? pickName(scopeLocation) : scopeLabel(locations, filters.locationScopeId, pickName)} ·{' '}
+            {t('calculated')}: {formatDate(filters.calculatedAt)}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <OfficialAverageKpi
             average={average}
             formatNumber={formatNumber}
+            formatBdtPerKg={formatBdtPerKg}
             t={t}
             scopeLabel={
-              scopeLocation ? pickName(scopeLocation) : scopeLabel(locations, filters.locationScopeId)
+              scopeLocation ? pickName(scopeLocation) : scopeLabel(locations, filters.locationScopeId, pickName)
             }
             calculatedAt={filters.calculatedAt}
+            formatDate={formatDate}
           />
         </CardContent>
       </Card>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card>
+        <Card className="border-border/80 shadow-xs">
           <CardHeader>
             <CardTitle>{t('priceTrend')}</CardTitle>
             <CardDescription>{t('priceTrendDesc')}</CardDescription>
@@ -241,9 +260,13 @@ export function DepartmentAnalyticsPage() {
             <TrendBarChart
               points={trend}
               formatNumber={formatNumber}
+              formatBdtPerKg={formatBdtPerKg}
               t={t}
               selectedLabel={selectedTrendLabel}
               onSelectPoint={(point) => setSelectedTrendLabel(point?.label ?? null)}
+              trendGranularity={trendGranularity}
+              formatTrendAxisLabel={formatTrendAxisLabel}
+              locale={locale}
             />
             <Table className="text-xs">
               <TableHeader>
@@ -257,10 +280,15 @@ export function DepartmentAnalyticsPage() {
                 {trend.map((point) => (
                   <TableRow
                     key={point.label}
-                    className={point.label === selectedTrendLabel ? 'bg-bazardor-green/8' : undefined}
+                    className={point.label === selectedTrendLabel ? 'bg-primary/8' : undefined}
                   >
-                    <TableCell>{point.label.split(':').pop()}</TableCell>
-                    <TableCell>{point.result.status}</TableCell>
+                    <TableCell>
+                      {formatTrendAxisLabel(
+                        trendGranularity,
+                        point.label.split(':').pop() ?? point.label,
+                      )}
+                    </TableCell>
+                    <TableCell>{point.result.status === 'calculated' ? t('calculated') : t('insufficientData')}</TableCell>
                     <TableCell>
                       {point.result.status === 'calculated' ? formatNumber(point.result.averagePricePerKg) : '—'}
                     </TableCell>
@@ -271,7 +299,7 @@ export function DepartmentAnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-border/80 shadow-xs">
           <CardHeader>
             <CardTitle>{t('regionalComparison')}</CardTitle>
             <CardDescription>{t('regionalDesc')}</CardDescription>
@@ -282,9 +310,11 @@ export function DepartmentAnalyticsPage() {
               locations={locations}
               pickName={pickName}
               formatNumber={formatNumber}
+              formatBdtPerKg={formatBdtPerKg}
               t={t}
               activeLocationId={filters.locationScopeId}
               onDrillLocation={applyChartScope}
+              locale={locale}
             />
             <Table className="text-xs">
               <TableHeader>
@@ -300,7 +330,7 @@ export function DepartmentAnalyticsPage() {
                   return (
                   <TableRow key={row.locationId}>
                     <TableCell>{loc ? pickName(loc) : row.locationName}</TableCell>
-                    <TableCell>{row.result.sampleCount}</TableCell>
+                    <TableCell>{formatNumber(row.result.sampleCount, 0)}</TableCell>
                     <TableCell>
                       {row.result.status === 'calculated'
                         ? formatNumber(row.result.averagePricePerKg)
@@ -312,20 +342,11 @@ export function DepartmentAnalyticsPage() {
               </TableBody>
             </Table>
             {hasMapGeometry(locations) && mapDots.length > 0 ? (
-              <RegionalSampleHeatmap dots={mapDots} t={t} onSelectLocation={applyChartScope} />
+              <RegionalSampleHeatmap dots={mapDots} t={t} locale={locale} onSelectLocation={applyChartScope} />
             ) : null}
           </CardContent>
         </Card>
       </div>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('marketplaceActivity')}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ActivityMetricTiles activity={activity} t={t} />
-        </CardContent>
-      </Card>
 
       <div className="flex flex-wrap gap-2">
         <Button
@@ -333,7 +354,7 @@ export function DepartmentAnalyticsPage() {
           variant="secondary"
           onClick={() => {
             if (!average) return
-            void exportWorkbookCsvBlob(filters, average, regional).then((blob) => {
+            void exportWorkbookCsvBlob(locale, filters, average, regional, resolveRegionalRowName).then((blob) => {
               downloadBlob(blob, 'bazardor-export.csv')
               toast.success(t('exportCsv'))
             })
@@ -346,7 +367,7 @@ export function DepartmentAnalyticsPage() {
           variant="secondary"
           onClick={() => {
             if (!average) return
-            void exportWorkbookXlsxBlob(filters, average, regional).then((blob) => {
+            void exportWorkbookXlsxBlob(locale, filters, average, regional, resolveRegionalRowName).then((blob) => {
               downloadBlob(blob, 'bazardor-export.xlsx')
               toast.success(t('exportExcel'))
             })
@@ -359,7 +380,7 @@ export function DepartmentAnalyticsPage() {
           variant="outline"
           onClick={() => {
             if (!average) return
-            void exportPdfBlob(filters, average, regional).then((blob) => {
+            void exportPdfBlob(locale, filters, average, regional, resolveRegionalRowName).then((blob) => {
               downloadBlob(blob, 'bazardor-report.pdf')
               toast.success(t('exportPdf'))
             })
@@ -368,6 +389,8 @@ export function DepartmentAnalyticsPage() {
           {t('exportPdf')}
         </Button>
       </div>
-    </div>
+        </div>
+      </div>
+    </RoleWorkspaceShell>
   )
 }

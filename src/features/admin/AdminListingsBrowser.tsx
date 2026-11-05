@@ -8,6 +8,7 @@ import { dataLayer } from '@/data'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { EmptyState } from '@/components/common/EmptyState'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -35,7 +36,7 @@ function truncateId(id: string, max = 28): string {
 }
 
 export function AdminListingsBrowser() {
-  const { t, pickName, formatNumber } = useI18n()
+  const { t, pickName, formatNumber, translateError } = useI18n()
   const session = useAppSelector(selectAuthSession)
   const [listings, setListings] = useState<Listing[]>([])
   const [products, setProducts] = useState<Product[]>([])
@@ -102,7 +103,7 @@ export function AdminListingsBrowser() {
       </CardHeader>
       <CardContent className="space-y-4">
         {loading ? (
-          <p className="text-sm text-bazardor-muted">{t('loading')}</p>
+          <p className="text-sm text-muted-foreground">{t('loading')}</p>
         ) : (
           <>
             <div className="grid gap-3 md:grid-cols-2">
@@ -136,13 +137,13 @@ export function AdminListingsBrowser() {
               </div>
             </div>
 
-            <p className="text-xs text-bazardor-muted">
+            <p className="text-xs text-muted-foreground">
               {t('adminLocationsShowing')} {rangeStart}–{rangeEnd} {t('adminLocationsOf')} {filtered.length}{' '}
               ({t('adminLocationsFiltered')}, {t('adminLocationsTotal')} {listings.length})
             </p>
 
             {filtered.length === 0 ? (
-              <p className="text-sm text-bazardor-muted">{t('adminListingsEmpty')}</p>
+              <EmptyState title={t('adminListingsEmpty')} />
             ) : (
               <div className="overflow-x-auto rounded-md border">
                 <Table>
@@ -206,7 +207,7 @@ export function AdminListingsBrowser() {
                                     })
                                       .then((result) => {
                                         if (!result.ok) {
-                                          toast.error(result.error.message)
+                                          toast.error(translateError(result.error.message))
                                           return
                                         }
                                         toast.success(t('adminListingsRejectedToast'))
@@ -234,7 +235,7 @@ export function AdminListingsBrowser() {
                                     })
                                       .then((result) => {
                                         if (!result.ok) {
-                                          toast.error(result.error.message)
+                                          toast.error(translateError(result.error.message))
                                           return
                                         }
                                         toast.success(t('adminListingsApprovedToast'))
@@ -267,7 +268,7 @@ export function AdminListingsBrowser() {
                 >
                   {t('adminLocationsPrev')}
                 </Button>
-                <span className="text-sm text-bazardor-muted">
+                <span className="text-sm text-muted-foreground">
                   {t('adminLocationsPage')} {effectivePage + 1} / {pageCount}
                 </span>
                 <Button

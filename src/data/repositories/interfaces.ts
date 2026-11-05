@@ -9,6 +9,7 @@ import type {
   Notification,
   PriceEntry,
   Product,
+  ProductVariant,
   SyncQueueItem,
   Transaction,
   Unit,
@@ -21,6 +22,7 @@ export interface CatalogRepository {
   listUnits(): Promise<RepositoryResult<Unit[]>>
   listLocations(): Promise<RepositoryResult<Location[]>>
   listProducts(): Promise<RepositoryResult<Product[]>>
+  listProductVariants(): Promise<RepositoryResult<ProductVariant[]>>
 }
 
 export interface UserRepository {

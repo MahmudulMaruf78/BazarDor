@@ -13,7 +13,7 @@ export const ROLE_LABELS: Record<RoleKey, { en: string; bn: string }> = {
   farmer: { en: 'Farmer', bn: 'কৃষক' },
   buyer: { en: 'Buyer', bn: 'ক্রেতা' },
   seller: { en: 'Seller / Trader', bn: 'বিক্রেতা' },
-  fieldOfficer: { en: 'Field Officer', bn: 'ফিল্ড অফিসার' },
+  fieldOfficer: { en: 'Field Officer', bn: 'মাঠ কর্মকর্তা' },
   department: { en: 'Agriculture Department', bn: 'কৃষি বিভাগ' },
   admin: { en: 'Admin', bn: 'অ্যাডমিন' },
 }

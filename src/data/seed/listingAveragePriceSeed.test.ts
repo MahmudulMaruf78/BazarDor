@@ -30,6 +30,7 @@ describe('listing average supplemental seed', () => {
     const rows = buildExploreLeafSnapshots(
       demoMarketLocations.gazipur,
       demoSeedBundle.products,
+      demoSeedBundle.productVariants,
       demoSeedBundle.listings,
       demoSeedBundle.priceEntries,
       demoSeedBundle.locations,

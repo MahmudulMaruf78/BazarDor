@@ -15,7 +15,9 @@ import { createFarmerPriceEntry, createListing, restockListing } from '@/feature
 import { ListingsBrowsePanel } from '@/features/marketplace/ListingsBrowsePanel'
 import { dataLayer } from '@/data'
 import type { Listing, PriceEntry, Product } from '@/types/domain/records'
-import { PageHeader } from '@/components/common/PageHeader'
+import { MetricTileGrid } from '@/components/common/MetricTileGrid'
+import { RoleWorkspaceShell } from '@/components/common/RoleWorkspaceShell'
+import { EmptyState } from '@/components/common/EmptyState'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -26,11 +28,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 type CatalogOption = {
   products: { id: string; nameEn: string; nameBn?: string }[]
   locations: { id: string; nameEn: string }[]
-  units: { id: string; code: string }[]
+  units: { id: string; code: string; nameEn: string; nameBn: string }[]
 }
 
 export function FarmerMarketplacePage() {
-  const { t } = useI18n()
+  const { t, formatNumber } = useI18n()
   const session = useAppSelector(selectAuthSession)
   const [myListings, setMyListings] = useState<Listing[]>([])
   const [myPrices, setMyPrices] = useState<PriceEntry[]>([])
@@ -52,15 +54,23 @@ export function FarmerMarketplacePage() {
   if (!session) return null
 
   return (
-    <div className="space-y-6">
-      <PageHeader eyebrow={t('farmerBadge')} title={t('farmerTitle')} role="farmer" />
-
-      <Tabs defaultValue="browse">
+    <RoleWorkspaceShell role="farmer" eyebrow={t('farmerBadge')} title={t('farmerTitle')}>
+      <Tabs defaultValue="overview">
         <TabsList variant="line" className="w-full justify-start overflow-x-auto">
+          <TabsTrigger value="overview">{t('tabOverview')}</TabsTrigger>
           <TabsTrigger value="browse">{t('tabBrowse')}</TabsTrigger>
           <TabsTrigger value="listings">{t('tabListings')}</TabsTrigger>
           <TabsTrigger value="prices">{t('tabPrices')}</TabsTrigger>
         </TabsList>
+        <TabsContent value="overview" className="space-y-4">
+          <MetricTileGrid
+            metrics={[
+              { label: t('myListings'), value: formatNumber(myListings.length, 0) },
+              { label: t('tabPrices'), value: formatNumber(myPrices.length, 0) },
+            ]}
+          />
+          <p className="text-sm text-muted-foreground">{t('overviewHint')}</p>
+        </TabsContent>
         <TabsContent value="browse">
           <ListingsBrowsePanel userId={session.userId} />
         </TabsContent>
@@ -73,7 +83,7 @@ export function FarmerMarketplacePage() {
           <PriceHistoryCards rows={myPrices} />
         </TabsContent>
       </Tabs>
-    </div>
+    </RoleWorkspaceShell>
   )
 }
 
@@ -96,7 +106,12 @@ function useCatalogOptions() {
       setCatalog({
         products: p.data.map((row) => ({ id: row.id, nameEn: row.nameEn, nameBn: row.nameBn })),
         locations: l.data.map((row) => ({ id: row.id, nameEn: row.nameEn })),
-        units: u.data.map((row) => ({ id: row.id, code: row.code })),
+        units: u.data.map((row) => ({
+          id: row.id,
+          code: row.code,
+          nameEn: row.nameEn,
+          nameBn: row.nameBn,
+        })),
       })
     })
   }, [])
@@ -114,7 +129,7 @@ function useProductMap() {
 }
 
 function ListingCreateCard({ userId, onCreated }: { userId: string; onCreated: () => void }) {
-  const { t, translateError } = useI18n()
+  const { t, translateError, formatUnitLabel } = useI18n()
   const catalog = useCatalogOptions()
   const [productId, setProductId] = useState('')
   const [locationSel, setLocationSel] = useState<BangladeshLocationSelection>(defaultFarmerLocation)
@@ -169,7 +184,7 @@ function ListingCreateCard({ userId, onCreated }: { userId: string; onCreated: (
             label={t('unit')}
             value={unitId}
             onChange={setUnitId}
-            options={catalog.units.map((u) => ({ id: u.id, nameEn: u.code }))}
+            options={catalog.units.map((u) => ({ id: u.id, label: formatUnitLabel(u) }))}
           />
           <div className="space-y-1">
             <Label>{t('quantity')}</Label>
@@ -189,7 +204,7 @@ function ListingCreateCard({ userId, onCreated }: { userId: string; onCreated: (
 }
 
 function PriceEntryCard({ farmerId, onCreated }: { farmerId: string; onCreated: () => void }) {
-  const { t, translateError, locale } = useI18n()
+  const { t, translateError, formatUnitLabel, locale } = useI18n()
   const catalog = useCatalogOptions()
   const [productId, setProductId] = useState('')
   const [locationSel, setLocationSel] = useState<BangladeshLocationSelection>(defaultFarmerLocation)
@@ -229,13 +244,13 @@ function PriceEntryCard({ farmerId, onCreated }: { farmerId: string; onCreated: 
               toast.success(
                 `${t('priceSaved')} — ${t('status')}: ${statusLabel(locale, 'consentStatus', result.data.consentStatus)}`,
               )
-              onCreated()
-            })
+              onCreated();
+            });
           }}
         >
           <ProductCombobox
             label={t('product')}
-            products={catalog.products.map((p) => ({ id: p.id, nameEn: p.nameEn }))}
+            products={catalog.products}
             value={productId}
             onChange={setProductId}
           />
@@ -246,7 +261,7 @@ function PriceEntryCard({ farmerId, onCreated }: { farmerId: string; onCreated: 
             label={t('unit')}
             value={unitId}
             onChange={setUnitId}
-            options={catalog.units.map((u) => ({ id: u.id, nameEn: u.code }))}
+            options={catalog.units.map((u) => ({ id: u.id, label: formatUnitLabel(u) }))}
           />
           <div className="space-y-1">
             <Label>{t('quantity')}</Label>
@@ -259,7 +274,7 @@ function PriceEntryCard({ farmerId, onCreated }: { farmerId: string; onCreated: 
           <Button type="submit" className="md:col-span-2">
             {t('saveObservation')}
           </Button>
-          <Button type="button" variant="outline" className="md:col-span-2 gap-2" disabled title="Coming Soon">
+          <Button type="button" variant="outline" className="md:col-span-2 gap-2" disabled title={t('voiceComingSoon')}>
             <Mic className="size-4" aria-hidden />
             {t('voiceComingSoon')}
           </Button>
@@ -278,7 +293,7 @@ function SelectField({
   label: string
   value: string
   onChange: (value: string) => void
-  options: { id: string; nameEn: string }[]
+  options: { id: string; label: string }[]
 }) {
   return (
     <div className="space-y-1">
@@ -290,7 +305,7 @@ function SelectField({
         <SelectContent>
           {options.map((option) => (
             <SelectItem key={option.id} value={option.id}>
-              {option.nameEn}
+              {option.label}
             </SelectItem>
           ))}
         </SelectContent>
@@ -319,7 +334,7 @@ function ListingHistoryCards({
       </CardHeader>
       <CardContent>
         {rows.length === 0 ? (
-          <p className="text-sm text-bazardor-muted">{t('noListings')}</p>
+          <EmptyState title={t('noListings')} />
         ) : (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {rows.map((row) => {
@@ -393,7 +408,7 @@ function PriceHistoryCards({ rows }: { rows: PriceEntry[] }) {
       </CardHeader>
       <CardContent>
         {rows.length === 0 ? (
-          <p className="text-sm text-bazardor-muted">{t('insufficientData')}</p>
+          <EmptyState title={t('insufficientData')} />
         ) : (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {rows.map((row) => {

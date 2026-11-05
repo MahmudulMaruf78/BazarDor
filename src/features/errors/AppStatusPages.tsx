@@ -27,7 +27,7 @@ export function AccessDeniedPage() {
             <span className="font-medium">{role ? roleLabel(role) : t('unknownRole')}</span>.
           </p>
           {allowed ? (
-            <p className="text-bazardor-muted">
+            <p className="text-muted-foreground">
               {t('allowedRolesHere')}: {allowed.map((r) => roleLabel(r)).join(', ')}
             </p>
           ) : null}
@@ -52,10 +52,10 @@ export function NotFoundPage() {
   useDocumentTitle('docTitleNotFound', t)
 
   return (
-    <div className="flex min-h-dvh flex-col bg-bazardor-surface">
+    <div className="flex min-h-dvh flex-col bg-background">
       <div className="mx-auto flex w-full max-w-lg flex-1 flex-col justify-center gap-4 px-4 py-10">
-        <h1 className="text-2xl font-semibold text-bazardor-navy">{t('notFoundTitle')}</h1>
-        <p className="text-sm text-bazardor-muted">{t('notFoundBody')}</p>
+        <h1 className="text-2xl font-semibold text-foreground">{t('notFoundTitle')}</h1>
+        <p className="text-sm text-muted-foreground">{t('notFoundBody')}</p>
         <div className="flex gap-2">
           <Link to="/" className={buttonVariants({ variant: 'outline' })}>
             {t('publicHome')}

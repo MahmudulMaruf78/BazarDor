@@ -1,8 +1,9 @@
 import { calculateOfficialMarketAverage } from '@/services/officialMarketPriceService'
 import { formatLocationChain } from '@/services/locationHierarchy'
 import { expandLocationScope } from '@/services/locationScope'
+import { buildProductBrowseCards, pickShowcaseListingForGroup } from '@/services/productCatalogBrowse'
 import type { OfficialAverageResult } from '@/services/types'
-import type { Listing, Location, PriceEntry, Product, Unit } from '@/types/domain/records'
+import type { Listing, Location, PriceEntry, Product, ProductVariant, Unit } from '@/types/domain/records'
 
 /** ponytail: fixed seed-aligned window; change if default analytics window moves */
 export const PRODUCT_CARD_AVERAGE_WINDOW = {
@@ -22,8 +23,8 @@ export type ProductCardMarketSnapshot = {
 }
 
 function pickShowcaseListing(productId: string, listings: readonly Listing[]): Listing | undefined {
-  const forProduct = listings.filter((l) => l.productId === productId)
-  return forProduct.find((l) => l.status === 'active') ?? forProduct[0]
+  const forProduct = listings.filter((l) => l.productId === productId && l.status !== 'inactive')
+  return pickShowcaseListingForGroup(forProduct)
 }
 
 export function snapshotForListing(
@@ -50,42 +51,47 @@ export function snapshotForListing(
   }
 }
 
-function pickActiveListingInScope(
-  productId: string,
-  scopeIds: readonly string[],
-  listings: readonly Listing[],
-): Listing | undefined {
-  const inScope = listings.filter(
-    (l) => l.productId === productId && scopeIds.includes(l.locationId) && l.status === 'active',
-  )
-  return inScope[0]
-}
-
 export type ExploreLeafProductRow = {
   product: Product
+  variant: ProductVariant
+  catalogKey: string
   snapshot: ProductCardMarketSnapshot
+  sellerCount: number
+  listingCount: number
 }
 
 export function buildExploreLeafSnapshots(
   scopeLocationId: string,
   products: readonly Product[],
+  variants: readonly ProductVariant[],
   listings: readonly Listing[],
   entries: readonly PriceEntry[],
   locations: readonly Location[],
   units: readonly Unit[],
   calculatedAt: string = PRODUCT_CARD_CALCULATED_AT,
 ): ExploreLeafProductRow[] {
-  const scopeIds = expandLocationScope(scopeLocationId, locations)
-  const rows: ExploreLeafProductRow[] = []
-  for (const product of products) {
-    const listing = pickActiveListingInScope(product.id, scopeIds, listings)
-    if (!listing) continue
-    rows.push({
-      product,
-      snapshot: snapshotForListing(listing, entries, locations, units, calculatedAt, scopeLocationId),
-    })
-  }
-  return rows
+  const scopeIds = new Set(expandLocationScope(scopeLocationId, locations))
+  const inScope = listings.filter(
+    (l) => scopeIds.has(l.locationId) && l.status !== 'inactive',
+  )
+  const cards = buildProductBrowseCards(
+    inScope,
+    products,
+    variants,
+    entries,
+    locations,
+    units,
+    scopeLocationId,
+    calculatedAt,
+  )
+  return cards.map((card) => ({
+    product: card.product,
+    variant: card.variant,
+    catalogKey: card.catalogKey,
+    snapshot: card.snapshot,
+    sellerCount: card.sellerCount,
+    listingCount: card.listingCount,
+  }))
 }
 
 export function buildHomeProductSnapshots(

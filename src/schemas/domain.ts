@@ -57,6 +57,17 @@ export const productSchema = z.object({
   imageUrl: z.string().min(1),
 })
 
+export const productVariantSchema = z.object({
+  id: z.string().min(1),
+  productId: z.string().min(1),
+  grade: z.string().min(1).optional(),
+  quality: z.string().min(1).optional(),
+  variety: z.string().min(1).optional(),
+  size: z.string().min(1).optional(),
+  descriptionEn: z.string().min(1).optional(),
+  descriptionBn: z.string().min(1).optional(),
+})
+
 export const locationDataSourceSchema = z.enum([
   'jumman04',
   'bd_json',
@@ -81,6 +92,7 @@ export const listingSchema = z.object({
   id: z.string().min(1),
   sellerUserId: z.string().min(1),
   productId: z.string().min(1),
+  variantId: z.string().min(1).optional(),
   locationId: z.string().min(1),
   quantity: z.number().positive(),
   unitId: z.string().min(1),

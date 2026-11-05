@@ -1,36 +1,31 @@
-import { useI18n } from '@/app/preferences/LocaleProvider'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { toast } from 'sonner'
+import { useI18n } from '@/app/preferences/LocaleProvider'
 import { useAppSelector } from '@/app/store/hooks'
 import { selectAuthSession } from '@/features/auth/authSlice'
 import {
   cancelTransaction,
   confirmTransactionSide,
-  submitBid,
 } from '@/features/marketplace/marketplaceService'
 import { ListingsBrowsePanel, useFavoriteListingIds } from '@/features/marketplace/ListingsBrowsePanel'
 import { dataLayer } from '@/data'
-import type { Bid, Listing, Product, Transaction } from '@/types/domain/records'
+import type { Bid, Product, Transaction } from '@/types/domain/records'
 import { statusLabel } from '@/lib/i18n/userFacingText'
 import { ListingProductCard } from '@/features/marketplace/ListingProductCard'
-import { PageHeader } from '@/components/common/PageHeader'
+import { MetricTileGrid } from '@/components/common/MetricTileGrid'
+import { RoleWorkspaceShell } from '@/components/common/RoleWorkspaceShell'
+import { EmptyState } from '@/components/common/EmptyState'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
 export function BuyerMarketplacePage() {
-  const { t, locale, translateError } = useI18n()
+  const { t, locale, translateError, formatNumber } = useI18n()
   const session = useAppSelector(selectAuthSession)
   const { favoriteIds, setFavoriteIds } = useFavoriteListingIds()
   const [bids, setBids] = useState<Bid[]>([])
   const [transactions, setTransactions] = useState<Transaction[]>([])
-  const [offerListing, setOfferListing] = useState<Listing | null>(null)
-  const [offerQty, setOfferQty] = useState('10')
-  const [offerPrice, setOfferPrice] = useState('35')
 
   const reload = useCallback(() => {
     if (!session) return
@@ -48,27 +43,34 @@ export function BuyerMarketplacePage() {
 
   if (!session) return null
 
-  return (
-    <div className="space-y-6">
-      <PageHeader eyebrow={t('buyerBadge')} title={t('buyerTitle')} role="buyer" />
+  const openTxnCount = transactions.filter((txn) => txn.status === 'awaiting_completion_confirmation').length
 
-      <Tabs defaultValue="browse">
-        <TabsList variant="line" className="w-full justify-start">
+  return (
+    <RoleWorkspaceShell role="buyer" eyebrow={t('buyerBadge')} title={t('buyerTitle')}>
+      <Tabs defaultValue="overview">
+        <TabsList variant="line" className="w-full justify-start overflow-x-auto">
+          <TabsTrigger value="overview">{t('tabOverview')}</TabsTrigger>
           <TabsTrigger value="browse">{t('tabBrowse')}</TabsTrigger>
           <TabsTrigger value="bids">{t('tabBids')}</TabsTrigger>
           <TabsTrigger value="favourites">{t('tabFavourites')}</TabsTrigger>
         </TabsList>
+        <TabsContent value="overview" className="space-y-4">
+          <MetricTileGrid
+            metrics={[
+              { label: t('tabBids'), value: formatNumber(bids.length, 0) },
+              { label: t('transaction'), value: formatNumber(openTxnCount, 0) },
+              { label: t('tabFavourites'), value: formatNumber(favoriteIds.length, 0) },
+            ]}
+          />
+          <p className="text-sm text-muted-foreground">{t('overviewHint')}</p>
+          <p className="text-sm text-muted-foreground">{t('browseSelectSellerToBid')}</p>
+        </TabsContent>
         <TabsContent value="browse">
           <ListingsBrowsePanel
             userId={session.userId}
-            canBid
             canFavorite
             favoriteIds={favoriteIds}
             onFavoritesChange={setFavoriteIds}
-            onBid={(listing) => {
-              setOfferListing(listing)
-              setOfferPrice(String(listing.askingPricePerUnit))
-            }}
           />
         </TabsContent>
         <TabsContent value="bids">
@@ -158,52 +160,13 @@ export function BuyerMarketplacePage() {
           <FavouritesPanel favoriteIds={favoriteIds} />
         </TabsContent>
       </Tabs>
-
-      <Dialog open={Boolean(offerListing)} onOpenChange={(open) => !open && setOfferListing(null)}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{t('submitBidTitle')}</DialogTitle>
-          </DialogHeader>
-          {offerListing ? (
-            <form
-              className="space-y-3"
-              onSubmit={(event) => {
-                event.preventDefault()
-                void submitBid({
-                  buyerUserId: session.userId,
-                  listingId: offerListing.id,
-                  quantity: Number(offerQty),
-                  offeredPricePerUnit: Number(offerPrice),
-                }).then((result) => {
-                  if (!result.ok) return toast.error(translateError(result.error.message))
-                  toast.success(t('offerSubmitted'))
-                  setOfferListing(null)
-                  reload()
-                })
-              }}
-            >
-              <div className="space-y-1">
-                <Label>{t('quantity')}</Label>
-                <Input value={offerQty} onChange={(e) => setOfferQty(e.target.value)} />
-              </div>
-              <div className="space-y-1">
-                <Label>{t('offerPriceUnit')}</Label>
-                <Input value={offerPrice} onChange={(e) => setOfferPrice(e.target.value)} />
-              </div>
-              <Button type="submit" className="w-full">
-                {t('sendOffer')}
-              </Button>
-            </form>
-          ) : null}
-        </DialogContent>
-      </Dialog>
-    </div>
+    </RoleWorkspaceShell>
   )
 }
 
 function FavouritesPanel({ favoriteIds }: { favoriteIds: string[] }) {
   const { t, pickName } = useI18n()
-  const [listings, setListings] = useState<Listing[]>([])
+  const [listings, setListings] = useState<import('@/types/domain/records').Listing[]>([])
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
@@ -230,7 +193,7 @@ function FavouritesPanel({ favoriteIds }: { favoriteIds: string[] }) {
       </CardHeader>
       <CardContent>
         {listings.length === 0 ? (
-          <p className="text-sm text-bazardor-muted">{t('noFavouritesYet')}</p>
+          <EmptyState title={t('noFavouritesYet')} />
         ) : (
           <div className="grid gap-3 sm:grid-cols-2">
             {listings.map((listing) => {

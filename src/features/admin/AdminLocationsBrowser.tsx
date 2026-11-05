@@ -4,6 +4,7 @@ import { dataLayer } from '@/data'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { EmptyState } from '@/components/common/EmptyState'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -103,7 +104,7 @@ export function AdminLocationsBrowser() {
       </CardHeader>
       <CardContent className="space-y-4">
         {loading ? (
-          <p className="text-sm text-bazardor-muted">{t('loading')}</p>
+          <p className="text-sm text-muted-foreground">{t('loading')}</p>
         ) : (
           <>
             <div className="space-y-2">
@@ -156,13 +157,13 @@ export function AdminLocationsBrowser() {
               </div>
             </div>
 
-            <p className="text-xs text-bazardor-muted">
+            <p className="text-xs text-muted-foreground">
               {t('adminLocationsShowing')} {rangeStart}–{rangeEnd} {t('adminLocationsOf')} {filtered.length}{' '}
               ({t('adminLocationsFiltered')}, {t('adminLocationsTotal')} {locations.length})
             </p>
 
             {filtered.length === 0 ? (
-              <p className="text-sm text-bazardor-muted">{t('adminLocationsEmpty')}</p>
+              <EmptyState title={t('adminLocationsEmpty')} />
             ) : (
               <div className="overflow-x-auto rounded-md border">
                 <Table>
@@ -209,7 +210,7 @@ export function AdminLocationsBrowser() {
                 >
                   {t('adminLocationsPrev')}
                 </Button>
-                <span className="text-sm text-bazardor-muted">
+                <span className="text-sm text-muted-foreground">
                   {t('adminLocationsPage')} {effectivePage + 1} / {pageCount}
                 </span>
                 <Button

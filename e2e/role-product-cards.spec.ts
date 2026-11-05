@@ -6,8 +6,9 @@ test.describe('role product cards', () => {
     await waitForAppReady(page)
     await signInDemoUser(page, /Jamal Store/)
     await expect(page).toHaveURL(/\/seller/)
+    await page.getByRole('tab', { name: /Inventory|ইনভেন্টরি/i }).click()
     await expect(page.getByRole('heading', { level: 1 })).toContainText(
-      /Seller marketplace|বিক্রেতা মার্কেটপ্লেস/i,
+      /Inventory and sales|ইনভেন্টরি ও বিক্রয়/i,
     )
 
     const demoProductImg = page.locator('main img[src*="/demo-products/"]').first()

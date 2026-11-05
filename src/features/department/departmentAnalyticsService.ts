@@ -5,6 +5,8 @@ import { calculateOfficialMarketAverage } from '@/services/officialMarketPriceSe
 import type { MarketAverageQuery, OfficialAverageResult } from '@/services/types'
 import type { Location, Product } from '@/types/domain/records'
 import { ok, type RepositoryResult } from '@/types/result'
+import type { AppLocale } from '@/lib/formatLocale'
+import { translate } from '@/lib/i18n/messages'
 
 export type DepartmentFilters = {
   productId: string
@@ -155,8 +157,19 @@ export async function fetchActivitySummary(): Promise<RepositoryResult<ActivityS
   })
 }
 
-export function buildCsvExport(filters: DepartmentFilters, average: OfficialAverageResult, rows: RegionalRow[]) {
-  const header = 'BazarDor price export'
+function exportStatusLabel(locale: AppLocale, status: string) {
+  if (status === 'calculated') return translate(locale, 'calculated')
+  return translate(locale, 'exportInsufficientData')
+}
+
+export function buildCsvExport(
+  locale: AppLocale,
+  filters: DepartmentFilters,
+  average: OfficialAverageResult,
+  rows: RegionalRow[],
+  resolveLocationName: (row: RegionalRow) => string,
+) {
+  const header = translate(locale, 'exportTitle')
   const meta = [
     `productId,${filters.productId}`,
     `locationScopeId,${filters.locationScopeId}`,
@@ -167,14 +180,22 @@ export function buildCsvExport(filters: DepartmentFilters, average: OfficialAver
   const avgLine =
     average.status === 'calculated'
       ? `averagePricePerKg,${average.averagePricePerKg},sampleCount,${average.sampleCount}`
-      : `status,insufficient_data,sampleCount,${average.sampleCount}`
-  const regional = rows.map(
-    (row) =>
-      `${row.locationName},${row.result.status},${
-        row.result.status === 'calculated' ? row.result.averagePricePerKg : ''
-      },${row.result.sampleCount}`,
+      : `status,${translate(locale, 'exportStatusInsufficient')},sampleCount,${average.sampleCount}`
+  const regionalHeader = [
+    translate(locale, 'exportColRegion'),
+    translate(locale, 'exportColStatus'),
+    translate(locale, 'exportColAvgKg'),
+    translate(locale, 'exportColSamples'),
+  ].join(',')
+  const regional = rows.map((row) =>
+    [
+      resolveLocationName(row),
+      exportStatusLabel(locale, row.result.status),
+      row.result.status === 'calculated' ? row.result.averagePricePerKg : '',
+      row.result.sampleCount,
+    ].join(','),
   )
-  return [header, ...meta, avgLine, 'region,status,avg,samples', ...regional].join('\n')
+  return [header, ...meta, avgLine, regionalHeader, ...regional].join('\n')
 }
 
 export function defaultDepartmentFilters(): DepartmentFilters {
@@ -191,15 +212,25 @@ export function childLocationsUnder(locations: Location[], parentId: string) {
   return locations.filter((loc) => loc.parentId === parentId)
 }
 
-export function scopeLabel(locations: Location[], scopeId: string) {
-  return locations.find((loc) => loc.id === scopeId)?.nameEn ?? scopeId
+export function scopeLabel(
+  locations: Location[],
+  scopeId: string,
+  pickName?: (loc: Location) => string,
+) {
+  const loc = locations.find((l) => l.id === scopeId)
+  if (!loc) return scopeId
+  return pickName ? pickName(loc) : loc.nameEn
 }
 
 export function hasMapGeometry(locations: Location[]) {
   return locations.some((loc) => loc.demoCentroid != null)
 }
 
-export function regionalMapDots(locations: Location[], rows: RegionalRow[]) {
+export function regionalMapDots(
+  locations: Location[],
+  rows: RegionalRow[],
+  pickName?: (loc: Location) => string,
+) {
   const withCentroid = locations.filter((loc) => loc.demoCentroid)
   if (withCentroid.length === 0) return []
   const lats = withCentroid.map((l) => l.demoCentroid!.lat)
@@ -215,24 +246,33 @@ export function regionalMapDots(locations: Location[], rows: RegionalRow[]) {
       const x = ((loc.demoCentroid.lng - minLng) / (maxLng - minLng || 1)) * 100
       const y = ((maxLat - loc.demoCentroid.lat) / (maxLat - minLat || 1)) * 100
       const samples = row.result.sampleCount
-      return { id: row.locationId, name: row.locationName, x, y, samples }
+      const name = loc && pickName ? pickName(loc) : row.locationName
+      return { id: row.locationId, name, x, y, samples }
     })
     .filter((row): row is NonNullable<typeof row> => row != null)
 }
 
-export async function exportWorkbookCsvBlob(filters: DepartmentFilters, average: OfficialAverageResult, regional: RegionalRow[]) {
-  const csv = buildCsvExport(filters, average, regional)
+export async function exportWorkbookCsvBlob(
+  locale: AppLocale,
+  filters: DepartmentFilters,
+  average: OfficialAverageResult,
+  regional: RegionalRow[],
+  resolveLocationName: (row: RegionalRow) => string,
+) {
+  const csv = buildCsvExport(locale, filters, average, regional, resolveLocationName)
   return new Blob([csv], { type: 'text/csv;charset=utf-8' })
 }
 
 export async function exportWorkbookXlsxBlob(
+  locale: AppLocale,
   filters: DepartmentFilters,
   average: OfficialAverageResult,
   regional: RegionalRow[],
+  resolveLocationName: (row: RegionalRow) => string,
 ) {
   const XLSX = await import('xlsx')
   const summary = [
-    ['BazarDor price export'],
+    [translate(locale, 'exportTitle')],
     ['productId', filters.productId],
     ['locationScopeId', filters.locationScopeId],
     ['windowStart', filters.windowStart],
@@ -240,20 +280,25 @@ export async function exportWorkbookXlsxBlob(
     ['calculatedAt', filters.calculatedAt],
     average.status === 'calculated'
       ? ['averagePricePerKg', average.averagePricePerKg, 'sampleCount', average.sampleCount]
-      : ['status', 'insufficient_data', 'sampleCount', average.sampleCount],
+      : ['status', translate(locale, 'exportStatusInsufficient'), 'sampleCount', average.sampleCount],
   ]
   const regionalSheet = [
-    ['region', 'status', 'avgPerKg', 'samples'],
+    [
+      translate(locale, 'exportColRegion'),
+      translate(locale, 'exportColStatus'),
+      translate(locale, 'exportColAvgKg'),
+      translate(locale, 'exportColSamples'),
+    ],
     ...regional.map((row) => [
-      row.locationName,
-      row.result.status,
+      resolveLocationName(row),
+      exportStatusLabel(locale, row.result.status),
       row.result.status === 'calculated' ? row.result.averagePricePerKg : '',
       row.result.sampleCount,
     ]),
   ]
   const book = XLSX.utils.book_new()
-  XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet(summary), 'Summary')
-  XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet(regionalSheet), 'Regional')
+  XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet(summary), translate(locale, 'exportSheetSummary'))
+  XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet(regionalSheet), translate(locale, 'exportSheetRegional'))
   const buffer = XLSX.write(book, { bookType: 'xlsx', type: 'array' })
   return new Blob([buffer], {
     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -261,35 +306,48 @@ export async function exportWorkbookXlsxBlob(
 }
 
 export async function exportPdfBlob(
+  locale: AppLocale,
   filters: DepartmentFilters,
   average: OfficialAverageResult,
   regional: RegionalRow[],
+  resolveLocationName: (row: RegionalRow) => string,
 ) {
   const { jsPDF } = await import('jspdf')
   const autoTable = (await import('jspdf-autotable')).default
   const doc = new jsPDF()
   doc.setFontSize(10)
-  doc.text('BazarDor regional price report', 14, 14)
-  doc.text(`Product: ${filters.productId}`, 14, 22)
-  doc.text(`Scope: ${filters.locationScopeId}`, 14, 28)
-  doc.text(`Window: ${filters.windowStart} → ${filters.windowEnd}`, 14, 34)
+  doc.text(translate(locale, 'exportPdfReportTitle'), 14, 14)
+  doc.text(`${translate(locale, 'exportProductLabel')}: ${filters.productId}`, 14, 22)
+  doc.text(`${translate(locale, 'exportScopeLabel')}: ${filters.locationScopeId}`, 14, 28)
+  doc.text(`${translate(locale, 'exportWindowLabel')}: ${filters.windowStart} → ${filters.windowEnd}`, 14, 34)
   if (average.status === 'calculated') {
-    doc.text(`Official avg (per kg): ${average.averagePricePerKg.toFixed(2)}`, 14, 42)
-    doc.text(`Sample count: ${average.sampleCount}`, 14, 48)
+    doc.text(`${translate(locale, 'exportOfficialAvgLabel')}: ${average.averagePricePerKg.toFixed(2)}`, 14, 42)
+    doc.text(`${translate(locale, 'exportSampleCountLabel')}: ${average.sampleCount}`, 14, 48)
   } else {
-    doc.text(`Insufficient Data — samples: ${average.sampleCount}`, 14, 42)
+    doc.text(
+      `${translate(locale, 'exportInsufficientData')} — ${translate(locale, 'exportSampleCountLabel')}: ${average.sampleCount}`,
+      14,
+      42,
+    )
   }
 
   const tableBody = regional.map((row) => [
-    row.locationName,
-    row.result.status,
+    resolveLocationName(row),
+    exportStatusLabel(locale, row.result.status),
     row.result.status === 'calculated' ? row.result.averagePricePerKg.toFixed(2) : '—',
     String(row.result.sampleCount),
   ])
 
   autoTable(doc, {
     startY: 56,
-    head: [['Region', 'Status', 'Avg/kg', 'Samples']],
+    head: [
+      [
+        translate(locale, 'exportColRegion'),
+        translate(locale, 'exportColStatus'),
+        translate(locale, 'exportColAvgKg'),
+        translate(locale, 'exportColSamples'),
+      ],
+    ],
     body: tableBody,
   })
 

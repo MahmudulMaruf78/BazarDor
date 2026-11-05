@@ -7,7 +7,7 @@ import {
   type BangladeshLocationSelection,
 } from '@/data/bangladeshLocationIndex'
 import { validateLocationSelection } from '@/services/bangladeshLocationValidation'
-import { statusLabel } from '@/lib/i18n/userFacingText'
+import { auditActionLabel, statusLabel } from '@/lib/i18n/userFacingText'
 import { useI18n } from '@/app/preferences/LocaleProvider'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
@@ -16,7 +16,7 @@ import { useAppSelector } from '@/app/store/hooks'
 import { selectAuthSession } from '@/features/auth/authSlice'
 import {
   approveVerificationEntry,
-  assignedAreaLabel,
+  assignedAreaLabelKey,
   createAssistedPriceEntry,
   listAssignedFarmers,
   listAuditTrailForEntry,
@@ -34,7 +34,8 @@ import {
 } from '@/features/field-officer/offlineSyncService'
 import type { AuditLogEntry, FarmerProfile, Location, PriceEntry, Product, SyncQueueItem } from '@/types/domain/records'
 import { dataLayer } from '@/data'
-import { PageHeader } from '@/components/common/PageHeader'
+import { RoleWorkspaceShell } from '@/components/common/RoleWorkspaceShell'
+import { MetricTileGrid } from '@/components/common/MetricTileGrid'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -99,16 +100,15 @@ export function FieldOfficerPage() {
   if (!session) return null
 
   return (
-    <div className="space-y-6">
-      <PageHeader
-        eyebrow={t('foBadge')}
-        title={t('foTitle')}
-        subtitle={`${assignedAreaLabel()} — ${t('foAssignment')}`}
-        role="fieldOfficer"
-      />
-
-      <Tabs defaultValue="farmers">
-        <TabsList variant="line" className="flex h-auto w-full flex-wrap justify-start">
+    <RoleWorkspaceShell
+      role="fieldOfficer"
+      eyebrow={t('foBadge')}
+      title={t('foTitle')}
+      subtitle={`${t(assignedAreaLabelKey())} — ${t('foAssignment')}`}
+    >
+      <Tabs defaultValue="overview">
+        <TabsList variant="line" className="flex h-auto w-full flex-wrap justify-start overflow-x-auto">
+          <TabsTrigger value="overview">{t('tabOverview')}</TabsTrigger>
           <TabsTrigger value="farmers">{t('tabFarmers')}</TabsTrigger>
           <TabsTrigger value="assisted">{t('tabAssisted')}</TabsTrigger>
           <TabsTrigger value="consent">{t('tabConsent')}</TabsTrigger>
@@ -116,6 +116,17 @@ export function FieldOfficerPage() {
           <TabsTrigger value="offline">{t('tabOffline')}</TabsTrigger>
           <TabsTrigger value="qr">{t('tabQr')}</TabsTrigger>
         </TabsList>
+
+        <TabsContent value="overview" className="space-y-4">
+          <MetricTileGrid
+            metrics={[
+              { label: t('tabFarmers'), value: formatNumber(farmers.length, 0) },
+              { label: t('tabVerify'), value: formatNumber(queue.length, 0) },
+              { label: t('tabOffline'), value: formatNumber(syncItems.length, 0) },
+            ]}
+          />
+          <p className="text-sm text-muted-foreground">{t('overviewHint')}</p>
+        </TabsContent>
 
         <TabsContent value="farmers">
           <AssistedFarmerRegistrationForm officerUserId={session.userId} onRegistered={reload} />
@@ -203,7 +214,7 @@ export function FieldOfficerPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               {queue.length === 0 ? (
-                <p className="text-sm text-bazardor-muted">{t('insufficientData')}</p>
+                <p className="text-sm text-muted-foreground">{t('insufficientData')}</p>
               ) : (
                 <div className="grid gap-4 sm:grid-cols-2">
                   {queue.map((entry) => {
@@ -227,7 +238,7 @@ export function FieldOfficerPage() {
                             {t('status')}: {statusLabel(locale, 'consentStatus', entry.consentStatus)} ·{' '}
                             {statusLabel(locale, 'approvalStatus', entry.approvalStatus)}
                           </p>
-                          <p className="text-bazardor-muted text-xs">
+                          <p className="text-muted-foreground text-xs">
                             {entry.farmerId} · {entry.submittedByUserId}
                           </p>
                           <div className="flex flex-wrap gap-2 pt-1">
@@ -297,7 +308,7 @@ export function FieldOfficerPage() {
                 <ul className="space-y-1 text-sm">
                   {audit.map((log) => (
                     <li key={log.id}>
-                      {log.at} — {log.action} by {log.actorUserId}
+                      {log.at} — {auditActionLabel(locale, log.action)} {t('auditBy')} {log.actorUserId}
                     </li>
                   ))}
                 </ul>
@@ -317,7 +328,7 @@ export function FieldOfficerPage() {
                 type="button"
                 variant="secondary"
                 onClick={() => {
-                  void saveOfflineDraft({ note: 'Offline assisted draft', farmerId: selectedFarmerId }).then((result) => {
+                  void saveOfflineDraft({ note: t('offlineDraftNote'), farmerId: selectedFarmerId }).then((result) => {
                     if (!result.ok) return toast.error(translateError(result.error.message))
                     toast.success(t('draftSavedOffline'))
                     reload()
@@ -363,8 +374,8 @@ export function FieldOfficerPage() {
                   {syncItems.map((item) => (
                     <TableRow key={item.clientEntryId}>
                       <TableCell className="font-mono text-xs">{item.clientEntryId}</TableCell>
-                      <TableCell>{item.status}</TableCell>
-                      <TableCell className="text-xs text-bazardor-muted">{item.errorDetail ?? '—'}</TableCell>
+                      <TableCell>{statusLabel(locale, 'syncStatus', item.status)}</TableCell>
+                      <TableCell className="text-xs text-muted-foreground">{item.errorDetail ?? '—'}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -382,12 +393,12 @@ export function FieldOfficerPage() {
             <CardContent className="flex flex-col items-start gap-4">
               <Input value={qrProfileId} onChange={(e) => setQrProfileId(e.target.value)} />
               {qrProfileId ? <QRCodeSVG value={qrProfileId} size={160} /> : null}
-              <p className="text-xs text-bazardor-muted">
+              <p className="text-xs text-muted-foreground">
                 {t('qrPayloadHint')}: {qrProfileId || t('selectFarmerQr')}
               </p>
               <div className="w-full max-w-md space-y-2 border-t pt-4">
                 <Label htmlFor="qr-scan">{t('scanQrTitle')}</Label>
-                <p className="text-xs text-bazardor-muted">{t('scanQrDesc')}</p>
+                <p className="text-xs text-muted-foreground">{t('scanQrDesc')}</p>
                 <Input
                   id="qr-scan"
                   value={scanInput}
@@ -422,7 +433,7 @@ export function FieldOfficerPage() {
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
+    </RoleWorkspaceShell>
   )
 }
 

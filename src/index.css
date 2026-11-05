@@ -4,6 +4,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * BazarDor design tokens — agricultural marketplace (BN + EN).
+ * Semantic shadcn vars + role/chart aliases. Recharts hex: src/constants/chartTheme.ts
+ */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -27,35 +31,44 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-bazardor-navy: #17324d;
-  --color-bazardor-green: #1b6b45;
-  --color-bazardor-gold: #c9a227;
-  --color-bazardor-surface: #f6f8fa;
-  --color-bazardor-muted: #5c6b7a;
+  --color-leaf: var(--leaf);
+  --color-accent-warm: var(--accent-warm);
+  --color-accent-harvest: var(--accent-harvest);
+  --color-role-buyer: var(--role-buyer);
+  --color-role-seller: var(--role-seller);
+  --color-role-field-officer: var(--role-field-officer);
+  --shadow-xs: 0 1px 2px rgb(26 51 68 / 0.06);
+  --shadow-sm: 0 1px 3px rgb(26 51 68 / 0.08);
   --font-sans: 'IBM Plex Sans', 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
 }
 
 :root {
   color-scheme: light;
   --radius: 0.375rem;
-  --background: oklch(0.985 0.004 155);
-  --foreground: oklch(0.28 0.04 240);
+  --background: oklch(0.985 0.008 145);
+  --foreground: oklch(0.28 0.04 230);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.28 0.04 240);
+  --card-foreground: oklch(0.28 0.04 230);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.28 0.04 240);
-  --primary: oklch(0.42 0.08 155);
+  --popover-foreground: oklch(0.28 0.04 230);
+  --primary: oklch(0.42 0.1 155);
   --primary-foreground: oklch(0.98 0.01 155);
-  --secondary: oklch(0.96 0.01 155);
-  --secondary-foreground: oklch(0.28 0.04 240);
-  --muted: oklch(0.96 0.005 240);
-  --muted-foreground: oklch(0.5 0.02 240);
-  --accent: oklch(0.94 0.03 85);
-  --accent-foreground: oklch(0.28 0.04 240);
+  --secondary: oklch(0.95 0.025 155);
+  --secondary-foreground: oklch(0.28 0.04 230);
+  --muted: oklch(0.96 0.008 230);
+  --muted-foreground: oklch(0.5 0.02 230);
+  --accent: oklch(0.94 0.04 85);
+  --accent-foreground: oklch(0.28 0.04 230);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.01 240);
-  --input: oklch(0.9 0.01 240);
-  --ring: oklch(0.42 0.08 155);
+  --border: oklch(0.9 0.012 155);
+  --input: oklch(0.9 0.012 155);
+  --ring: oklch(0.42 0.1 155);
+  --leaf: oklch(0.58 0.12 155);
+  --accent-warm: oklch(0.65 0.16 55);
+  --accent-harvest: oklch(0.72 0.12 85);
+  --role-buyer: oklch(0.42 0.08 250);
+  --role-seller: oklch(0.55 0.1 85);
+  --role-field-officer: oklch(0.48 0.08 175);
 }
 
 @layer base {
@@ -64,7 +77,7 @@
   }
 
   body {
-    @apply min-h-dvh bg-bazardor-surface font-sans text-[15px] leading-normal text-bazardor-navy antialiased;
+    @apply min-h-dvh bg-background font-sans text-[15px] leading-normal text-foreground antialiased;
   }
 
   :lang(bn) {
@@ -76,6 +89,6 @@
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-bazardor-green;
+    @apply outline-2 outline-offset-2 outline-primary;
   }
 }

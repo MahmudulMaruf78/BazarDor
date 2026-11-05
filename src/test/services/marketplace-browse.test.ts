@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { resetDemoData } from '@/data/bootstrap/demoDataLifecycle'
 import { demoMarketLocations } from '@/data/seed/marketplaceDemo'
 import { DEMO_LOCATION_IDS as D } from '@/data/demoLocationIds'
-import { browseListings } from '@/features/marketplace/marketplaceService'
+import { browseListings, browseProductCatalog } from '@/features/marketplace/marketplaceService'
 
 describe('browseListings filters', () => {
   it('combines search and location scope', async () => {
@@ -51,5 +51,19 @@ describe('browseListings filters', () => {
     for (const row of dhaka.data.items) {
       expect(khulnaIds.has(row.id)).toBe(false)
     }
+  })
+
+  it('browseProductCatalog returns separate cards per potato variant', async () => {
+    expect((await resetDemoData()).ok).toBe(true)
+    const result = await browseProductCatalog({
+      search: 'Potato',
+      pageSize: 50,
+    })
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+    const potatoCards = result.data.items.filter((row) => row.product.id === 'prod-potato')
+    expect(potatoCards.length).toBeGreaterThanOrEqual(2)
+    const premium = potatoCards.find((c) => c.variant.id.includes('premium'))
+    expect(premium?.sellerCount).toBeGreaterThanOrEqual(2)
   })
 })

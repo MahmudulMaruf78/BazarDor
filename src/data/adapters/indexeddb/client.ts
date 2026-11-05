@@ -11,6 +11,7 @@ import type {
   Notification,
   PriceEntry,
   Product,
+  ProductVariant,
   SyncQueueItem,
   Transaction,
   Unit,
@@ -27,6 +28,7 @@ interface BazarDorDb extends DBSchema {
   units: { key: string; value: Unit }
   locations: { key: string; value: Location }
   products: { key: string; value: Product }
+  productVariants: { key: string; value: ProductVariant }
   listings: { key: string; value: Listing }
   priceEntries: { key: string; value: PriceEntry }
   bids: { key: string; value: Bid }

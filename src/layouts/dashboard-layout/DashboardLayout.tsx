@@ -25,7 +25,7 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from 'cn'
 import { toast } from 'sonner'
 import { ROLE_DASHBOARD_PATH, ROLES } from '@/constants/roles'
-import { ROLE_NAV_ACTIVE } from '@/constants/roleVisual'
+import { ROLE_MAIN_BG, ROLE_NAV_ACTIVE, ROLE_SIDEBAR_BAR } from '@/constants/roleVisual'
 import { notificationDisplayText } from '@/lib/i18n/userFacingText'
 import { documentTitleKeyForPath } from '@/lib/documentTitle'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
@@ -45,11 +45,11 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
             className={({ isActive }) =>
               cn(
                 'rounded-md px-3 py-2 text-sm transition-colors',
-                isActive ? ROLE_NAV_ACTIVE[role] : 'text-bazardor-navy hover:bg-muted/80',
+                isActive ? ROLE_NAV_ACTIVE[role] : 'text-foreground hover:bg-muted/80',
               )
             }
           >
-            {roleLabel(role)}
+            {({ isActive }) => <span aria-current={isActive ? 'page' : undefined}>{roleLabel(role)}</span>}
           </NavLink>
         ),
       )}
@@ -85,41 +85,74 @@ export function DashboardLayout() {
   }, [refreshNotifications])
 
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="flex min-h-dvh flex-col overflow-x-clip">
       <div className="flex flex-1">
-        <aside className="hidden w-60 shrink-0 border-r border-border/80 bg-white md:block">
+        <aside className="hidden w-60 shrink-0 border-r border-border/80 bg-card md:block">
+          {role ? <div className={cn('h-1 w-full', ROLE_SIDEBAR_BAR[role])} aria-hidden /> : null}
           <div className="border-b border-border/80 px-4 py-4">
             <AppLogo compact />
             {role ? (
-              <p className="mt-2 text-xs text-bazardor-muted">{roleLabel(role)}</p>
+              <p className="mt-2 text-xs text-muted-foreground">{roleLabel(role)}</p>
             ) : null}
           </div>
           <SidebarNav />
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="flex items-center gap-3 border-b bg-white px-4 py-3 md:hidden">
+          <header className="flex items-center gap-3 border-b border-border bg-card px-4 py-3 md:hidden">
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-              <SheetTrigger>
-                <Button variant="outline" size="icon" aria-label={t('openNav')}>
-                  <Menu />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-72 p-0">
+              <SheetTrigger
+                render={
+                  <Button variant="outline" size="icon" aria-label={t('openNav')}>
+                    <Menu className="size-4" aria-hidden />
+                  </Button>
+                }
+              />
+              <SheetContent side="left" className="flex w-72 flex-col p-0">
                 <SheetHeader className="border-b p-4 text-left">
                   <SheetTitle>{t('myDashboard')}</SheetTitle>
                 </SheetHeader>
-                <SidebarNav onNavigate={() => setMobileOpen(false)} />
+                <div className="flex min-h-0 flex-1 flex-col overflow-y-auto">
+                  <SidebarNav onNavigate={() => setMobileOpen(false)} />
+                </div>
+                <div className="mt-auto space-y-2 border-t border-border p-4">
+                  <Link
+                    to="/"
+                    className={buttonVariants({ variant: 'ghost', size: 'sm', className: 'w-full justify-start' })}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {t('publicHome')}
+                  </Link>
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    size="sm"
+                    className="w-full justify-start gap-1"
+                    onClick={() => {
+                      setMobileOpen(false)
+                      void dispatch(signOutDemo())
+                        .unwrap()
+                        .then(() => {
+                          toast.message(t('signedOut'))
+                          navigate('/login', { replace: true })
+                        })
+                        .catch((error: Error) => toast.error(translateError(error.message)))
+                    }}
+                  >
+                    <LogOut className="size-4" aria-hidden />
+                    {t('signOut')}
+                  </Button>
+                </div>
               </SheetContent>
             </Sheet>
             <AppLogo compact />
             <LocaleSwitcher className="ml-auto" />
           </header>
 
-          <header className="hidden items-center justify-between gap-4 border-b border-border/80 bg-white px-6 py-3 md:flex">
+          <header className="hidden items-center justify-between gap-4 border-b border-border/80 bg-card px-6 py-3 md:flex">
             <div>
-              <p className="text-sm font-medium text-bazardor-navy">{displayName ?? t('demoUser')}</p>
-              <p className="text-xs text-bazardor-muted">
+              <p className="text-sm font-medium text-foreground">{displayName ?? t('demoUser')}</p>
+              <p className="text-xs text-muted-foreground">
                 {role ? roleLabel(role) : t('role')}
               </p>
             </div>
@@ -142,14 +175,14 @@ export function DashboardLayout() {
                   </DialogHeader>
                   <ul className="max-h-80 space-y-2 overflow-y-auto text-sm">
                     {notifications.length === 0 ? (
-                      <li className="text-bazardor-muted">{t('noNotifications')}</li>
+                      <li className="text-muted-foreground">{t('noNotifications')}</li>
                     ) : (
                       notifications.map((item) => {
                         const copy = notificationDisplayText(item, locale)
                         return (
                         <li key={item.id} className="rounded-md border p-2">
                           <p className="font-medium">{copy.title}</p>
-                          <p className="text-bazardor-muted">{copy.body}</p>
+                          <p className="text-muted-foreground">{copy.body}</p>
                           {!item.read ? (
                             <Button
                               type="button"
@@ -166,7 +199,7 @@ export function DashboardLayout() {
                               {t('markRead')}
                             </Button>
                           ) : (
-                            <p className="mt-1 text-xs text-bazardor-muted">{t('read')}</p>
+                            <p className="mt-1 text-xs text-muted-foreground">{t('read')}</p>
                           )}
                         </li>
                         )
@@ -190,7 +223,7 @@ export function DashboardLayout() {
                       toast.message(t('signedOut'))
                       navigate('/login', { replace: true })
                     })
-                    .catch((error: Error) => toast.error(error.message))
+                    .catch((error: Error) => toast.error(translateError(error.message)))
                 }}
               >
                 <LogOut className="size-4" aria-hidden />
@@ -199,8 +232,8 @@ export function DashboardLayout() {
             </div>
           </header>
 
-          <main className="flex-1 bg-bazardor-surface p-4 md:p-6">
-            <div className="mx-auto flex w-full max-w-7xl flex-col gap-4">
+          <main className={cn('flex-1 overflow-x-clip p-4 md:p-6', role ? ROLE_MAIN_BG[role] : 'bg-background')}>
+            <div className="mx-auto flex w-full min-w-0 max-w-7xl flex-col gap-4">
               <Outlet />
             </div>
           </main>

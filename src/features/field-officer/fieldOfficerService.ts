@@ -217,8 +217,10 @@ export async function listAuditTrailForEntry(entryId: string): Promise<Repositor
   return ok(logs.data.filter((log) => log.entityId === entryId).sort((a, b) => Date.parse(b.at) - Date.parse(a.at)))
 }
 
-export function assignedAreaLabel() {
-  return 'Jashore District'
+import type { MessageKey } from '@/lib/i18n/messages'
+
+export function assignedAreaLabelKey(): MessageKey {
+  return 'foAssignedAreaJashore'
 }
 
 export async function registerAssistedFarmer(input: {

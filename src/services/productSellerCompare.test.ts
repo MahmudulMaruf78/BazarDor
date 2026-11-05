@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { buildProductSellerOffers } from '@/services/productSellerCompare'
+import { buildProductSellerOffers, countDistinctSellers } from '@/services/productSellerCompare'
+import { defaultVariantId } from '@/services/productVariantCatalog'
+import { POTATO_PREMIUM_VARIANT_ID } from '@/data/seed/marketplaceDemo'
 import type { Listing, Location, Unit, User } from '@/types/domain/records'
 
 const unit: Unit = {
@@ -138,6 +140,54 @@ describe('buildProductSellerOffers', () => {
     )
     expect(offers[0]!.sellerDisplayName).toBe('Seller One')
     expect(offers[0]!.phonePlaceholder).toMatch(/^01XX-/)
+    expect(offers[0]!.listingStatus).toBe('active')
+  })
+
+  it('counts distinct sellers vs listing rows', () => {
+    const offers = buildProductSellerOffers(
+      'prod-tomato',
+      [
+        listing('l1', 'u1', 'loc-a', 50, 'active'),
+        listing('l2', 'u1', 'loc-b', 48, 'active'),
+        listing('l3', 'u2', 'loc-b', 40, 'active'),
+      ],
+      [seller1, seller2],
+      locations,
+      [unit],
+    )
+    expect(offers).toHaveLength(3)
+    expect(countDistinctSellers(offers)).toBe(2)
+  })
+
+  it('returns offers only for selected variant', () => {
+    const listings = [
+      { ...listing('l1', 'u1', 'loc-a', 50, 'active'), productId: 'prod-potato' },
+      {
+        ...listing('l2', 'u2', 'loc-b', 40, 'active'),
+        productId: 'prod-potato',
+        variantId: POTATO_PREMIUM_VARIANT_ID,
+      },
+    ]
+    const standard = buildProductSellerOffers(
+      'prod-potato',
+      listings,
+      [seller1, seller2],
+      locations,
+      [unit],
+      { variantId: defaultVariantId('prod-potato') },
+    )
+    const premium = buildProductSellerOffers(
+      'prod-potato',
+      listings,
+      [seller1, seller2],
+      locations,
+      [unit],
+      { variantId: POTATO_PREMIUM_VARIANT_ID },
+    )
+    expect(standard).toHaveLength(1)
+    expect(premium).toHaveLength(1)
+    expect(standard[0]!.listingId).toBe('l1')
+    expect(premium[0]!.listingId).toBe('l2')
   })
 })
 

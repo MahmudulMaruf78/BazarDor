@@ -5,7 +5,7 @@
 | **Report date** | 5 November 2026 |
 | **Prototype type** | Frontend-only React + Vite + TypeScript (demo data, not production government services) |
 | **Demo storage schema** | `STORAGE_SCHEMA_VERSION = 8` ([`src/constants/storage.ts`](../src/constants/storage.ts)) |
-| **IndexedDB** | `bazardor-demo` v2 |
+| **IndexedDB** | `bazardor-demo` v3 (`productVariants` store) |
 
 After pulling seed or schema changes, use **Admin → Reset demo dataset** so browser IndexedDB matches the bundle.
 
@@ -15,10 +15,10 @@ After pulling seed or schema changes, use **Admin → Reset demo dataset** so br
 
 | Document | Role |
 |----------|------|
-| [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Master_Plan_v2.0.docx) | Business scope, rules, open decisions (OD-01 … OD-11), phase summary table |
-| [`BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx`](./BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx) | Eight implementation phases, exit checks, setup commands |
-| [`BazarDor_Simple_Data_Flow_Diagram_v2.0.docx`](./BazarDor_Simple_Data_Flow_Diagram_v2.0.docx) | Stakeholder data-flow narrative |
-| [`DEMO_WALKTHROUGH.md`](./DEMO_WALKTHROUGH.md) | ~15 min demo script + Phase 8 QA checklist |
+| [`BazarDor_Project_Master_Plan_v2.0.docx`](./spec/BazarDor_Project_Master_Plan_v2.0.docx) | Business scope, rules, open decisions (OD-01 … OD-11), phase summary table |
+| [`BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx`](./spec/BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx) | Eight implementation phases, exit checks, setup commands |
+| [`BazarDor_Simple_Data_Flow_Diagram_v2.0.docx`](./spec/BazarDor_Simple_Data_Flow_Diagram_v2.0.docx) | Stakeholder data-flow narrative |
+| [`DEMO_GUIDE.md`](./DEMO_GUIDE.md) | ~15 min demo script; QA details in [`QA_AND_TESTING.md`](./QA_AND_TESTING.md) |
 | [`BANGLADESH_LOCATIONS_SOURCE.md`](./BANGLADESH_LOCATIONS_SOURCE.md) | Location import provenance, gaps snapshot, regeneration |
 | [`.cursor/rules/bazardor-project.mdc`](../.cursor/rules/bazardor-project.mdc) | Coding and non-negotiable price/consent rules |
 
@@ -30,7 +30,7 @@ This report maps **what is implemented in the repo** to those sources. It does *
 
 | Category | Status |
 |----------|--------|
-| **Phases 1–8 (prototype scope)** | Implemented with automated tests, e2e walkthrough, and Phase 8 checklist marked verified (2026-11-05) |
+| **Phases 1–8 (prototype scope)** | Core flows implemented; **`npm run qa` green**; Playwright e2e status — see [`QA_AND_TESTING.md`](./QA_AND_TESTING.md) and [`UI_UX_LOCALIZATION_AUDIT_REPORT.md`](./UI_UX_LOCALIZATION_AUDIT_REPORT.md) |
 | **Master Plan “included” frontend areas** | Core flows for all six roles + public home/explore; demo-labelled throughout |
 | **Master Plan “excluded” items** | Not built (real OTP, backend, payments, cross-device sync, live gov feeds, etc.) |
 | **Location data** | **Partial** — full division/district/upazila tree; **407** matched upazilas; **86** still synthetic-filled (was 198 baseline) |
@@ -142,10 +142,10 @@ Aligned with **Master Plan §16** and **Full Build Phase Guide** exit checks. Ev
 **Done**
 
 - Farmer: price observations, listings, stock fields ([`FarmerMarketplacePage`](../src/features/marketplace/FarmerMarketplacePage.tsx))
-- Buyer: browse, offers ([`BuyerMarketplacePage`](../src/features/marketplace/BuyerMarketplacePage.tsx))
+- Buyer: browse (one card per product/variant), **select seller offer on product detail**, then bid via exact `listingId` ([`BuyerMarketplacePage`](../src/features/marketplace/BuyerMarketplacePage.tsx), [`ProductDetailPage`](../src/features/marketplace/ProductDetailPage.tsx), [`SubmitOfferDialog`](../src/features/marketplace/SubmitOfferDialog.tsx), [`listingOfferEligibility.ts`](../src/services/listingOfferEligibility.ts))
 - Seller: accept/reject offers, bulk listing ([`SellerMarketplacePage`](../src/features/marketplace/SellerMarketplacePage.tsx))
 - Listing detail route ([`ListingDetailPage`](../src/features/marketplace/ListingDetailPage.tsx))
-- Business rules in services; tests [`marketplace.test.ts`](../src/test/services/marketplace.test.ts); e2e [`e2e/walkthrough-flow.spec.ts`](../e2e/walkthrough-flow.spec.ts)
+- Business rules in services; tests [`marketplace.test.ts`](../src/test/services/marketplace.test.ts), [`listingOfferEligibility.test.ts`](../src/test/services/listingOfferEligibility.test.ts), [`product-seller-offer-selection.test.ts`](../src/test/services/product-seller-offer-selection.test.ts); e2e [`e2e/walkthrough-flow.spec.ts`](../e2e/walkthrough-flow.spec.ts)
 
 **Exit checks**
 
@@ -207,7 +207,7 @@ Aligned with **Master Plan §16** and **Full Build Phase Guide** exit checks. Ev
 
 - `npm run qa` — lint (oxlint), typecheck, vitest, production build
 - Playwright: [`e2e/smoke.spec.ts`](../e2e/smoke.spec.ts), [`e2e/walkthrough-flow.spec.ts`](../e2e/walkthrough-flow.spec.ts), CI [`.github/workflows/e2e.yml`](../.github/workflows/e2e.yml)
-- Checklist + walkthrough: [`DEMO_WALKTHROUGH.md`](./DEMO_WALKTHROUGH.md) (automated + manual items verified 2026-11-05)
+- Checklist + walkthrough: [`DEMO_GUIDE.md`](./DEMO_GUIDE.md), [`QA_AND_TESTING.md`](./QA_AND_TESTING.md)
 - SPA deploy: [`public/_redirects`](../public/_redirects), [`vercel.json`](../vercel.json)
 
 | Check | Status |
@@ -227,10 +227,11 @@ Work present in the repo but not spelled out as separate phases in the Phase Gui
 | **Supplemental price observations** for listing-card official averages | [`listingAveragePriceSeed.ts`](../src/data/seed/listingAveragePriceSeed.ts) |
 | **Cross-division demo listings** | [`marketplaceDemo.ts`](../src/data/seed/marketplaceDemo.ts) |
 | **Category coverage test** (≥1 product + active listing per category) | [`marketplaceDemo.test.ts`](../src/data/seed/marketplaceDemo.test.ts) |
-| **Public home / explore listing browse** with division→union + category filters | [`HomeMarketProductsSection.tsx`](../src/features/home/HomeMarketProductsSection.tsx), [`ListingCatalogFilterBar.tsx`](../src/features/marketplace/ListingCatalogFilterBar.tsx), [`marketplace-browse.test.ts`](../src/test/services/marketplace-browse.test.ts) |
+| **Public home / explore / marketplace browse** — one card per `productId`, seller/listing counts, `?scope=` on product links | [`productCatalogBrowse.ts`](../src/services/productCatalogBrowse.ts), [`HomeMarketProductsSection.tsx`](../src/features/home/HomeMarketProductsSection.tsx), [`ListingsBrowsePanel.tsx`](../src/features/marketplace/ListingsBrowsePanel.tsx), [`ListingCatalogFilterBar.tsx`](../src/features/marketplace/ListingCatalogFilterBar.tsx), [`productCatalogBrowse.test.ts`](../src/services/productCatalogBrowse.test.ts), [`marketplace-browse.test.ts`](../src/test/services/marketplace-browse.test.ts) |
 | **ProductCombobox** (editable + dropdown, Popover + cmdk) | [`ProductCombobox.tsx`](../src/components/common/ProductCombobox.tsx), [`productComboboxResolve.ts`](../src/components/common/productComboboxResolve.ts) |
 | **BD-JSON union merge + synthetic unions** for unmatched upazilas | [`BANGLADESH_UNION_IMPORT_STATS.json`](./BANGLADESH_UNION_IMPORT_STATS.json) (407 matched, 86 synthetic-filled) |
-| **Product detail + multi-seller price compare** | [`ProductDetailPage.tsx`](../src/features/marketplace/ProductDetailPage.tsx), [`productSellerCompare.ts`](../src/services/productSellerCompare.ts), public route `/product/:productId` |
+| **Product detail + multi-seller compare** (distinct sellers, listing rows, status, category) | [`ProductDetailPage.tsx`](../src/features/marketplace/ProductDetailPage.tsx), [`productSellerCompare.ts`](../src/services/productSellerCompare.ts), `/product/:productId` |
+| **Seller-specific offer selection before bid** (no browse quick-offer on showcase listing) | [`listingOfferEligibility.ts`](../src/services/listingOfferEligibility.ts), [`SubmitOfferDialog.tsx`](../src/features/marketplace/SubmitOfferDialog.tsx), EN/BN keys in [`messages.ts`](../src/lib/i18n/messages.ts) |
 | **shadcn CLI path fix** (Windows `@/` folder bug) | Root [`tsconfig.json`](../tsconfig.json) `paths`; UI: [`popover.tsx`](../src/components/ui/popover.tsx), [`command.tsx`](../src/components/ui/command.tsx), dependency `cmdk` |
 
 ---
@@ -259,7 +260,7 @@ Work present in the repo but not spelled out as separate phases in the Phase Gui
 
 These are **partially** covered by existing dashboards or omitted as YAGNI for the prototype:
 
-- Buyer “favourites” as a dedicated module
+- Buyer “favourites” as a dedicated module — **partial:** favourites tab on buyer dashboard ([`BuyerMarketplacePage`](../src/features/marketplace/BuyerMarketplacePage.tsx))
 - Seller bulk purchase records as a full accounting module
 - Admin: read-only location/product/unit/user/listing browsers + listing moderation; full CRUD and audit log browser still roadmap
 - Department map/heatmap as a standalone production map product
@@ -292,7 +293,7 @@ From **Master Plan v2.0, § Open Decisions**. Prototype behaviour follows “rec
 | **OD-10** | Authoritative location dataset? | Labelled demo data until supplied |
 | **OD-11** | Formal verification criteria for roles? | Demo statuses + audit; no legal verification claim |
 
-Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Master_Plan_v2.0.docx).
+Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./spec/BazarDor_Project_Master_Plan_v2.0.docx).
 
 ---
 
@@ -312,7 +313,7 @@ Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Mast
 
 ## Phase 11 — Marketplace (partial)
 
-**Done (slice):** Public **`/product/:productId`** — compare active sellers (asking price, demo phone placeholder, sale location chain); cards on home/explore link to product page; listing detail unchanged for offers.
+**Done (slice):** Public **`/product/:productId`** — compare eligible listing rows for the **selected variant** (`?variant=` + optional `scope`); asking price, demo phone, sale location, listing status; **distinct seller count** vs listing count; category + variant summary (demo-sample labels); sibling variant links. Browse cards group by **`productId` + effective `variantId`** via [`productCatalogBrowse.ts`](../src/services/productCatalogBrowse.ts) and [`productVariantCatalog.ts`](../src/services/productVariantCatalog.ts); legacy listings without `variantId` map to seeded **standard** variant per product. Official market price stays **product-scoped** (not per variant). Listing detail + bid flow unchanged.
 
 **Still Phase 11:** Favourites module, seller history/P&amp;L, advanced search filters.
 
@@ -320,7 +321,7 @@ Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Mast
 
 ## Remaining roadmap (Phases 9–13)
 
-**Completed in repo:** Phases 1–8 per [Full Build Phase Guide](./BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx). **Agent workflow:** one phase per session → `npm run qa` → optional e2e → update this report.
+**Completed in repo:** Phases 1–8 per [Full Build Phase Guide](./spec/BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx). **Agent workflow:** one phase per session → `npm run qa` → optional e2e → update this report.
 
 **Guardrails:** Frontend-only; mock repos + IndexedDB; no real backend/SMS/payment; do not invent Master Plan policy — see [Open decisions](#open-decisions-master-plan--do-not-treat-as-final-policy) and [`.cursor/rules/bazardor-project.mdc`](../.cursor/rules/bazardor-project.mdc).
 
@@ -330,11 +331,17 @@ Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Mast
 | **10** | Very high | Admin CRUD (locations, products, units), role/user edit, verification demos, **audit log browser**, system settings — extend [`AdminDemoPage`](../src/features/admin/AdminDemoPage.tsx) pattern |
 | **11** | High | Buyer favourites/history; seller bulk/history/P&amp;L (OD-09); marketplace search UX — **partial:** product detail + seller price compare shipped |
 | **12** | High | Department map/heatmap demo, trends, anomaly UI (OD-05), export polish — averages only via [`officialMarketPriceService`](../src/services/officialMarketPriceService.ts) |
-| **13** | Final | Full handover QA — extends [`DEMO_WALKTHROUGH.md`](./DEMO_WALKTHROUGH.md) gate |
+| **13** | Final | Full handover QA — extends [`DEMO_GUIDE.md`](./DEMO_GUIDE.md) / [`QA_AND_TESTING.md`](./QA_AND_TESTING.md) gate |
 
 **Recommended order:** 9 → 10 → 11 → 12 → 13. Resolve **OD-10**, **OD-11** before treating location/verification as production-ready.
 
 **Per-phase agent checklist:** YAGNI scope; business rules in `src/services/`; tests for new rules; `npm run qa` green; refresh this report when behaviour changes.
+
+---
+
+## UI / UX and localization audit (2026-11-05)
+
+Full findings, test inventory, and gate results: [`UI_UX_LOCALIZATION_AUDIT_REPORT.md`](./UI_UX_LOCALIZATION_AUDIT_REPORT.md). Known gaps and open decisions summary: [`KNOWN_LIMITATIONS.md`](./KNOWN_LIMITATIONS.md).
 
 ---
 
@@ -353,9 +360,10 @@ Before stakeholder demos after UI/seed changes: **Admin → Reset demo dataset**
 
 ## Related documentation
 
-- [Demo walkthrough + QA](./DEMO_WALKTHROUGH.md)
+- [Documentation index](./README.md)
+- [Demo walkthrough](./DEMO_GUIDE.md) · [QA and testing](./QA_AND_TESTING.md)
 - [Bangladesh locations — source + import snapshot](./BANGLADESH_LOCATIONS_SOURCE.md)
-- [Master Plan v2.0](./BazarDor_Project_Master_Plan_v2.0.docx), [Phase Guide](./BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx), [Data flow](./BazarDor_Simple_Data_Flow_Diagram_v2.0.docx)
+- [Master Plan v2.0](./spec/BazarDor_Project_Master_Plan_v2.0.docx), [Phase Guide](./spec/BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx), [Data flow](./spec/BazarDor_Simple_Data_Flow_Diagram_v2.0.docx)
 - [Project README](../README.md)
 
 ---

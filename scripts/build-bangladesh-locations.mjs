@@ -1,7 +1,7 @@
 /**
  * Rebuild src/data/bangladesh-locations.json
  * Upazila tree: Jumman04 bd-dd-ui-en.JSON
- * Unions: sohag-pro/BD-JSON bd.json (see documentations/BANGLADESH_LOCATIONS_SOURCE.md)
+ * Unions: sohag-pro/BD-JSON bd.json (see docs/BANGLADESH_LOCATIONS_SOURCE.md)
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -225,7 +225,7 @@ function writeImportSnapshotToSource(stats, counts, bnFallback, generatedAt) {
   ].join('\n')
 
   const root = dirname(fileURLToPath(import.meta.url))
-  const sourcePath = join(root, '..', 'documentations', 'BANGLADESH_LOCATIONS_SOURCE.md')
+  const sourcePath = join(root, '..', 'docs', 'BANGLADESH_LOCATIONS_SOURCE.md')
   const start = '<!-- import-snapshot:start -->'
   const end = '<!-- import-snapshot:end -->'
   let md = readFileSync(sourcePath, 'utf8')
@@ -372,7 +372,7 @@ async function main() {
 
   const root = dirname(fileURLToPath(import.meta.url))
   const target = join(root, '..', 'src', 'data', 'bangladesh-locations.json')
-  const statsPath = join(root, '..', 'documentations', 'BANGLADESH_UNION_IMPORT_STATS.json')
+  const statsPath = join(root, '..', 'docs', 'BANGLADESH_UNION_IMPORT_STATS.json')
   writeFileSync(target, JSON.stringify(out, null, 2) + '\n', 'utf8')
   writeFileSync(statsPath, JSON.stringify(importStats, null, 2) + '\n', 'utf8')
 

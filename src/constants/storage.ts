@@ -6,4 +6,4 @@ export const LOCAL_STORAGE_KEYS = {
 } as const
 
 export const IDB_NAME = 'bazardor-demo'
-export const IDB_VERSION = 2
+export const IDB_VERSION = 3

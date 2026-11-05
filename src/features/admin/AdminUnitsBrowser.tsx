@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useI18n } from '@/app/preferences/LocaleProvider'
 import { dataLayer } from '@/data'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { EmptyState } from '@/components/common/EmptyState'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
@@ -42,7 +43,7 @@ export function AdminUnitsBrowser() {
       </CardHeader>
       <CardContent className="space-y-4">
         {loading ? (
-          <p className="text-sm text-bazardor-muted">{t('loading')}</p>
+          <p className="text-sm text-muted-foreground">{t('loading')}</p>
         ) : (
           <>
             <div className="space-y-1 max-w-md">
@@ -55,12 +56,12 @@ export function AdminUnitsBrowser() {
               />
             </div>
 
-            <p className="text-xs text-bazardor-muted">
+            <p className="text-xs text-muted-foreground">
               {t('adminLocationsShowing')} {filtered.length} {t('adminLocationsOf')} {units.length}
             </p>
 
             {filtered.length === 0 ? (
-              <p className="text-sm text-bazardor-muted">{t('adminUnitsEmpty')}</p>
+              <EmptyState title={t('adminUnitsEmpty')} />
             ) : (
               <div className="overflow-x-auto rounded-md border">
                 <Table>

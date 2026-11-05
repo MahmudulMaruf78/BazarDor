@@ -13,18 +13,20 @@ import type { MessageKey } from '@/lib/i18n/messages'
 import type { OfficialAverageResult } from '@/services/types'
 import type { Location } from '@/types/domain/records'
 import type { ActivitySummary, RegionalRow, TrendPoint } from '@/features/department/departmentAnalyticsService'
+import type { AppLocale } from '@/lib/formatLocale'
+import { CHART_TICK_FONT_BN } from '@/lib/formatLocale'
 import { cn } from 'cn'
+import { formatHeatmapDotTitle } from '@/lib/i18n/userFacingText'
+import { chartTheme } from '@/constants/chartTheme'
 
-const CHART_GREEN = '#1b6b45'
-const CHART_GREEN_MUTED = '#1b6b4580'
-const CHART_NAVY = '#17324d'
-const CHART_NAVY_MUTED = '#17324d66'
+const { primary: CHART_GREEN, primaryMuted: CHART_GREEN_MUTED, foreground: CHART_NAVY, foregroundMuted: CHART_NAVY_MUTED, muted: CHART_MUTED, grid: CHART_GRID } = chartTheme
 
 function averageKg(result: OfficialAverageResult): number | null {
   return result.status === 'calculated' ? result.averagePricePerKg : null
 }
 
 type FormatNumber = (value: number, fractionDigits?: number) => string
+type FormatBdtPerKg = (value: number) => string
 type Translate = (key: MessageKey) => string
 type PickName = (record: { nameEn: string; nameBn: string }) => string
 
@@ -34,11 +36,12 @@ type ChartTooltipProps = {
   active?: boolean
   payload?: Array<{ payload?: Record<string, unknown> }>
   formatNumber: FormatNumber
+  formatBdtPerKg: FormatBdtPerKg
   t: Translate
   valueKey: 'avgKg' | 'avgKgDisplay'
 }
 
-function ChartValueTooltip({ active, payload, formatNumber, t }: ChartTooltipProps) {
+function ChartValueTooltip({ active, payload, formatBdtPerKg, formatNumber, t }: ChartTooltipProps) {
   if (!active || !payload?.[0]?.payload) return null
   const row = payload[0].payload as {
     label: string
@@ -48,12 +51,12 @@ function ChartValueTooltip({ active, payload, formatNumber, t }: ChartTooltipPro
   }
   return (
     <div className="rounded-md border border-border/80 bg-white px-3 py-2 text-xs shadow-sm">
-      <p className="font-medium text-bazardor-navy">{row.label}</p>
-      <p className="text-bazardor-muted">
-        {t('avgKg')}: {row.avgKg != null ? `${formatNumber(row.avgKg)} BDT/kg` : t('insufficient')}
+      <p className="font-medium text-foreground">{row.label}</p>
+      <p className="text-muted-foreground">
+        {t('avgKg')}: {row.avgKg != null ? formatBdtPerKg(row.avgKg) : t('insufficient')}
       </p>
-      <p className="text-bazardor-muted">
-        {t('samples')}: {row.samples}
+      <p className="text-muted-foreground">
+        {t('samples')}: {formatNumber(row.samples, 0)}
       </p>
     </div>
   )
@@ -62,40 +65,44 @@ function ChartValueTooltip({ active, payload, formatNumber, t }: ChartTooltipPro
 export function OfficialAverageKpi({
   average,
   formatNumber,
+  formatBdtPerKg,
   t,
   scopeLabel,
   calculatedAt,
+  formatDate,
 }: {
   average: OfficialAverageResult | null
   formatNumber: FormatNumber
+  formatBdtPerKg: FormatBdtPerKg
   t: Translate
   scopeLabel: string
   calculatedAt: string
+  formatDate: (iso: string) => string
 }) {
   if (!average) {
-    return <p className="text-sm text-bazardor-muted">{t('loading')}</p>
+    return <p className="text-sm text-muted-foreground">{t('loading')}</p>
   }
 
   return (
-    <div className="rounded-md border border-border/80 bg-bazardor-surface/60 p-4 md:p-5">
-      <p className="text-xs font-medium uppercase tracking-wide text-bazardor-muted">{scopeLabel}</p>
-      <p className="mt-1 text-xs text-bazardor-muted">
-        {t('calculated')}: {calculatedAt.slice(0, 19)}
+    <div className="rounded-md border border-border/80 bg-background/60 p-4 md:p-5">
+      <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{scopeLabel}</p>
+      <p className="mt-1 text-xs text-muted-foreground">
+        {t('calculated')}: {formatDate(calculatedAt)}
       </p>
       {average.status === 'calculated' ? (
         <>
-          <p className="mt-3 font-semibold tabular-nums text-bazardor-navy text-3xl md:text-4xl">
-            {formatNumber(average.averagePricePerKg)}{' '}
-            <span className="text-lg font-medium text-bazardor-muted">BDT/kg</span>
+          <p className="mt-3 font-semibold tabular-nums text-foreground text-3xl md:text-4xl">
+            {formatBdtPerKg(average.averagePricePerKg)}
           </p>
-          <p className="mt-2 text-sm text-bazardor-muted">
-            {formatNumber(average.sampleCount, 0)} {t('farmerSamples')} · {average.windowStart.slice(0, 10)} →{' '}
-            {average.windowEnd.slice(0, 10)}
+          <p className="mt-2 text-sm text-muted-foreground">
+            {formatNumber(average.sampleCount, 0)} {t('farmerSamples')} · {formatDate(average.windowStart)} →{' '}
+            {formatDate(average.windowEnd)}
           </p>
         </>
       ) : (
-        <p className="mt-3 text-lg font-semibold text-bazardor-navy">
-          {t('insufficientData')} · {average.sampleCount} · {average.distinctFarmerCount}
+        <p className="mt-3 text-lg font-semibold text-foreground">
+          {t('insufficientData')} · {formatNumber(average.sampleCount, 0)} ·{' '}
+          {formatNumber(average.distinctFarmerCount, 0)}
         </p>
       )}
     </div>
@@ -105,20 +112,30 @@ export function OfficialAverageKpi({
 export function TrendBarChart({
   points,
   formatNumber,
+  formatBdtPerKg,
   t,
   selectedLabel,
   onSelectPoint,
+  trendGranularity,
+  formatTrendAxisLabel,
+  locale,
 }: {
   points: TrendPoint[]
   formatNumber: FormatNumber
+  formatBdtPerKg: FormatBdtPerKg
   t: Translate
   selectedLabel?: string | null
   onSelectPoint?: (point: TrendPoint | null) => void
+  trendGranularity: 'day' | 'week' | 'month'
+  formatTrendAxisLabel: (granularity: 'day' | 'week' | 'month', isoDate: string) => string
+  locale: AppLocale
 }) {
+  const tickFont = locale === 'bn' ? { fontFamily: CHART_TICK_FONT_BN } : undefined
   const chartData = useMemo(
     () =>
       points.map((point) => {
-        const label = point.label.split(':').pop() ?? point.label
+        const iso = point.label.split(':').pop() ?? point.label
+        const label = formatTrendAxisLabel(trendGranularity, iso)
         const kg = averageKg(point.result)
         return {
           id: point.label,
@@ -130,27 +147,39 @@ export function TrendBarChart({
           point,
         }
       }),
-    [points],
+    [points, formatTrendAxisLabel, trendGranularity],
   )
 
   const selected = points.find((p) => p.label === selectedLabel)
 
   if (points.length === 0) {
-    return <p className="text-sm text-bazardor-muted">{t('insufficientData')}</p>
+    return <p className="text-sm text-muted-foreground">{t('insufficientData')}</p>
   }
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-bazardor-muted">{t('deptChartClickTrend')}</p>
-      <div className="h-56 w-full min-w-0" aria-label={t('priceTrend')}>
+      <p className="text-xs text-muted-foreground">{t('deptChartClickTrend')}</p>
+      <div className="rounded-lg border border-border/80 bg-card p-2">
+        <div className="h-56 w-full min-w-0" aria-label={t('priceTrend')}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-            <XAxis dataKey="label" tick={{ fontSize: 11, fill: '#5c6b7a' }} interval={0} angle={-25} textAnchor="end" height={50} />
-            <YAxis tick={{ fontSize: 11, fill: '#5c6b7a' }} width={48} />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_GRID} />
+            <XAxis
+              dataKey="label"
+              tick={{ fontSize: 11, fill: CHART_MUTED, ...tickFont }}
+              interval={0}
+              angle={-25}
+              textAnchor="end"
+              height={50}
+            />
+            <YAxis
+              tick={{ fontSize: 11, fill: CHART_MUTED, ...tickFont }}
+              width={48}
+              tickFormatter={(v) => formatNumber(Number(v), 0)}
+            />
             <Tooltip
-              cursor={{ fill: 'rgba(27, 107, 69, 0.08)' }}
-              content={<ChartValueTooltip formatNumber={formatNumber} t={t} valueKey="avgKg" />}
+              cursor={{ fill: CHART_GREEN_MUTED }}
+              content={<ChartValueTooltip formatNumber={formatNumber} formatBdtPerKg={formatBdtPerKg} t={t} valueKey="avgKg" />}
             />
             <Bar
               dataKey="avgKg"
@@ -172,15 +201,18 @@ export function TrendBarChart({
             </Bar>
           </BarChart>
         </ResponsiveContainer>
+        </div>
       </div>
       {selected ? (
-        <div className="rounded-md border border-border/80 bg-bazardor-surface/70 px-3 py-2 text-sm">
-          <p className="text-xs font-medium uppercase tracking-wide text-bazardor-muted">{t('deptTrendDrillTitle')}</p>
-          <p className="mt-1 font-medium text-bazardor-navy">{selected.label.split(':').pop()}</p>
-          <p className="text-bazardor-muted">
+        <div className="rounded-md border border-border/80 bg-background/70 px-3 py-2 text-sm">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t('deptTrendDrillTitle')}</p>
+          <p className="mt-1 font-medium text-foreground">
+            {formatTrendAxisLabel(trendGranularity, selected.label.split(':').pop() ?? selected.label)}
+          </p>
+          <p className="text-muted-foreground">
             {selected.result.status === 'calculated'
-              ? `${formatNumber(selected.result.averagePricePerKg)} BDT/kg · ${formatNumber(selected.result.sampleCount, 0)} ${t('samples')}`
-              : `${t('insufficientData')} · ${selected.result.sampleCount} · ${selected.result.distinctFarmerCount}`}
+              ? `${formatBdtPerKg(selected.result.averagePricePerKg)} · ${formatNumber(selected.result.sampleCount, 0)} ${t('samples')}`
+              : `${t('insufficientData')} · ${formatNumber(selected.result.sampleCount, 0)} · ${formatNumber(selected.result.distinctFarmerCount, 0)}`}
           </p>
         </div>
       ) : null}
@@ -193,18 +225,23 @@ export function RegionalBarChart({
   locations,
   pickName,
   formatNumber,
+  formatBdtPerKg,
   t,
   activeLocationId,
   onDrillLocation,
+  locale,
 }: {
   rows: RegionalRow[]
   locations: Location[]
   pickName: PickName
   formatNumber: FormatNumber
+  formatBdtPerKg: FormatBdtPerKg
   t: Translate
   activeLocationId?: string
   onDrillLocation?: (locationId: string) => void
+  locale: AppLocale
 }) {
+  const tickFont = locale === 'bn' ? { fontFamily: CHART_TICK_FONT_BN } : undefined
   const chartData = useMemo(
     () =>
       rows.map((row) => {
@@ -224,21 +261,31 @@ export function RegionalBarChart({
   )
 
   if (rows.length === 0) {
-    return <p className="text-sm text-bazardor-muted">{t('insufficientData')}</p>
+    return <p className="text-sm text-muted-foreground">{t('insufficientData')}</p>
   }
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-bazardor-muted">{t('deptChartClickRegion')}</p>
-      <div className="h-56 w-full min-w-0" aria-label={t('regionalComparison')}>
+      <p className="text-xs text-muted-foreground">{t('deptChartClickRegion')}</p>
+      <div className="rounded-lg border border-border/80 bg-card p-2">
+        <div className="h-56 w-full min-w-0" aria-label={t('regionalComparison')}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart layout="vertical" data={chartData} margin={{ top: 4, right: 12, left: 4, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e2e8f0" />
-            <XAxis type="number" tick={{ fontSize: 11, fill: '#5c6b7a' }} />
-            <YAxis type="category" dataKey="label" width={88} tick={{ fontSize: 11, fill: '#17324d' }} />
+            <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={CHART_GRID} />
+            <XAxis
+              type="number"
+              tick={{ fontSize: 11, fill: CHART_MUTED, ...tickFont }}
+              tickFormatter={(v) => formatNumber(Number(v), 0)}
+            />
+            <YAxis
+              type="category"
+              dataKey="label"
+              width={88}
+              tick={{ fontSize: 11, fill: CHART_NAVY, ...tickFont }}
+            />
             <Tooltip
-              cursor={{ fill: 'rgba(23, 50, 77, 0.06)' }}
-              content={<ChartValueTooltip formatNumber={formatNumber} t={t} valueKey="avgKg" />}
+              cursor={{ fill: `${CHART_NAVY_MUTED}` }}
+              content={<ChartValueTooltip formatNumber={formatNumber} formatBdtPerKg={formatBdtPerKg} t={t} valueKey="avgKg" />}
             />
             <Bar
               dataKey="avgKg"
@@ -264,6 +311,7 @@ export function RegionalBarChart({
             </Bar>
           </BarChart>
         </ResponsiveContainer>
+        </div>
       </div>
     </div>
   )
@@ -272,17 +320,19 @@ export function RegionalBarChart({
 export function RegionalSampleHeatmap({
   dots,
   t,
+  locale,
   onSelectLocation,
 }: {
   dots: MapDot[]
   t: Translate
+  locale: AppLocale
   onSelectLocation?: (locationId: string) => void
 }) {
   if (dots.length === 0) return null
 
   return (
     <div className="space-y-2">
-      <p className="text-xs text-bazardor-muted">{t('demoHeatmap')}</p>
+      <p className="text-xs text-muted-foreground">{t('demoHeatmap')}</p>
       <svg
         viewBox="0 0 100 100"
         className="h-44 w-full rounded-md border border-border/80 bg-white"
@@ -303,8 +353,8 @@ export function RegionalSampleHeatmap({
               cy={dot.y}
               r={Math.max(3.5, Math.min(14, dot.samples * 2.8))}
               className={cn(
-                'fill-bazardor-green/35 stroke-bazardor-green',
-                onSelectLocation && 'cursor-pointer hover:fill-bazardor-green/55',
+                'fill-primary/35 stroke-primary',
+                onSelectLocation && 'cursor-pointer hover:fill-primary/55',
               )}
               strokeWidth="0.6"
               onClick={() => onSelectLocation?.(dot.id)}
@@ -314,7 +364,7 @@ export function RegionalSampleHeatmap({
               tabIndex={onSelectLocation ? 0 : undefined}
               role={onSelectLocation ? 'button' : undefined}
             />
-            <title>{`${dot.name}: ${dot.samples} samples`}</title>
+            <title>{formatHeatmapDotTitle(locale, dot.name, dot.samples)}</title>
           </g>
         ))}
       </svg>
@@ -325,9 +375,11 @@ export function RegionalSampleHeatmap({
 export function ActivityMetricTiles({
   activity,
   t,
+  formatNumber,
 }: {
   activity: ActivitySummary | null
   t: Translate
+  formatNumber: FormatNumber
 }) {
   const items = [
     { label: t('activeListings'), value: activity?.activeListings },
@@ -340,11 +392,11 @@ export function ActivityMetricTiles({
       {items.map((item) => (
         <div
           key={item.label}
-          className="rounded-md border border-border/80 bg-bazardor-surface/50 px-4 py-3"
+          className="rounded-md border border-border/80 bg-background/50 px-4 py-3"
         >
-          <p className="text-xs font-medium uppercase tracking-wide text-bazardor-muted">{item.label}</p>
-          <p className="mt-1 text-2xl font-semibold tabular-nums text-bazardor-navy">
-            {item.value ?? '…'}
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{item.label}</p>
+          <p className="mt-1 text-2xl font-semibold tabular-nums text-foreground">
+            {item.value != null ? formatNumber(item.value, 0) : '…'}
           </p>
         </div>
       ))}

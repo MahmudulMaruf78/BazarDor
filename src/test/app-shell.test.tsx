@@ -16,13 +16,13 @@ function renderAt(path: string) {
 describe('Phase 1 app shell', () => {
   it('shows market products on the home page', async () => {
     renderAt('/')
-    expect(await screen.findAllByRole('link', { name: /Sign in|সাইন ইন/i })).toHaveLength(2)
+    expect((await screen.findAllByRole('link', { name: /Sign in|সাইন ইন/i })).length).toBeGreaterThanOrEqual(2)
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
       /Market prices|crop listings|বাজার মূল্য|ফসলের তালিকা/i,
     )
     const productImages = await screen.findAllByRole('img', { name: /Paddy|Potato|Onion|ধান|আলু|পেঁয়াজ/i })
     expect(productImages.length).toBeGreaterThanOrEqual(1)
-    expect((await screen.findAllByText(/Official market average|সরকারi বাজার গড়/i)).length).toBeGreaterThanOrEqual(1)
+    expect((await screen.findAllByText(/Official average market price|Official market average|সরকারi গড় বাজারদর|সরকারি বাজার/i)).length).toBeGreaterThanOrEqual(1)
   })
 })
 

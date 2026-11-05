@@ -42,8 +42,17 @@ describe('Phase 7 department analytics', () => {
     const avg = await fetchOfficialAverage(filters)
     const regional = await fetchRegionalComparison(filters, D.districtJashore)
     if (!avg.ok || !regional.ok) throw new Error('setup failed')
-    const csv = buildCsvExport(filters, avg.data, regional.data)
+    const csv = buildCsvExport('en', filters, avg.data, regional.data, (row) => row.locationName)
     expect(csv).toContain('BazarDor price export')
+  })
+
+  it('csv export uses Bangla header when locale is bn', async () => {
+    const filters = defaultDepartmentFilters()
+    const avg = await fetchOfficialAverage(filters)
+    const regional = await fetchRegionalComparison(filters, D.districtJashore)
+    if (!avg.ok || !regional.ok) throw new Error('setup failed')
+    const csv = buildCsvExport('bn', filters, avg.data, regional.data, (row) => row.locationName)
+    expect(csv.startsWith('বাজারদর')).toBe(true)
   })
 
   it('enables map layer when seed has centroids', () => {
@@ -55,7 +64,7 @@ describe('Phase 7 department analytics', () => {
     const avg = await fetchOfficialAverage(filters)
     const regional = await fetchRegionalComparison(filters, D.districtJashore)
     if (!avg.ok || !regional.ok) throw new Error('setup failed')
-    const blob = await exportWorkbookXlsxBlob(filters, avg.data, regional.data)
+    const blob = await exportWorkbookXlsxBlob('en', filters, avg.data, regional.data, (row) => row.locationName)
     expect(blob.type).toContain('spreadsheet')
   })
 })

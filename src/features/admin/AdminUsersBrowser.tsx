@@ -4,6 +4,7 @@ import { useI18n } from '@/app/preferences/LocaleProvider'
 import { ROLES, ROLE_DASHBOARD_PATH } from '@/constants/roles'
 import { dataLayer } from '@/data'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { EmptyState } from '@/components/common/EmptyState'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -49,7 +50,7 @@ export function AdminUsersBrowser() {
       </CardHeader>
       <CardContent className="space-y-4">
         {loading ? (
-          <p className="text-sm text-bazardor-muted">{t('loading')}</p>
+          <p className="text-sm text-muted-foreground">{t('loading')}</p>
         ) : (
           <>
             <div className="grid gap-3 md:grid-cols-2">
@@ -80,12 +81,12 @@ export function AdminUsersBrowser() {
               </div>
             </div>
 
-            <p className="text-xs text-bazardor-muted">
+            <p className="text-xs text-muted-foreground">
               {t('adminLocationsShowing')} {filtered.length} {t('adminLocationsOf')} {users.length}
             </p>
 
             {filtered.length === 0 ? (
-              <p className="text-sm text-bazardor-muted">{t('adminUsersEmpty')}</p>
+              <EmptyState title={t('adminUsersEmpty')} />
             ) : (
               <div className="overflow-x-auto rounded-md border">
                 <Table>

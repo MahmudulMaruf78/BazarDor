@@ -57,6 +57,18 @@ export type Product = {
   imageUrl: string
 }
 
+/** Sellable grade/quality/variety slice — demo labels only, not official standards. */
+export type ProductVariant = {
+  id: string
+  productId: string
+  grade?: string
+  quality?: string
+  variety?: string
+  size?: string
+  descriptionEn?: string
+  descriptionBn?: string
+}
+
 export type LocationDataSource = 'jumman04' | 'bd_json' | 'demo_corridor' | 'demo_synthetic'
 
 export type Location = {
@@ -80,6 +92,8 @@ export type Listing = {
   id: string
   sellerUserId: string
   productId: string
+  /** When omitted, resolves to the product standard demo variant. */
+  variantId?: string
   locationId: string
   quantity: number
   unitId: string

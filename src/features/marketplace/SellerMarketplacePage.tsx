@@ -19,7 +19,9 @@ import { leafLocationId, type BangladeshLocationSelection } from '@/data/banglad
 import { validateLocationSelection } from '@/services/bangladeshLocationValidation'
 import { dataLayer } from '@/data'
 import type { Bid, Listing, Location, Product, Transaction, Unit } from '@/types/domain/records'
-import { PageHeader } from '@/components/common/PageHeader'
+import { MetricTileGrid } from '@/components/common/MetricTileGrid'
+import { RoleWorkspaceShell } from '@/components/common/RoleWorkspaceShell'
+import { EmptyState } from '@/components/common/EmptyState'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -28,7 +30,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { statusLabel } from '@/lib/i18n/userFacingText'
 
 export function SellerMarketplacePage() {
-  const { t, translateError, pickName, formatNumber, locale } = useI18n()
+  const { t, translateError, pickName, formatNumber, locale, formatUnitLabel } = useI18n()
   const session = useAppSelector(selectAuthSession)
   const [listings, setListings] = useState<Listing[]>([])
   const [products, setProducts] = useState<Product[]>([])
@@ -91,6 +93,8 @@ export function SellerMarketplacePage() {
 
   if (!session) return null
 
+  const completedSales = salesHistory.filter((txn) => txn.status === 'completed').length
+
   const margin = estimateSellerMargin({
     purchasePricePerUnit: purchaseCost ? Number(purchaseCost) : undefined,
     sellingPricePerUnit: listings[0]?.askingPricePerUnit ?? 0,
@@ -98,15 +102,25 @@ export function SellerMarketplacePage() {
   })
 
   return (
-    <div className="space-y-6">
-      <PageHeader eyebrow={t('sellerBadge')} title={t('sellerTitle')} role="seller" />
-
-      <Tabs defaultValue="inventory">
+    <RoleWorkspaceShell role="seller" eyebrow={t('sellerBadge')} title={t('sellerTitle')}>
+      <Tabs defaultValue="overview">
         <TabsList variant="line" className="w-full justify-start overflow-x-auto">
+          <TabsTrigger value="overview">{t('tabOverview')}</TabsTrigger>
           <TabsTrigger value="inventory">{t('tabInventory')}</TabsTrigger>
-          <TabsTrigger value="sales">{t('salesHistoryTitle')}</TabsTrigger>
+          <TabsTrigger value="offers">{t('tabOffers')}</TabsTrigger>
+          <TabsTrigger value="sales">{t('tabSales')}</TabsTrigger>
           <TabsTrigger value="browse">{t('tabBrowse')}</TabsTrigger>
         </TabsList>
+        <TabsContent value="overview" className="space-y-4">
+          <MetricTileGrid
+            metrics={[
+              { label: t('tabInventory'), value: formatNumber(listings.length, 0) },
+              { label: t('pendingOffers'), value: formatNumber(pendingBids.length, 0) },
+              { label: t('tabSales'), value: formatNumber(completedSales, 0) },
+            ]}
+          />
+          <p className="text-sm text-muted-foreground">{t('overviewHint')}</p>
+        </TabsContent>
         <TabsContent value="inventory" className="space-y-4">
           <Card>
             <CardHeader>
@@ -115,7 +129,7 @@ export function SellerMarketplacePage() {
             </CardHeader>
             <CardContent>
               {listings.length === 0 ? (
-                <p className="text-sm text-bazardor-muted">{t('noListings')}</p>
+                <EmptyState title={t('noListings')} />
               ) : (
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {listings.map((listing) => {
@@ -144,80 +158,6 @@ export function SellerMarketplacePage() {
                           <p>
                             {t('status')}: {statusLabel(locale, 'listingStatus', listing.status)}
                           </p>
-                      </ListingProductCard>
-                    )
-                  })}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('pendingOffers')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {pendingBids.length === 0 ? (
-                <p className="text-sm text-bazardor-muted">{t('noListings')}</p>
-              ) : (
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {pendingBids.map((bid) => {
-                    const listing = listingById.get(bid.listingId)
-                    const product = listing ? productMap.get(listing.productId) : undefined
-                    const location = listing ? locationMap.get(listing.locationId) : undefined
-                    const unit = listing ? unitMap.get(listing.unitId) : undefined
-                    const productTitle = product ? pickName(product) : bid.listingId
-                    return (
-                      <ListingProductCard
-                        key={bid.id}
-                        title={productTitle}
-                        imageUrl={product?.imageUrl}
-                        imageAlt={productTitle}
-                        description={location ? pickName(location) : undefined}
-                        contentClassName="flex flex-col gap-3 text-sm"
-                      >
-                          <p>
-                            {t('qty')}: {formatNumber(bid.quantity, 0)}{' '}
-                            {unit?.code ?? listing?.unitId ?? ''} @ {formatNumber(bid.offeredPricePerUnit)}/
-                            {unit?.code ?? 'unit'}
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            <Button
-                              size="sm"
-                              type="button"
-                              onClick={() => {
-                                void decideBid({
-                                  sellerUserId: session.userId,
-                                  bidId: bid.id,
-                                  decision: 'accepted',
-                                }).then((result) => {
-                                  if (!result.ok) return toast.error(translateError(result.error.message))
-                                  toast.success(t('offerAcceptedToast'))
-                                  reload()
-                                })
-                              }}
-                            >
-                              {t('accept')}
-                            </Button>
-                            <Button
-                              size="sm"
-                              type="button"
-                              variant="outline"
-                              onClick={() => {
-                                void decideBid({
-                                  sellerUserId: session.userId,
-                                  bidId: bid.id,
-                                  decision: 'rejected',
-                                }).then((result) => {
-                                  if (!result.ok) return toast.error(translateError(result.error.message))
-                                  toast.message(t('offerRejectedToast'))
-                                  reload()
-                                })
-                              }}
-                            >
-                              {t('reject')}
-                            </Button>
-                          </div>
                       </ListingProductCard>
                     )
                   })}
@@ -280,7 +220,7 @@ export function SellerMarketplacePage() {
                   <Label>{t('askPrice')}</Label>
                   <Input value={bulkAskingPrice} onChange={(e) => setBulkAskingPrice(e.target.value)} />
                 </div>
-                <Button type="submit" className="md:col-span-2">
+                <Button type="submit" className="w-full md:col-span-2 md:w-auto">
                   {t('bulkPurchaseSubmit')}
                 </Button>
               </form>
@@ -299,7 +239,7 @@ export function SellerMarketplacePage() {
               {margin.warning ? <p className="text-sm text-amber-700">{margin.warning}</p> : null}
               {margin.estimatedProfit !== null ? (
                 <p className="text-sm font-medium">
-                  {t('estimatedProfit')}: {margin.estimatedProfit.toFixed(2)}
+                  {t('estimatedProfit')}: {formatNumber(margin.estimatedProfit)}
                 </p>
               ) : null}
               <Button
@@ -329,6 +269,81 @@ export function SellerMarketplacePage() {
             </CardContent>
           </Card>
         </TabsContent>
+        <TabsContent value="offers" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('pendingOffers')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {pendingBids.length === 0 ? (
+                <EmptyState title={t('noListings')} />
+              ) : (
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {pendingBids.map((bid) => {
+                    const listing = listingById.get(bid.listingId)
+                    const product = listing ? productMap.get(listing.productId) : undefined
+                    const location = listing ? locationMap.get(listing.locationId) : undefined
+                    const unit = listing ? unitMap.get(listing.unitId) : undefined
+                    const productTitle = product ? pickName(product) : bid.listingId
+                    return (
+                      <ListingProductCard
+                        key={bid.id}
+                        title={productTitle}
+                        imageUrl={product?.imageUrl}
+                        imageAlt={productTitle}
+                        description={location ? pickName(location) : undefined}
+                        contentClassName="flex flex-col gap-3 text-sm"
+                      >
+                        <p>
+                          {t('qty')}: {formatNumber(bid.quantity, 0)}{' '}
+                          {unit ? formatUnitLabel(unit) : listing?.unitId ?? ''} @{' '}
+                          {formatNumber(bid.offeredPricePerUnit)}/{unit ? formatUnitLabel(unit) : t('unit')}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          <Button
+                            size="sm"
+                            type="button"
+                            onClick={() => {
+                              void decideBid({
+                                sellerUserId: session.userId,
+                                bidId: bid.id,
+                                decision: 'accepted',
+                              }).then((result) => {
+                                if (!result.ok) return toast.error(translateError(result.error.message))
+                                toast.success(t('offerAcceptedToast'))
+                                reload()
+                              })
+                            }}
+                          >
+                            {t('accept')}
+                          </Button>
+                          <Button
+                            size="sm"
+                            type="button"
+                            variant="outline"
+                            onClick={() => {
+                              void decideBid({
+                                sellerUserId: session.userId,
+                                bidId: bid.id,
+                                decision: 'rejected',
+                              }).then((result) => {
+                                if (!result.ok) return toast.error(translateError(result.error.message))
+                                toast.message(t('offerRejectedToast'))
+                                reload()
+                              })
+                            }}
+                          >
+                            {t('reject')}
+                          </Button>
+                        </div>
+                      </ListingProductCard>
+                    )
+                  })}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
         <TabsContent value="sales" className="space-y-4">
           <Card>
             <CardHeader>
@@ -337,7 +352,7 @@ export function SellerMarketplacePage() {
             </CardHeader>
             <CardContent>
               {salesHistory.length === 0 ? (
-                <p className="text-sm text-bazardor-muted">{t('noListings')}</p>
+                <p className="text-sm text-muted-foreground">{t('noListings')}</p>
               ) : (
                 <ul className="space-y-2 text-sm">
                   {salesHistory.map((txn) => (
@@ -357,6 +372,6 @@ export function SellerMarketplacePage() {
           <ListingsBrowsePanel userId={session.userId} />
         </TabsContent>
       </Tabs>
-    </div>
+    </RoleWorkspaceShell>
   )
 }

@@ -12,7 +12,7 @@ export function RequireAuth() {
 
   if (status === 'unknown') {
     return (
-      <div className="flex min-h-dvh items-center justify-center p-6 text-sm text-bazardor-muted">
+      <div className="flex min-h-dvh items-center justify-center p-6 text-sm text-muted-foreground">
         {t('checkingSession')}
       </div>
     )
@@ -32,7 +32,7 @@ export function RedirectIfAuthenticated() {
 
   if (status === 'unknown') {
     return (
-      <div className="flex min-h-[200px] items-center justify-center text-sm text-bazardor-muted">
+      <div className="flex min-h-[200px] items-center justify-center text-sm text-muted-foreground">
         {t('loading')}
       </div>
     )

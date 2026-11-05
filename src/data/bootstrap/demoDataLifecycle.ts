@@ -18,6 +18,7 @@ import {
   notificationSchema,
   priceEntrySchema,
   productSchema,
+  productVariantSchema,
   syncQueueItemSchema,
   transactionSchema,
   unitSchema,
@@ -51,6 +52,7 @@ export function validateDemoSeedBundle(): RepositoryResult<typeof demoSeedBundle
     validateMany(unitSchema, demoSeedBundle.units, 'unit'),
     validateMany(locationSchema, demoSeedBundle.locations, 'location'),
     validateMany(productSchema, demoSeedBundle.products, 'product'),
+    validateMany(productVariantSchema, demoSeedBundle.productVariants, 'product variant'),
     validateMany(userSchema, demoSeedBundle.users, 'user'),
     validateMany(farmerProfileSchema, demoSeedBundle.farmerProfiles, 'farmer profile'),
     validateMany(listingSchema, demoSeedBundle.listings, 'listing'),
@@ -75,6 +77,7 @@ async function writeSeedToIndexedDb(bundle: typeof demoSeedBundle): Promise<Repo
     await idbPutMany(IDB_STORES.units, [...clone.units])
     await idbPutMany(IDB_STORES.locations, [...clone.locations])
     await idbPutMany(IDB_STORES.products, [...clone.products])
+    await idbPutMany(IDB_STORES.productVariants, [...clone.productVariants])
     await idbPutMany(IDB_STORES.users, [...clone.users])
     await idbPutMany(IDB_STORES.farmerProfiles, [...clone.farmerProfiles])
     await idbPutMany(IDB_STORES.listings, [...clone.listings])
@@ -108,7 +111,14 @@ export async function initializeDemoData(): Promise<RepositoryResult<void>> {
   try {
     const version = await idbGetMeta(META_SCHEMA_VERSION)
     const userCount = await idbCount(IDB_STORES.users)
-    if (version === STORAGE_SCHEMA_VERSION && userCount > 0) {
+    const variantCount = await idbCount(IDB_STORES.productVariants)
+    const listingCount = await idbCount(IDB_STORES.listings)
+    if (
+      version === STORAGE_SCHEMA_VERSION &&
+      userCount > 0 &&
+      variantCount > 0 &&
+      listingCount > 0
+    ) {
       return ok(undefined)
     }
     return resetDemoData()

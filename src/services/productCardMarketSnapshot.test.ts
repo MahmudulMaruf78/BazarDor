@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { DEMO_LOCATION_IDS as D } from '@/data/demoLocationIds'
+import { demoSeedBundle } from '@/data/seed'
 import { seedListings, seedLocations, seedPriceEntries, seedProducts, seedUnits } from '@/data/seed'
 import { buildExploreLeafSnapshots, snapshotsForListings } from '@/services/productCardMarketSnapshot'
 
@@ -26,6 +27,7 @@ describe('productCardMarketSnapshot', () => {
     const rows = buildExploreLeafSnapshots(
       D.unionDurgapur,
       seedProducts,
+      demoSeedBundle.productVariants,
       seedListings,
       seedPriceEntries,
       seedLocations,

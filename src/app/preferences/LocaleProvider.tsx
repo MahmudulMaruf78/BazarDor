@@ -1,7 +1,15 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type PropsWithChildren } from 'react'
 import { dataLayer } from '@/data'
 import type { AppLocale } from '@/lib/formatLocale'
-import { formatDemoNumber } from '@/lib/formatLocale'
+import {
+  formatBdtPerKg,
+  formatDemoDate,
+  formatDemoNumber,
+  formatQuantity,
+  formatTrendAxisLabel,
+  formatUnitLabel,
+  type LocalizedUnit,
+} from '@/lib/formatLocale'
 import { type MessageKey, translate } from '@/lib/i18n/messages'
 import { ROLE_LABELS, type RoleKey } from '@/constants/roles'
 
@@ -15,11 +23,18 @@ type I18nContextValue = {
   t: (key: MessageKey) => string
   translateError: (message: string) => string
   formatNumber: (value: number, fractionDigits?: number) => string
+  formatQuantity: (value: number, fractionDigits?: number) => string
+  formatBdtPerKg: (value: number) => string
+  formatDate: (iso: string, style?: 'short' | 'medium') => string
+  formatUnitLabel: (unit: LocalizedUnit) => string
+  formatTrendAxisLabel: (granularity: 'day' | 'week' | 'month', isoDate: string) => string
   pickName: (record: LocalizedName) => string
   roleLabel: (role: RoleKey) => string
 }
 
 const I18nContext = createContext<I18nContextValue | null>(null)
+
+// UI-facing copy: use pickName, formatUnitLabel, formatDate, formatNumber — not raw nameEn, unit.code, ISO slices, or toFixed.
 
 export function LocaleProvider({ children }: PropsWithChildren) {
   const [locale, setLocaleState] = useState<AppLocale>(() => {
@@ -42,6 +57,11 @@ export function LocaleProvider({ children }: PropsWithChildren) {
       t,
       translateError: (message) => translateUserError(message, locale),
       formatNumber: (value, fractionDigits) => formatDemoNumber(value, locale, fractionDigits),
+      formatQuantity: (value, fractionDigits) => formatQuantity(value, locale, fractionDigits),
+      formatBdtPerKg: (value) => formatBdtPerKg(value, locale),
+      formatDate: (iso, style) => formatDemoDate(iso, locale, style),
+      formatUnitLabel: (unit) => formatUnitLabel(unit, locale),
+      formatTrendAxisLabel: (granularity, isoDate) => formatTrendAxisLabel(granularity, isoDate, locale),
       pickName: (record) => (locale === 'bn' ? record.nameBn : record.nameEn),
       roleLabel: (role) => ROLE_LABELS[role][locale === 'bn' ? 'bn' : 'en'],
     }
