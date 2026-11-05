@@ -15,7 +15,7 @@ import { createFarmerPriceEntry, createListing, restockListing } from '@/feature
 import { ListingsBrowsePanel } from '@/features/marketplace/ListingsBrowsePanel'
 import { dataLayer } from '@/data'
 import type { Listing, PriceEntry, Product } from '@/types/domain/records'
-import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -52,14 +52,11 @@ export function FarmerMarketplacePage() {
   if (!session) return null
 
   return (
-    <div className="space-y-4">
-      <div>
-        <Badge variant="secondary">{t('farmerBadge')}</Badge>
-        <h1 className="mt-2 text-2xl font-semibold">{t('farmerTitle')}</h1>
-      </div>
+    <div className="space-y-6">
+      <PageHeader eyebrow={t('farmerBadge')} title={t('farmerTitle')} role="farmer" />
 
       <Tabs defaultValue="browse">
-        <TabsList>
+        <TabsList variant="line" className="w-full justify-start overflow-x-auto">
           <TabsTrigger value="browse">{t('tabBrowse')}</TabsTrigger>
           <TabsTrigger value="listings">{t('tabListings')}</TabsTrigger>
           <TabsTrigger value="prices">{t('tabPrices')}</TabsTrigger>

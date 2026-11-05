@@ -19,7 +19,7 @@ import { leafLocationId, type BangladeshLocationSelection } from '@/data/banglad
 import { validateLocationSelection } from '@/services/bangladeshLocationValidation'
 import { dataLayer } from '@/data'
 import type { Bid, Listing, Location, Product, Transaction, Unit } from '@/types/domain/records'
-import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -98,12 +98,11 @@ export function SellerMarketplacePage() {
   })
 
   return (
-    <div className="space-y-4">
-      <Badge variant="secondary">{t('sellerBadge')}</Badge>
-      <h1 className="text-2xl font-semibold">{t('sellerTitle')}</h1>
+    <div className="space-y-6">
+      <PageHeader eyebrow={t('sellerBadge')} title={t('sellerTitle')} role="seller" />
 
       <Tabs defaultValue="inventory">
-        <TabsList>
+        <TabsList variant="line" className="w-full justify-start overflow-x-auto">
           <TabsTrigger value="inventory">{t('tabInventory')}</TabsTrigger>
           <TabsTrigger value="sales">{t('salesHistoryTitle')}</TabsTrigger>
           <TabsTrigger value="browse">{t('tabBrowse')}</TabsTrigger>

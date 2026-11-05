@@ -13,7 +13,7 @@ import { dataLayer } from '@/data'
 import type { Bid, Listing, Product, Transaction } from '@/types/domain/records'
 import { statusLabel } from '@/lib/i18n/userFacingText'
 import { ListingProductCard } from '@/features/marketplace/ListingProductCard'
-import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
@@ -49,12 +49,11 @@ export function BuyerMarketplacePage() {
   if (!session) return null
 
   return (
-    <div className="space-y-4">
-      <Badge variant="secondary">{t('buyerBadge')}</Badge>
-      <h1 className="text-2xl font-semibold">{t('buyerTitle')}</h1>
+    <div className="space-y-6">
+      <PageHeader eyebrow={t('buyerBadge')} title={t('buyerTitle')} role="buyer" />
 
       <Tabs defaultValue="browse">
-        <TabsList>
+        <TabsList variant="line" className="w-full justify-start">
           <TabsTrigger value="browse">{t('tabBrowse')}</TabsTrigger>
           <TabsTrigger value="bids">{t('tabBids')}</TabsTrigger>
           <TabsTrigger value="favourites">{t('tabFavourites')}</TabsTrigger>

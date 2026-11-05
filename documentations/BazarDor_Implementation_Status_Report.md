@@ -308,6 +308,12 @@ Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Mast
 
 ---
 
+## Phase 10 — Admin (started)
+
+**Done:** Read-only **location**, **product**, and **unit** browsers on [`/admin`](src/features/admin/AdminDemoPage.tsx) — `admin.locations.view`, `admin.products.view`, `admin.units.view`; filters + paginated tables via `catalog` repo. Location/product/unit CRUD and other Admin modules still roadmap.
+
+---
+
 ## Verification commands
 
 ```bash

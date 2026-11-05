@@ -37,7 +37,7 @@
 
 :root {
   color-scheme: light;
-  --radius: 0.625rem;
+  --radius: 0.375rem;
   --background: oklch(0.985 0.004 155);
   --foreground: oklch(0.28 0.04 240);
   --card: oklch(1 0 0);
@@ -64,7 +64,11 @@
   }
 
   body {
-    @apply min-h-dvh bg-bazardor-surface font-sans text-bazardor-navy antialiased;
+    @apply min-h-dvh bg-bazardor-surface font-sans text-[15px] leading-normal text-bazardor-navy antialiased;
+  }
+
+  h1 {
+    @apply tracking-tight;
   }
 
   :focus-visible {

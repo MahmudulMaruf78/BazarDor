@@ -6,10 +6,13 @@ import { useI18n } from '@/app/preferences/LocaleProvider'
 import { STORAGE_SCHEMA_VERSION } from '@/constants/storage'
 import { ROLE_DASHBOARD_PATH } from '@/constants/roles'
 import { Can } from '@/features/auth/Can'
+import { AdminLocationsBrowser } from '@/features/admin/AdminLocationsBrowser'
+import { AdminProductsBrowser } from '@/features/admin/AdminProductsBrowser'
+import { AdminUnitsBrowser } from '@/features/admin/AdminUnitsBrowser'
 import { dataLayer } from '@/data'
 import { readStorageSchemaVersion } from '@/data/bootstrap/demoDataLifecycle'
 import type { User } from '@/types/domain/records'
-import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/components/common/PageHeader'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
@@ -34,10 +37,13 @@ export function AdminDemoPage() {
   }, [reload])
 
   return (
-    <div className="space-y-4">
-      <Badge variant="secondary">{t('adminBadge')}</Badge>
-      <h1 className="text-2xl font-semibold">{t('adminTitle')}</h1>
-      <p className="text-sm text-bazardor-muted">{t('adminSubtitle')}</p>
+    <div className="space-y-6">
+      <PageHeader
+        eyebrow={t('adminBadge')}
+        title={t('adminTitle')}
+        subtitle={t('adminSubtitle')}
+        role="admin"
+      />
 
       <Card>
         <CardHeader>
@@ -74,6 +80,18 @@ export function AdminDemoPage() {
           </Link>
         </CardContent>
       </Card>
+
+      <Can permission="admin.locations.view">
+        <AdminLocationsBrowser />
+      </Can>
+
+      <Can permission="admin.products.view">
+        <AdminProductsBrowser />
+      </Can>
+
+      <Can permission="admin.units.view">
+        <AdminUnitsBrowser />
+      </Can>
 
       <Card>
         <CardHeader>

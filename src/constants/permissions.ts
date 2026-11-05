@@ -8,6 +8,9 @@ export const PERMISSIONS = [
   'price.approve',
   'analytics.view',
   'admin.demo.reset',
+  'admin.locations.view',
+  'admin.products.view',
+  'admin.units.view',
   'notifications.view',
 ] as const
 

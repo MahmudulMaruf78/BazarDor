@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useI18n } from '@/app/preferences/LocaleProvider'
 import { brandAssets } from '@/constants/brand-assets'
 
 type AppLogoProps = {
@@ -6,6 +7,7 @@ type AppLogoProps = {
 }
 
 export function AppLogo({ compact }: AppLogoProps) {
+  const { t } = useI18n()
   const src = compact ? brandAssets.logoMark : brandAssets.logoHorizontal
 
   return (
@@ -15,7 +17,7 @@ export function AppLogo({ compact }: AppLogoProps) {
         alt="BazarDor"
         className={compact ? 'size-9 shrink-0' : 'h-9 w-auto max-w-[11rem] shrink-0 sm:max-w-[13rem]'}
       />
-      <span className="sr-only">BazarDor — agricultural marketplace</span>
+      <span className="sr-only">{t('docTitleBrand')}</span>
     </Link>
   )
 }

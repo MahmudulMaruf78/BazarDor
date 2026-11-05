@@ -34,7 +34,7 @@ import {
 } from '@/features/field-officer/offlineSyncService'
 import type { AuditLogEntry, FarmerProfile, Location, PriceEntry, Product, SyncQueueItem } from '@/types/domain/records'
 import { dataLayer } from '@/data'
-import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -99,15 +99,16 @@ export function FieldOfficerPage() {
   if (!session) return null
 
   return (
-    <div className="space-y-4">
-      <Badge variant="secondary">{t('foBadge')}</Badge>
-      <h1 className="text-2xl font-semibold">{t('foTitle')}</h1>
-      <p className="text-sm text-bazardor-muted">
-        {assignedAreaLabel()} — {t('foAssignment')}
-      </p>
+    <div className="space-y-6">
+      <PageHeader
+        eyebrow={t('foBadge')}
+        title={t('foTitle')}
+        subtitle={`${assignedAreaLabel()} — ${t('foAssignment')}`}
+        role="fieldOfficer"
+      />
 
       <Tabs defaultValue="farmers">
-        <TabsList className="flex h-auto flex-wrap">
+        <TabsList variant="line" className="flex h-auto w-full flex-wrap justify-start">
           <TabsTrigger value="farmers">{t('tabFarmers')}</TabsTrigger>
           <TabsTrigger value="assisted">{t('tabAssisted')}</TabsTrigger>
           <TabsTrigger value="consent">{t('tabConsent')}</TabsTrigger>

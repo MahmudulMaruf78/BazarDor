@@ -12,7 +12,7 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
   return (
     <div
       className={cn(
-        'relative inline-grid h-9 w-[5.5rem] grid-cols-2 cursor-pointer rounded-full bg-bazardor-green p-0.5 shadow-sm ring-1 ring-bazardor-green/30',
+        'relative inline-grid h-9 w-[5.5rem] grid-cols-2 cursor-pointer rounded-full border border-bazardor-green/25 bg-bazardor-green p-0.5',
         className,
       )}
       role="group"
@@ -21,7 +21,7 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
       <span
         aria-hidden
         className={cn(
-          'pointer-events-none absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-full bg-white shadow-sm transition-[left] duration-200 ease-out',
+          'pointer-events-none absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-full bg-white transition-[left] duration-200 ease-out',
           isBn ? 'left-0.5' : 'left-[calc(50%+1px)]',
         )}
       />

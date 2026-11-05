@@ -22,7 +22,7 @@ import {
 } from '@/features/department/departmentAnalyticsService'
 import type { OfficialAverageResult } from '@/services/types'
 import type { Location, Product } from '@/types/domain/records'
-import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -94,10 +94,13 @@ export function DepartmentAnalyticsPage() {
   const scopeLocation = locations.find((loc) => loc.id === filters.locationScopeId)
 
   return (
-    <div className="space-y-4">
-      <Badge variant="secondary">{t('deptBadge')}</Badge>
-      <h1 className="text-2xl font-semibold">{t('deptTitle')}</h1>
-      <p className="text-sm text-bazardor-muted">{t('deptSubtitle')}</p>
+    <div className="space-y-6">
+      <PageHeader
+        eyebrow={t('deptBadge')}
+        title={t('deptTitle')}
+        subtitle={t('deptSubtitle')}
+        role="department"
+      />
 
       <Card>
         <CardHeader>

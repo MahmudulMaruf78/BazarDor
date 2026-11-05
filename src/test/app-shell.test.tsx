@@ -18,7 +18,7 @@ describe('Phase 1 app shell', () => {
     renderAt('/')
     expect(await screen.findAllByRole('link', { name: /Sign in|সাইন ইন/i })).toHaveLength(2)
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      /agricultural marketplace|কৃষি মার্কেটপ্লেস/i,
+      /Market prices|crop listings|বাজার মূল্য|ফসলের তালিকা/i,
     )
     const productImages = await screen.findAllByRole('img', { name: /Paddy|Potato|Onion|ধান|আলু|পেঁয়াজ/i })
     expect(productImages.length).toBeGreaterThanOrEqual(1)

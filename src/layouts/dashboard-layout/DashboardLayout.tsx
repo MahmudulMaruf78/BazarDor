@@ -1,6 +1,6 @@
-import { Bell, LogOut, Menu, UserRound } from 'lucide-react'
+import { Bell, LogOut, Menu } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks'
 import { useI18n } from '@/app/preferences/LocaleProvider'
 import { signOutDemo, selectAuthDisplayName, selectAuthRole, selectAuthSession } from '@/features/auth/authSlice'
@@ -25,14 +25,18 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from 'cn'
 import { toast } from 'sonner'
 import { ROLE_DASHBOARD_PATH, ROLES } from '@/constants/roles'
+import { ROLE_NAV_ACTIVE } from '@/constants/roleVisual'
 import { notificationDisplayText } from '@/lib/i18n/userFacingText'
+import { DemoPrototypeNotice } from '@/components/common/DemoPrototypeNotice'
+import { documentTitleKeyForPath } from '@/lib/documentTitle'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
   const sessionRole = useAppSelector(selectAuthRole)
   const { t, roleLabel } = useI18n()
 
   return (
-    <nav className="flex flex-col gap-1 p-2" aria-label={t('navLabel')}>
+    <nav className="flex flex-col gap-0.5 px-2 py-2" aria-label={t('navLabel')}>
       {ROLES.filter((role) => (sessionRole ? canRoleAccessPath(sessionRole, ROLE_DASHBOARD_PATH[role]) : false)).map(
         (role) => (
           <NavLink
@@ -41,10 +45,8 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
             onClick={onNavigate}
             className={({ isActive }) =>
               cn(
-                'rounded-lg px-3 py-2 text-sm transition-colors',
-                isActive
-                  ? 'bg-bazardor-green/15 font-medium text-bazardor-green'
-                  : 'text-bazardor-navy hover:bg-muted',
+                'rounded-md px-3 py-2 text-sm transition-colors',
+                isActive ? ROLE_NAV_ACTIVE[role] : 'text-bazardor-navy hover:bg-muted/80',
               )
             }
           >
@@ -63,10 +65,12 @@ export function DashboardLayout() {
   const [notifOpen, setNotifOpen] = useState(false)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const session = useAppSelector(selectAuthSession)
   const displayName = useAppSelector(selectAuthDisplayName)
   const role = useAppSelector(selectAuthRole)
   const { t, roleLabel, locale, translateError } = useI18n()
+  useDocumentTitle(documentTitleKeyForPath(pathname), t)
 
   const refreshNotifications = useCallback(() => {
     if (!session) return
@@ -84,9 +88,12 @@ export function DashboardLayout() {
   return (
     <div className="flex min-h-dvh flex-col">
       <div className="flex flex-1">
-        <aside className="hidden w-64 shrink-0 border-r bg-white md:block">
-          <div className="border-b p-4">
+        <aside className="hidden w-60 shrink-0 border-r border-border/80 bg-white md:block">
+          <div className="border-b border-border/80 px-4 py-4">
             <AppLogo compact />
+            {role ? (
+              <p className="mt-2 text-xs text-bazardor-muted">{roleLabel(role)}</p>
+            ) : null}
           </div>
           <SidebarNav />
         </aside>
@@ -110,9 +117,9 @@ export function DashboardLayout() {
             <LocaleSwitcher className="ml-auto" />
           </header>
 
-          <header className="hidden items-center justify-between gap-4 border-b bg-white px-6 py-3 md:flex">
+          <header className="hidden items-center justify-between gap-4 border-b border-border/80 bg-white px-6 py-3 md:flex">
             <div>
-              <p className="text-sm font-medium">{displayName ?? t('demoUser')}</p>
+              <p className="text-sm font-medium text-bazardor-navy">{displayName ?? t('demoUser')}</p>
               <p className="text-xs text-bazardor-muted">
                 {role ? roleLabel(role) : t('role')}
               </p>
@@ -123,7 +130,11 @@ export function DashboardLayout() {
                 <Button type="button" variant="outline" size="sm" className="gap-2" onClick={() => setNotifOpen(true)}>
                   <Bell className="size-4" aria-hidden />
                   {t('notifications')}
-                  {unreadCount > 0 ? <Badge variant="secondary">{unreadCount}</Badge> : null}
+                  {unreadCount > 0 ? (
+                    <Badge variant="secondary" className="min-w-5 justify-center px-1.5">
+                      {unreadCount}
+                    </Badge>
+                  ) : null}
                 </Button>
                 <DialogContent className="max-w-md">
                   <DialogHeader>
@@ -165,10 +176,6 @@ export function DashboardLayout() {
                   </ul>
                 </DialogContent>
               </Dialog>
-              <div className="flex items-center gap-2 rounded-lg border px-2 py-1">
-                <UserRound className="size-4 text-bazardor-muted" aria-hidden />
-                <span className="text-sm">{displayName ?? t('demoUser')}</span>
-              </div>
               <Link to="/" className={buttonVariants({ variant: 'ghost', size: 'sm' })}>
                 {t('publicHome')}
               </Link>
@@ -193,8 +200,11 @@ export function DashboardLayout() {
             </div>
           </header>
 
-          <main className="flex-1 p-4 md:p-6">
-            <Outlet />
+          <main className="flex-1 bg-bazardor-surface p-4 md:p-6">
+            <div className="mx-auto flex w-full max-w-7xl flex-col gap-4">
+              <DemoPrototypeNotice className="rounded-md" />
+              <Outlet />
+            </div>
           </main>
         </div>
       </div>
