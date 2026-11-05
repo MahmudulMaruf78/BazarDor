@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { ProductImage } from '@/components/common/ProductImage'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from 'cn'
@@ -13,6 +14,8 @@ type ListingProductCardProps = {
   accentBorder?: boolean
   className?: string
   contentClassName?: string
+  /** When set, whole card navigates to product or listing detail. */
+  to?: string
   children?: ReactNode
 }
 
@@ -25,14 +28,16 @@ export function ListingProductCard({
   accentBorder = false,
   className,
   contentClassName,
+  to,
   children,
 }: ListingProductCardProps) {
-  return (
+  const card = (
     <Card
       size={size}
       className={cn(
         'flex h-full flex-col overflow-hidden pt-0 transition-colors hover:border-border',
         accentBorder && 'border-l-[3px] border-l-bazardor-green/70',
+        to && 'cursor-pointer hover:border-bazardor-green/40 focus-within:ring-2 focus-within:ring-ring',
         className,
       )}
     >
@@ -61,4 +66,14 @@ export function ListingProductCard({
       ) : null}
     </Card>
   )
+
+  if (to) {
+    return (
+      <Link to={to} className="block h-full rounded-xl outline-none">
+        {card}
+      </Link>
+    )
+  }
+
+  return card
 }

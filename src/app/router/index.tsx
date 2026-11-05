@@ -5,6 +5,7 @@ import { DemoLoginPage } from '@/features/auth/DemoLoginPage'
 import { AccessDeniedPage, NotFoundPage } from '@/features/errors/AppStatusPages'
 import { HomePage } from '@/features/home/HomePage'
 import { ExploreMarketPage } from '@/features/home/ExploreMarketPage'
+import { ProductDetailPage } from '@/features/marketplace/ProductDetailPage'
 import { FarmerMarketplacePage } from '@/features/marketplace/FarmerMarketplacePage'
 import { BuyerMarketplacePage } from '@/features/marketplace/BuyerMarketplacePage'
 import { SellerMarketplacePage } from '@/features/marketplace/SellerMarketplacePage'
@@ -23,6 +24,7 @@ export const appRoutes = [
     children: [
       { index: true, element: <HomePage /> },
       { path: 'explore', element: <ExploreMarketPage /> },
+      { path: 'product/:productId', element: <ProductDetailPage /> },
     ],
   },
   {

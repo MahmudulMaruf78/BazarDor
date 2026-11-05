@@ -50,7 +50,7 @@ export async function mockSyncQueue(options?: { failClientEntryId?: string }): P
       const failed: SyncQueueItem = {
         ...syncing,
         status: 'FAILED',
-        errorDetail: 'Demo sync failure — retry available on this device only.',
+        errorDetail: 'Sync failure — retry available on this device only.',
         updatedAt: new Date().toISOString(),
       }
       await dataLayer.repos.syncQueue.saveSyncQueueItem(failed)
@@ -79,7 +79,7 @@ export async function markQueueConflict(clientEntryId: string): Promise<Reposito
   return dataLayer.repos.syncQueue.saveSyncQueueItem({
     ...item,
     status: 'CONFLICT',
-    errorDetail: 'Demo conflict — review required.',
+    errorDetail: 'Sync conflict — review required on this device.',
     updatedAt: new Date().toISOString(),
   })
 }

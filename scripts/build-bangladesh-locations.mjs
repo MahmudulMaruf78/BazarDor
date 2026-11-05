@@ -143,7 +143,7 @@ function addSyntheticUnionSamples(key, upzNode, stats, count, startIndex) {
     upzNode.children.push({
       id,
       type: 'union',
-      nameEn: `Sample Union ${sampleNum} (Demo)`,
+      nameEn: `Union ${sampleNum}`,
       nameBn: `নমুনা ইউনিয়ন ${SAMPLE_UNION_BN[sampleNum - 1] ?? String(sampleNum)} (ডেমো)`,
       dataSource: 'demo_synthetic',
       children: [],
@@ -362,7 +362,7 @@ async function main() {
       jumman04: 'Division/district/upazila tree from Jumman04 English file',
       bd_json: 'Union from BD-JSON where upazila names match (full list per upazila)',
       demo_corridor: 'Curated demo unions with centroids',
-      demo_synthetic: 'Placeholder Sample Union (Demo) — not government verification',
+      demo_synthetic: 'Synthetic union placeholder for upazilas without union lists',
     },
     unionImportStats: importStats,
     note:

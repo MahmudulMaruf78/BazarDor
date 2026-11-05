@@ -172,6 +172,12 @@ export function ListingsBrowsePanel({
                   </p>
                   <div className="mt-auto flex flex-wrap gap-2 pt-1">
                     <Link
+                      to={`/product/${listing.productId}`}
+                      className={buttonVariants({ size: 'sm', variant: 'secondary' })}
+                    >
+                      {t('productDetailSellersTitle')}
+                    </Link>
+                    <Link
                       to={`/listing/${listing.id}`}
                       className={buttonVariants({ size: 'sm', variant: 'outline' })}
                     >

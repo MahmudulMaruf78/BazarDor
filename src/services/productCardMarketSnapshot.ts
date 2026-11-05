@@ -26,7 +26,7 @@ function pickShowcaseListing(productId: string, listings: readonly Listing[]): L
   return forProduct.find((l) => l.status === 'active') ?? forProduct[0]
 }
 
-function snapshotForListing(
+export function snapshotForListing(
   listing: Listing,
   entries: readonly PriceEntry[],
   locations: readonly Location[],

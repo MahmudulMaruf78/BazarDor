@@ -230,6 +230,7 @@ Work present in the repo but not spelled out as separate phases in the Phase Gui
 | **Public home / explore listing browse** with division→union + category filters | [`HomeMarketProductsSection.tsx`](../src/features/home/HomeMarketProductsSection.tsx), [`ListingCatalogFilterBar.tsx`](../src/features/marketplace/ListingCatalogFilterBar.tsx), [`marketplace-browse.test.ts`](../src/test/services/marketplace-browse.test.ts) |
 | **ProductCombobox** (editable + dropdown, Popover + cmdk) | [`ProductCombobox.tsx`](../src/components/common/ProductCombobox.tsx), [`productComboboxResolve.ts`](../src/components/common/productComboboxResolve.ts) |
 | **BD-JSON union merge + synthetic unions** for unmatched upazilas | [`BANGLADESH_UNION_IMPORT_STATS.json`](./BANGLADESH_UNION_IMPORT_STATS.json) (407 matched, 86 synthetic-filled) |
+| **Product detail + multi-seller price compare** | [`ProductDetailPage.tsx`](../src/features/marketplace/ProductDetailPage.tsx), [`productSellerCompare.ts`](../src/services/productSellerCompare.ts), public route `/product/:productId` |
 | **shadcn CLI path fix** (Windows `@/` folder bug) | Root [`tsconfig.json`](../tsconfig.json) `paths`; UI: [`popover.tsx`](../src/components/ui/popover.tsx), [`command.tsx`](../src/components/ui/command.tsx), dependency `cmdk` |
 
 ---
@@ -309,6 +310,14 @@ Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Mast
 
 ---
 
+## Phase 11 — Marketplace (partial)
+
+**Done (slice):** Public **`/product/:productId`** — compare active sellers (asking price, demo phone placeholder, sale location chain); cards on home/explore link to product page; listing detail unchanged for offers.
+
+**Still Phase 11:** Favourites module, seller history/P&amp;L, advanced search filters.
+
+---
+
 ## Remaining roadmap (Phases 9–13)
 
 **Completed in repo:** Phases 1–8 per [Full Build Phase Guide](./BazarDor_Full_Build_Setup_and_Phase_Guide_v1.0.docx). **Agent workflow:** one phase per session → `npm run qa` → optional e2e → update this report.
@@ -319,7 +328,7 @@ Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Mast
 |-------|----------|--------|
 | **9** | Very high | Finish union match (alias pass on **86** gaps), Bangla names, BBS codes when OD-10 arrives, map metadata hooks; regenerate JSON + reset demo dataset |
 | **10** | Very high | Admin CRUD (locations, products, units), role/user edit, verification demos, **audit log browser**, system settings — extend [`AdminDemoPage`](../src/features/admin/AdminDemoPage.tsx) pattern |
-| **11** | High | Buyer favourites/history; seller bulk/history/P&amp;L (OD-09); marketplace search UX |
+| **11** | High | Buyer favourites/history; seller bulk/history/P&amp;L (OD-09); marketplace search UX — **partial:** product detail + seller price compare shipped |
 | **12** | High | Department map/heatmap demo, trends, anomaly UI (OD-05), export polish — averages only via [`officialMarketPriceService`](../src/services/officialMarketPriceService.ts) |
 | **13** | Final | Full handover QA — extends [`DEMO_WALKTHROUGH.md`](./DEMO_WALKTHROUGH.md) gate |
 

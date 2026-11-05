@@ -9,6 +9,7 @@
 ### 1. Public home (1 min)
 
 - Show role table and **Demo sign-in**.
+- Click a **product card** → `/product/:productId` — seller count, price compare, demo phone + sale location; **View offer** → listing detail (sign-in for bid).
 - Mention reset restores IndexedDB seed on this browser.
 
 ### 2. Farmer — Rahim Mia (Demo) (2 min)

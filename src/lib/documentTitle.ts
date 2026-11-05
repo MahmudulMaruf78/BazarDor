@@ -11,6 +11,7 @@ export function documentTitleKeyForPath(pathname: string): MessageKey {
   if (pathname.startsWith('/department')) return 'docTitleDepartment'
   if (pathname.startsWith('/admin')) return 'docTitleAdmin'
   if (pathname.startsWith('/listing/')) return 'docTitleListing'
+  if (pathname.startsWith('/product/')) return 'docTitleProduct'
   if (pathname.startsWith('/access-denied')) return 'docTitleAccessDenied'
   return 'docTitleNotFound'
 }

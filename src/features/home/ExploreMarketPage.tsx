@@ -125,6 +125,7 @@ export function ExploreMarketPage() {
                   <ListingProductCard
                     key={product.id}
                     size="sm"
+                    to={`/product/${product.id}`}
                     title={pickName(product)}
                     imageUrl={product.imageUrl}
                     imageAlt={pickName(product)}

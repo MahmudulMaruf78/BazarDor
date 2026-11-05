@@ -25,7 +25,7 @@ describe('union import coverage', () => {
     const unions = getBangladeshChildren(upzId)
     expect(unions.length).toBeGreaterThanOrEqual(3)
     expect(unions.some((u) => u.id === 'bd-uni-barishal-bhola-daulatkhan-sample-1')).toBe(true)
-    expect(unions[0]?.nameEn).toMatch(/\(Demo\)/)
+    expect(unions[0]?.nameEn).toMatch(/^Union \d+$/)
   })
 })
 
@@ -57,5 +57,12 @@ describe('marketplace demo seed', () => {
       )
       expect(active.length, cat.id).toBeGreaterThanOrEqual(1)
     }
+  })
+
+  it('prod-tomato has multiple active listings for seller compare demo', () => {
+    const tomato = demoSeedBundle.listings.filter(
+      (l) => l.productId === 'prod-tomato' && l.status === 'active',
+    )
+    expect(tomato.length).toBeGreaterThanOrEqual(2)
   })
 })

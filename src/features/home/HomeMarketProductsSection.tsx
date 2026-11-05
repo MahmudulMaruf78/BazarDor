@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useI18n } from '@/app/preferences/LocaleProvider'
 import { dataLayer } from '@/data'
 import { deepestScopeLocationId, type BangladeshLocationSelection } from '@/data/bangladeshLocationIndex'
@@ -9,7 +8,6 @@ import { browseListings, type ListingFilters } from '@/features/marketplace/mark
 import { ProductCardMarketStats } from '@/features/marketplace/ProductCardMarketStats'
 import { snapshotsForListings } from '@/services/productCardMarketSnapshot'
 import type { Category, Location, PriceEntry, Product, Unit } from '@/types/domain/records'
-import { buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 /** ponytail: raise pageSize + pager if home catalog grows */
@@ -109,6 +107,7 @@ export function HomeMarketProductsSection() {
                 <ListingProductCard
                   key={listing.id}
                   size="sm"
+                  to={`/product/${listing.productId}`}
                   title={title}
                   imageUrl={product?.imageUrl}
                   imageAlt={title}
@@ -122,12 +121,6 @@ export function HomeMarketProductsSection() {
                       officialAverage={snap.officialAverage}
                     />
                   ) : null}
-                  <Link
-                    to={`/listing/${listing.id}`}
-                    className={buttonVariants({ size: 'sm', variant: 'outline', className: 'w-fit' })}
-                  >
-                    {t('viewListingDetails')}
-                  </Link>
                 </ListingProductCard>
               )
             })}
