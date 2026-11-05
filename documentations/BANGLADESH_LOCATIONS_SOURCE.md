@@ -17,7 +17,7 @@
 | Dataset | [sohag-pro/BD-JSON](https://github.com/sohag-pro/BD-JSON) |
 | File | `bd.json` |
 | Merge | `node scripts/build-bangladesh-locations.mjs` (**full** BD-JSON union list per matched upazila) |
-| Alias table | `scripts/bangladesh-location-aliases.mjs` (division/district/upazila; Comilla `cumilla`→`comilla`, Cox’s `-s` slug fix) |
+| Alias table | `scripts/bangladesh-location-aliases.mjs` (Slices C–E: Cox’s/Comilla, Khagrachhari, Noakhali, Rangamati, etc.) |
 | Stats | `documentations/BANGLADESH_UNION_IMPORT_STATS.json` |
 | Unverified report | `documentations/BANGLADESH_LOCATIONS_UNVERIFIED.md` (auto-refreshed on build) |
 

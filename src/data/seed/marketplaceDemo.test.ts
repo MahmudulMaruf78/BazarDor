@@ -21,10 +21,10 @@ describe('union import coverage', () => {
   })
 
   it('BD-JSON–unmatched upazila gets synthetic sample unions', () => {
-    const upzId = 'bd-upz-barishal-barisal-uzirpur'
+    const upzId = 'bd-upz-barishal-bhola-daulatkhan'
     const unions = getBangladeshChildren(upzId)
     expect(unions.length).toBeGreaterThanOrEqual(3)
-    expect(unions.some((u) => u.id === 'bd-uni-barishal-barisal-uzirpur-sample-1')).toBe(true)
+    expect(unions.some((u) => u.id === 'bd-uni-barishal-bhola-daulatkhan-sample-1')).toBe(true)
     expect(unions[0]?.nameEn).toMatch(/\(Demo\)/)
   })
 })

@@ -3,6 +3,7 @@ import importStats from '../../documentations/BANGLADESH_UNION_IMPORT_STATS.json
 import { DEMO_LOCATION_IDS as D } from '@/data/demoLocationIds'
 import {
   countBangladeshLocationsByType,
+  getBangladeshChildren,
   getBangladeshLocationById,
   getBangladeshLocationParentId,
   listAllBangladeshLocationNodes,
@@ -60,6 +61,21 @@ describe('bangladesh location hierarchy (Phase 9)', () => {
       if (node.dataSource !== 'demo_corridor') continue
       expect([D.unionGhona, D.unionDurgapur]).toContain(node.id)
     }
+  })
+
+  it('Slice D alias pass lowered unmatched vs Slice C', () => {
+    expect(importStats.upazilasUnmatched).toBeLessThan(importStats.phase9SliceCUnmatched)
+  })
+
+  it('Slice E alias pass lowered unmatched vs Slice D', () => {
+    expect(importStats.phase9SliceDUnmatched).toBe(94)
+    expect(importStats.upazilasUnmatched).toBeLessThan(importStats.phase9SliceDUnmatched)
+  })
+
+  it('Noakhali Hatiya imports bd_json unions after Slice E', () => {
+    const unions = getBangladeshChildren('bd-upz-chattogram-noakhali-hatiya')
+    expect(unions.some((u) => u.dataSource === 'bd_json')).toBe(true)
+    expect(unions.some((u) => u.id.endsWith('-sample-1'))).toBe(false)
   })
 
   it('Slice C alias pass lowered unmatched vs Slice B', () => {

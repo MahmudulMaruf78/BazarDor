@@ -12,33 +12,35 @@
   },
   "unionImportStats": {
     "upazilasTotal": 493,
-    "upazilasMatched": 384,
-    "upazilasUnmatched": 109,
+    "upazilasMatched": 407,
+    "upazilasUnmatched": 86,
     "upazilasWithAtLeast1Union": 493,
     "upazilasWithAtLeast3Unions": 493,
-    "unionsImported": 3984,
-    "syntheticUnionsAdded": 328,
-    "upazilasFilledWithSynthetic": 109,
+    "unionsImported": 4059,
+    "syntheticUnionsAdded": 259,
+    "upazilasFilledWithSynthetic": 86,
     "unmatchedSamples": [
-      "bd-upz-barishal-barisal-uzirpur",
       "bd-upz-barishal-bhola-daulatkhan",
       "bd-upz-barishal-patuakhali-mirjaganj",
-      "bd-upz-chattogram-feni-chhagalniya",
-      "bd-upz-chattogram-feni-porshuram",
-      "bd-upz-chattogram-khagrachari-dighinala",
       "bd-upz-chattogram-khagrachari-guimara",
-      "bd-upz-chattogram-khagrachari-khagrachari-s",
-      "bd-upz-chattogram-khagrachari-laxmichari",
-      "bd-upz-chattogram-khagrachari-mahalchari",
-      "bd-upz-chattogram-khagrachari-manikchari",
-      "bd-upz-chattogram-khagrachari-matiranga",
-      "bd-upz-chattogram-khagrachari-panchari",
-      "bd-upz-chattogram-khagrachari-ramgarh",
-      "bd-upz-chattogram-laxmipur-komol-nagar"
+      "bd-upz-chattogram-laxmipur-laxmipur-s",
+      "bd-upz-dhaka-gazipur-kaliakoir",
+      "bd-upz-dhaka-gopalganj-kasiani",
+      "bd-upz-dhaka-gopalganj-kotwalipara",
+      "bd-upz-dhaka-kishoreganj-karimganj",
+      "bd-upz-dhaka-manikganj-daulatpur",
+      "bd-upz-dhaka-manikganj-ghior",
+      "bd-upz-dhaka-manikganj-shivalaya",
+      "bd-upz-dhaka-manikganj-singair",
+      "bd-upz-dhaka-munshiganj-gazaria",
+      "bd-upz-dhaka-munshiganj-lauhajong",
+      "bd-upz-dhaka-narshingdi-belabo"
     ],
     "phase9BaselineUnmatched": 198,
     "phase9SliceAUnmatched": 155,
-    "phase9SliceBUnmatched": 129
+    "phase9SliceBUnmatched": 129,
+    "phase9SliceCUnmatched": 109,
+    "phase9SliceDUnmatched": 94
   },
   "note": "Phase 9 Slice B: full BD-JSON union import per matched upazila; dataSource on every node; bbsCode/officialId reserved until OD-10.",
   "divisions": [
@@ -966,27 +968,75 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-barishal-barisal-uzirpur-sample-1",
+                  "id": "bd-uni-barishal-barisal-uzirpur-bamrail",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Bamrail Union",
+                  "nameBn": "বামরাইল",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-barishal-barisal-uzirpur-sample-2",
+                  "id": "bd-uni-barishal-barisal-uzirpur-barakhota",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Barakhota Union",
+                  "nameBn": "বরাকোঠা",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-barishal-barisal-uzirpur-sample-3",
+                  "id": "bd-uni-barishal-barisal-uzirpur-gouthia",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Gouthia Union",
+                  "nameBn": "গুঠিয়া",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-barishal-barisal-uzirpur-harta",
+                  "type": "union",
+                  "nameEn": "Harta Union",
+                  "nameBn": "হারতা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-barishal-barisal-uzirpur-jalla",
+                  "type": "union",
+                  "nameEn": "Jalla Union",
+                  "nameBn": "জল্লা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-barishal-barisal-uzirpur-otra",
+                  "type": "union",
+                  "nameEn": "Otra Union",
+                  "nameBn": "ওটরা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-barishal-barisal-uzirpur-shatla",
+                  "type": "union",
+                  "nameEn": "Shatla Union",
+                  "nameBn": "সাতলা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-barishal-barisal-uzirpur-shikerpur-wazirpur",
+                  "type": "union",
+                  "nameEn": "Shikerpur Wazirpur Union",
+                  "nameBn": "শিকারপুর উজিরপুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-barishal-barisal-uzirpur-sholok",
+                  "type": "union",
+                  "nameEn": "Sholok Union",
+                  "nameBn": "শোলক",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9192,27 +9242,43 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-feni-chhagalniya-sample-1",
+                  "id": "bd-uni-chattogram-feni-chhagalniya-gopal",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Gopal Union",
+                  "nameBn": "ঘোপাল",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-feni-chhagalniya-sample-2",
+                  "id": "bd-uni-chattogram-feni-chhagalniya-mohamaya",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Mohamaya Union",
+                  "nameBn": "মহামায়া",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-feni-chhagalniya-sample-3",
+                  "id": "bd-uni-chattogram-feni-chhagalniya-pathannagar",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Pathannagar Union",
+                  "nameBn": "পাঠাননগর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-feni-chhagalniya-radhanagar",
+                  "type": "union",
+                  "nameEn": "Radhanagar Union",
+                  "nameBn": "রাধানগর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-feni-chhagalniya-subhapur",
+                  "type": "union",
+                  "nameEn": "Subhapur Union",
+                  "nameBn": "শুভপুর",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9460,27 +9526,27 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-feni-porshuram-sample-1",
+                  "id": "bd-uni-chattogram-feni-porshuram-boxmahmmud",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Boxmahmmud Union",
+                  "nameBn": "বক্সমাহমুদ",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-feni-porshuram-sample-2",
+                  "id": "bd-uni-chattogram-feni-porshuram-ctholia",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Ctholia Union",
+                  "nameBn": "চিথলিয়া",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-feni-porshuram-sample-3",
+                  "id": "bd-uni-chattogram-feni-porshuram-mizanagar",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Mizanagar Union",
+                  "nameBn": "মির্জানগর",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9583,27 +9649,43 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-khagrachari-dighinala-sample-1",
+                  "id": "bd-uni-chattogram-khagrachari-dighinala-babuchara",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Babuchara Union",
+                  "nameBn": "বাবুছড়া",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-dighinala-sample-2",
+                  "id": "bd-uni-chattogram-khagrachari-dighinala-boalkhali",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Boalkhali Union",
+                  "nameBn": "বোয়ালখালী",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-dighinala-sample-3",
+                  "id": "bd-uni-chattogram-khagrachari-dighinala-dighinala",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Dighinala Union",
+                  "nameBn": "দিঘীনালা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-dighinala-kabakhali",
+                  "type": "union",
+                  "nameEn": "Kabakhali Union",
+                  "nameBn": "কবাখালী",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-dighinala-merung",
+                  "type": "union",
+                  "nameEn": "Merung Union",
+                  "nameBn": "মেরুং",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9649,27 +9731,35 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-khagrachari-khagrachari-s-sample-1",
+                  "id": "bd-uni-chattogram-khagrachari-khagrachari-s-golabari",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Golabari Union",
+                  "nameBn": "গোলাবাড়ী",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-khagrachari-s-sample-2",
+                  "id": "bd-uni-chattogram-khagrachari-khagrachari-s-kamalchari",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Kamalchari Union",
+                  "nameBn": "কমলছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-khagrachari-s-sample-3",
+                  "id": "bd-uni-chattogram-khagrachari-khagrachari-s-khagrachhari-sadar",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Khagrachhari Sadar Union",
+                  "nameBn": "খাগরাছড়ি সদর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-khagrachari-s-parachara",
+                  "type": "union",
+                  "nameEn": "Parachara Union",
+                  "nameBn": "পেরাছড়া",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9682,27 +9772,27 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-khagrachari-laxmichari-sample-1",
+                  "id": "bd-uni-chattogram-khagrachari-laxmichari-barmachari",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Barmachari Union",
+                  "nameBn": "বর্মাছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-laxmichari-sample-2",
+                  "id": "bd-uni-chattogram-khagrachari-laxmichari-dullyatali",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Dullyatali Union",
+                  "nameBn": "দুল্যাতলী",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-laxmichari-sample-3",
+                  "id": "bd-uni-chattogram-khagrachari-laxmichari-laxmichhari",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Laxmichhari Union",
+                  "nameBn": "লক্ষীছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9715,27 +9805,43 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-khagrachari-mahalchari-sample-1",
+                  "id": "bd-uni-chattogram-khagrachari-mahalchari-bhaibonchara",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Bhaibonchara Union",
+                  "nameBn": "ভাইবোনছড়া",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-mahalchari-sample-2",
+                  "id": "bd-uni-chattogram-khagrachari-mahalchari-kayanghat",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Kayanghat Union",
+                  "nameBn": "ক্যায়াংঘাট",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-mahalchari-sample-3",
+                  "id": "bd-uni-chattogram-khagrachari-mahalchari-mahalchari",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Mahalchari Union",
+                  "nameBn": "মহালছড়ি",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-mahalchari-maischari",
+                  "type": "union",
+                  "nameEn": "Maischari Union",
+                  "nameBn": "মাইসছড়ি",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-mahalchari-mobachari",
+                  "type": "union",
+                  "nameEn": "Mobachari Union",
+                  "nameBn": "মুবাছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9748,27 +9854,35 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-khagrachari-manikchari-sample-1",
+                  "id": "bd-uni-chattogram-khagrachari-manikchari-batnatali",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Batnatali Union",
+                  "nameBn": "বাটনাতলী",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-manikchari-sample-2",
+                  "id": "bd-uni-chattogram-khagrachari-manikchari-jogyachola",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Jogyachola Union",
+                  "nameBn": "যোগ্যছোলা",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-manikchari-sample-3",
+                  "id": "bd-uni-chattogram-khagrachari-manikchari-manikchari",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Manikchari Union",
+                  "nameBn": "মানিকছড়ি",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-manikchari-tintahari",
+                  "type": "union",
+                  "nameEn": "Tintahari Union",
+                  "nameBn": "তিনটহরী",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9781,27 +9895,67 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-khagrachari-matiranga-sample-1",
+                  "id": "bd-uni-chattogram-khagrachari-matiranga-amtali",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Amtali Union",
+                  "nameBn": "আমতলি",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-matiranga-sample-2",
+                  "id": "bd-uni-chattogram-khagrachari-matiranga-balchari",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Balchari Union",
+                  "nameBn": "বেলছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-matiranga-sample-3",
+                  "id": "bd-uni-chattogram-khagrachari-matiranga-barnal",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Barnal Union",
+                  "nameBn": "বর্ণাল",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-matiranga-gomti",
+                  "type": "union",
+                  "nameEn": "Gomti Union",
+                  "nameBn": "গোমতি",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-matiranga-guimara",
+                  "type": "union",
+                  "nameEn": "Guimara Union",
+                  "nameBn": "গুইমারা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-matiranga-matiranga",
+                  "type": "union",
+                  "nameEn": "Matiranga Union",
+                  "nameBn": "মাটিরাঙ্গা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-matiranga-tabalchari",
+                  "type": "union",
+                  "nameEn": "Tabalchari Union",
+                  "nameBn": "তবলছড়ি",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-matiranga-taindong",
+                  "type": "union",
+                  "nameEn": "Taindong Union",
+                  "nameBn": "তাইন্দং",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9814,27 +9968,35 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-khagrachari-panchari-sample-1",
+                  "id": "bd-uni-chattogram-khagrachari-panchari-changi",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Changi Union",
+                  "nameBn": "চেংগী",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-panchari-sample-2",
+                  "id": "bd-uni-chattogram-khagrachari-panchari-latiban",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Latiban Union",
+                  "nameBn": "লতিবান",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-panchari-sample-3",
+                  "id": "bd-uni-chattogram-khagrachari-panchari-logang",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Logang Union",
+                  "nameBn": "লোগাং",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-khagrachari-panchari-panchari",
+                  "type": "union",
+                  "nameEn": "Panchari Union",
+                  "nameBn": "পানছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9847,27 +10009,27 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-khagrachari-ramgarh-sample-1",
+                  "id": "bd-uni-chattogram-khagrachari-ramgarh-hafchari",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Hafchari Union",
+                  "nameBn": "হাফছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-ramgarh-sample-2",
+                  "id": "bd-uni-chattogram-khagrachari-ramgarh-patachara",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Patachara Union",
+                  "nameBn": "পাতাছড়া",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-khagrachari-ramgarh-sample-3",
+                  "id": "bd-uni-chattogram-khagrachari-ramgarh-ramgarh",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Ramgarh Union",
+                  "nameBn": "রামগড়",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9889,27 +10051,75 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-sample-1",
+                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-char-folcon",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Char Folcon Union",
+                  "nameBn": "চর ফলকন",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-sample-2",
+                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-char-kadira",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Char Kadira Union",
+                  "nameBn": "চর কাদিরা",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-sample-3",
+                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-char-martin",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Char Martin Union",
+                  "nameBn": "চর মার্টিন",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-charkalkini",
+                  "type": "union",
+                  "nameEn": "Charkalkini Union",
+                  "nameBn": "চর কালকিনি",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-charlorench",
+                  "type": "union",
+                  "nameEn": "Charlorench Union",
+                  "nameBn": "চর লরেঞ্চ",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-hajirhat",
+                  "type": "union",
+                  "nameEn": "Hajirhat Union",
+                  "nameBn": "হাজিরহাট",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-patarirhat",
+                  "type": "union",
+                  "nameEn": "Patarirhat Union",
+                  "nameBn": "পাটারীরহাট",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-shaheberhat",
+                  "type": "union",
+                  "nameEn": "Shaheberhat Union",
+                  "nameBn": "সাহেবেরহাট",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-komol-nagar-torabgonj",
+                  "type": "union",
+                  "nameEn": "Torabgonj Union",
+                  "nameBn": "তোরাবগঞ্জ",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9955,27 +10165,83 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-laxmipur-raipur-sample-1",
+                  "id": "bd-uni-chattogram-laxmipur-raipur-bamni",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Bamni Union",
+                  "nameBn": "বামনী",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-laxmipur-raipur-sample-2",
+                  "id": "bd-uni-chattogram-laxmipur-raipur-char-mohana",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Char Mohana Union",
+                  "nameBn": "চর মোহনা",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-laxmipur-raipur-sample-3",
+                  "id": "bd-uni-chattogram-laxmipur-raipur-charpata",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Charpata Union",
+                  "nameBn": "চর পাতা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-raipur-keora",
+                  "type": "union",
+                  "nameEn": "Keora Union",
+                  "nameBn": "কেরোয়া",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-raipur-north-char-ababil",
+                  "type": "union",
+                  "nameEn": "North Char Ababil Union",
+                  "nameBn": "উত্তর চর আবাবিল",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-raipur-north-char-bangshi",
+                  "type": "union",
+                  "nameEn": "North Char Bangshi Union",
+                  "nameBn": "উত্তর চর বংশী",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-raipur-raipur",
+                  "type": "union",
+                  "nameEn": "Raipur Union",
+                  "nameBn": "রায়পুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-raipur-sonapur",
+                  "type": "union",
+                  "nameEn": "Sonapur Union",
+                  "nameBn": "সোনাপুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-raipur-south-char-ababil",
+                  "type": "union",
+                  "nameEn": "South Char Ababil Union",
+                  "nameBn": "দক্ষিন চর আবাবিল",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-raipur-south-char-bangshi",
+                  "type": "union",
+                  "nameEn": "South Char Bangshi Union",
+                  "nameBn": "দক্ষিন চর বংশী",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -9988,27 +10254,83 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-laxmipur-ramganj-sample-1",
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-bhadur",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Bhadur Union",
+                  "nameBn": "ভাদুর",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-laxmipur-ramganj-sample-2",
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-bhatra",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Bhatra Union",
+                  "nameBn": "ভাটরা",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-laxmipur-ramganj-sample-3",
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-bholakot",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Bholakot Union",
+                  "nameBn": "ভোলাকোট",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-chandipur",
+                  "type": "union",
+                  "nameEn": "Chandipur Union",
+                  "nameBn": "চন্ডিপুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-darbeshpur",
+                  "type": "union",
+                  "nameEn": "Darbeshpur Union",
+                  "nameBn": "দরবেশপুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-ichhapur",
+                  "type": "union",
+                  "nameEn": "Ichhapur Union",
+                  "nameBn": "ইছাপুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-kanchanpur",
+                  "type": "union",
+                  "nameEn": "Kanchanpur Union",
+                  "nameBn": "কাঞ্চনপুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-karpara",
+                  "type": "union",
+                  "nameEn": "Karpara Union",
+                  "nameBn": "করপাড়া",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-lamchar",
+                  "type": "union",
+                  "nameEn": "Lamchar Union",
+                  "nameBn": "লামচর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramganj-noagaon",
+                  "type": "union",
+                  "nameEn": "Noagaon Union",
+                  "nameBn": "নোয়াগাঁও",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -10021,27 +10343,67 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-laxmipur-ramgati-sample-1",
+                  "id": "bd-uni-chattogram-laxmipur-ramgati-alxendar",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Alxendar Union",
+                  "nameBn": "আলেকজান্ডার",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-laxmipur-ramgati-sample-2",
+                  "id": "bd-uni-chattogram-laxmipur-ramgati-borokheri",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Borokheri Union",
+                  "nameBn": "বড়খেড়ী",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-laxmipur-ramgati-sample-3",
+                  "id": "bd-uni-chattogram-laxmipur-ramgati-char-abdullah",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Char Abdullah Union",
+                  "nameBn": "চর আবদুল্যাহ",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramgati-char-algi",
+                  "type": "union",
+                  "nameEn": "Char Algi Union",
+                  "nameBn": "চর আলগী",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramgati-char-poragacha",
+                  "type": "union",
+                  "nameEn": "Char Poragacha Union",
+                  "nameBn": "চর পোড়াগাছা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramgati-char-ramiz",
+                  "type": "union",
+                  "nameEn": "Char Ramiz Union",
+                  "nameBn": "চর রমিজ",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramgati-charbadam",
+                  "type": "union",
+                  "nameEn": "Charbadam Union",
+                  "nameBn": "চর বাদাম",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-laxmipur-ramgati-chargazi",
+                  "type": "union",
+                  "nameEn": "Chargazi Union",
+                  "nameBn": "চরগাজী",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -10354,27 +10716,75 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-noakhali-hatiya-sample-1",
+                  "id": "bd-uni-chattogram-noakhali-hatiya-burirchar",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Burirchar Union",
+                  "nameBn": "বুড়িরচর",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-hatiya-sample-2",
+                  "id": "bd-uni-chattogram-noakhali-hatiya-charishwar",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Charishwar Union",
+                  "nameBn": "চরঈশ্বর",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-hatiya-sample-3",
+                  "id": "bd-uni-chattogram-noakhali-hatiya-charking",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Charking Union",
+                  "nameBn": "চরকিং",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-hatiya-jahajmara",
+                  "type": "union",
+                  "nameEn": "Jahajmara Union",
+                  "nameBn": "জাহাজমারা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-hatiya-nijhumdwi",
+                  "type": "union",
+                  "nameEn": "Nijhumdwi Union",
+                  "nameBn": "নিঝুমদ্বীপ",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-hatiya-nolchira",
+                  "type": "union",
+                  "nameEn": "Nolchira Union",
+                  "nameBn": "নলচিরা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-hatiya-sonadiya",
+                  "type": "union",
+                  "nameEn": "Sonadiya Union",
+                  "nameBn": "সোনাদিয়া",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-hatiya-sukhchar",
+                  "type": "union",
+                  "nameEn": "Sukhchar Union",
+                  "nameBn": "সুখচর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-hatiya-tomoroddi",
+                  "type": "union",
+                  "nameEn": "Tomoroddi Union",
+                  "nameBn": "তমরদ্দি",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -10387,27 +10797,59 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-noakhali-kabir-hat-sample-1",
+                  "id": "bd-uni-chattogram-noakhali-kabir-hat-batoiya",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Batoiya Union",
+                  "nameBn": "বাটইয়া",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-kabir-hat-sample-2",
+                  "id": "bd-uni-chattogram-noakhali-kabir-hat-chaprashirhat",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Chaprashirhat Union",
+                  "nameBn": "চাপরাশিরহাট",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-kabir-hat-sample-3",
+                  "id": "bd-uni-chattogram-noakhali-kabir-hat-dhanshalik",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Dhanshalik Union",
+                  "nameBn": "ধানশালিক",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-kabir-hat-dhanshiri",
+                  "type": "union",
+                  "nameEn": "Dhanshiri Union",
+                  "nameBn": "ধানসিঁড়ি",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-kabir-hat-ghoshbag",
+                  "type": "union",
+                  "nameEn": "Ghoshbag Union",
+                  "nameBn": "ঘোষবাগ",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-kabir-hat-narottampur",
+                  "type": "union",
+                  "nameEn": "Narottampur Union",
+                  "nameBn": "নরোত্তমপুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-kabir-hat-sundalpur",
+                  "type": "union",
+                  "nameEn": "Sundalpur Union",
+                  "nameBn": "সুন্দলপুর",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -10533,27 +10975,75 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-noakhali-senbag-sample-1",
+                  "id": "bd-uni-chattogram-noakhali-senbag-arjuntala",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Arjuntala Union",
+                  "nameBn": "অর্জুনতলা",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-senbag-sample-2",
+                  "id": "bd-uni-chattogram-noakhali-senbag-bejbagh",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Bejbagh Union",
+                  "nameBn": "বিজবাগ",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-senbag-sample-3",
+                  "id": "bd-uni-chattogram-noakhali-senbag-chhatarpaia",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Chhatarpaia Union",
+                  "nameBn": "ছাতারপাইয়া",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-senbag-dumurua",
+                  "type": "union",
+                  "nameEn": "Dumurua Union",
+                  "nameBn": "ডুমুরুয়া",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-senbag-kabilpur",
+                  "type": "union",
+                  "nameEn": "Kabilpur Union",
+                  "nameBn": "কাবিলপুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-senbag-kadra",
+                  "type": "union",
+                  "nameEn": "Kadra Union",
+                  "nameBn": "কাদরা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-senbag-kesharpar",
+                  "type": "union",
+                  "nameEn": "Kesharpar Union",
+                  "nameBn": "কেশরপাড়া",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-senbag-mohammadpur",
+                  "type": "union",
+                  "nameEn": "Mohammadpur Union",
+                  "nameBn": "মোহাম্মদপুর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-senbag-nabipur",
+                  "type": "union",
+                  "nameEn": "Nabipur Union",
+                  "nameBn": "নবীপুর",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -10566,27 +11056,83 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-noakhali-sonaimuri-sample-1",
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-ambarnagor",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Ambarnagor Union",
+                  "nameBn": "অম্বরনগর",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-sonaimuri-sample-2",
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-amishapara",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Amishapara Union",
+                  "nameBn": "আমিশাপাড়া",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-sonaimuri-sample-3",
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-bajra",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Bajra Union",
+                  "nameBn": "বজরা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-barogaon",
+                  "type": "union",
+                  "nameEn": "Barogaon Union",
+                  "nameBn": "বারগাঁও",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-chashirhat",
+                  "type": "union",
+                  "nameEn": "Chashirhat Union",
+                  "nameBn": "চাষীরহাট",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-deoti",
+                  "type": "union",
+                  "nameEn": "Deoti Union",
+                  "nameBn": "দেওটি",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-joyag",
+                  "type": "union",
+                  "nameEn": "Joyag Union",
+                  "nameBn": "জয়াগ",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-nateshwar",
+                  "type": "union",
+                  "nameEn": "Nateshwar Union",
+                  "nameBn": "নাটেশ্বর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-nodona",
+                  "type": "union",
+                  "nameEn": "Nodona Union",
+                  "nameBn": "নদনা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-sonaimuri-sonapur",
+                  "type": "union",
+                  "nameEn": "Sonapur Union",
+                  "nameBn": "সোনাপুর",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -10599,27 +11145,67 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-noakhali-subarna-char-sample-1",
+                  "id": "bd-uni-chattogram-noakhali-subarna-char-charaman-ullah",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Charaman Ullah Union",
+                  "nameBn": "চরআমান উল্যা",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-subarna-char-sample-2",
+                  "id": "bd-uni-chattogram-noakhali-subarna-char-charbata",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Charbata Union",
+                  "nameBn": "চরবাটা",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-noakhali-subarna-char-sample-3",
+                  "id": "bd-uni-chattogram-noakhali-subarna-char-charclerk",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Charclerk Union",
+                  "nameBn": "চরক্লার্ক",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-subarna-char-charjabbar",
+                  "type": "union",
+                  "nameEn": "Charjabbar Union",
+                  "nameBn": "চরজাব্বার",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-subarna-char-charjubilee",
+                  "type": "union",
+                  "nameEn": "Charjubilee Union",
+                  "nameBn": "চরজুবলী",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-subarna-char-charwapda",
+                  "type": "union",
+                  "nameEn": "Charwapda Union",
+                  "nameBn": "চরওয়াপদা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-subarna-char-east-charbata",
+                  "type": "union",
+                  "nameEn": "East Charbata Union",
+                  "nameBn": "পূর্ব চরবাটা",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-noakhali-subarna-char-mohammadpur",
+                  "type": "union",
+                  "nameEn": "Mohammadpur Union",
+                  "nameBn": "মোহাম্মদপুর",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -10886,27 +11472,35 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-rangamati-kaukhali-sample-1",
+                  "id": "bd-uni-chattogram-rangamati-kaukhali-betbunia",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Betbunia Union",
+                  "nameBn": "বেতবুনিয়া",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-rangamati-kaukhali-sample-2",
+                  "id": "bd-uni-chattogram-rangamati-kaukhali-fatikchari",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Fatikchari Union",
+                  "nameBn": "ফটিকছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-rangamati-kaukhali-sample-3",
+                  "id": "bd-uni-chattogram-rangamati-kaukhali-ghagra",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Ghagra Union",
+                  "nameBn": "ঘাগড়া",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-rangamati-kaukhali-kalampati",
+                  "type": "union",
+                  "nameEn": "Kalampati Union",
+                  "nameBn": "কলমপতি",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -10984,27 +11578,35 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-rangamati-nanniarchar-sample-1",
+                  "id": "bd-uni-chattogram-rangamati-nanniarchar-burighat",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Burighat Union",
+                  "nameBn": "বুড়িঘাট",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-rangamati-nanniarchar-sample-2",
+                  "id": "bd-uni-chattogram-rangamati-nanniarchar-ghilachhari",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Ghilachhari Union",
+                  "nameBn": "ঘিলাছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-rangamati-nanniarchar-sample-3",
+                  "id": "bd-uni-chattogram-rangamati-nanniarchar-naniarchar",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Naniarchar Union",
+                  "nameBn": "নানিয়ারচর",
+                  "dataSource": "bd_json",
+                  "children": []
+                },
+                {
+                  "id": "bd-uni-chattogram-rangamati-nanniarchar-sabekkhong",
+                  "type": "union",
+                  "nameEn": "Sabekkhong Union",
+                  "nameBn": "সাবেক্ষ্যং",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]
@@ -11017,27 +11619,27 @@
               "dataSource": "jumman04",
               "children": [
                 {
-                  "id": "bd-uni-chattogram-rangamati-rajosthali-sample-1",
+                  "id": "bd-uni-chattogram-rangamati-rajosthali-bangalhalia",
                   "type": "union",
-                  "nameEn": "Sample Union 1 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ১ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Bangalhalia Union",
+                  "nameBn": "বাঙ্গালহালিয়া",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-rangamati-rajosthali-sample-2",
+                  "id": "bd-uni-chattogram-rangamati-rajosthali-gaindya",
                   "type": "union",
-                  "nameEn": "Sample Union 2 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ২ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Gaindya Union",
+                  "nameBn": "গাইন্দ্যা",
+                  "dataSource": "bd_json",
                   "children": []
                 },
                 {
-                  "id": "bd-uni-chattogram-rangamati-rajosthali-sample-3",
+                  "id": "bd-uni-chattogram-rangamati-rajosthali-ghilachari",
                   "type": "union",
-                  "nameEn": "Sample Union 3 (Demo)",
-                  "nameBn": "নমুনা ইউনিয়ন ৩ (ডেমো)",
-                  "dataSource": "demo_synthetic",
+                  "nameEn": "Ghilachari Union",
+                  "nameBn": "ঘিলাছড়ি",
+                  "dataSource": "bd_json",
                   "children": []
                 }
               ]

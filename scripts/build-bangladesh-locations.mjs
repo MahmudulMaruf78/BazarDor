@@ -19,6 +19,8 @@ const SYNTHETIC_UNIONS_PER_UPAZILA = 3
 const BASELINE_UNMATCHED = 198
 const SLICE_A_UNMATCHED = 155
 const SLICE_B_UNMATCHED = 129
+const SLICE_C_UNMATCHED = 109
+const SLICE_D_UNMATCHED = 94
 
 const SAMPLE_UNION_BN = ['১', '২', '৩', '৪', '৫']
 
@@ -274,6 +276,8 @@ async function main() {
     phase9BaselineUnmatched: BASELINE_UNMATCHED,
     phase9SliceAUnmatched: SLICE_A_UNMATCHED,
     phase9SliceBUnmatched: SLICE_B_UNMATCHED,
+    phase9SliceCUnmatched: SLICE_C_UNMATCHED,
+    phase9SliceDUnmatched: SLICE_D_UNMATCHED,
   }
 
   const children = divisions.map((div) => {

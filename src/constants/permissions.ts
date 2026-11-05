@@ -11,6 +11,9 @@ export const PERMISSIONS = [
   'admin.locations.view',
   'admin.products.view',
   'admin.units.view',
+  'admin.users.view',
+  'admin.listings.view',
+  'admin.listings.moderate',
   'notifications.view',
 ] as const
 

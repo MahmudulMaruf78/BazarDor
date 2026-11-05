@@ -4,29 +4,23 @@ import { toast } from 'sonner'
 import { resetDemoDataset } from '@/app/data/demoDataHooks'
 import { useI18n } from '@/app/preferences/LocaleProvider'
 import { STORAGE_SCHEMA_VERSION } from '@/constants/storage'
-import { ROLE_DASHBOARD_PATH } from '@/constants/roles'
 import { Can } from '@/features/auth/Can'
+import { AdminListingsBrowser } from '@/features/admin/AdminListingsBrowser'
 import { AdminLocationsBrowser } from '@/features/admin/AdminLocationsBrowser'
 import { AdminProductsBrowser } from '@/features/admin/AdminProductsBrowser'
 import { AdminUnitsBrowser } from '@/features/admin/AdminUnitsBrowser'
-import { dataLayer } from '@/data'
+import { AdminUsersBrowser } from '@/features/admin/AdminUsersBrowser'
 import { readStorageSchemaVersion } from '@/data/bootstrap/demoDataLifecycle'
-import type { User } from '@/types/domain/records'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
 export function AdminDemoPage() {
-  const { t, roleLabel } = useI18n()
-  const [users, setUsers] = useState<User[]>([])
+  const { t } = useI18n()
   const [storedVersion, setStoredVersion] = useState<number | null>(null)
   const [resetting, setResetting] = useState(false)
 
   const reload = useCallback(() => {
-    void dataLayer.repos.users.listUsers().then((result) => {
-      if (result.ok) setUsers(result.data)
-    })
     void readStorageSchemaVersion().then((result) => {
       if (result.ok) setStoredVersion(result.data)
     })
@@ -93,36 +87,13 @@ export function AdminDemoPage() {
         <AdminUnitsBrowser />
       </Can>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('demoAccounts')}</CardTitle>
-          <CardDescription>{t('loginPicker')}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>{t('displayName')}</TableHead>
-                <TableHead>{t('role')}</TableHead>
-                <TableHead>{t('dashboard')}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {users.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>{user.displayName}</TableCell>
-                  <TableCell>{roleLabel(user.role)}</TableCell>
-                  <TableCell>
-                    <Link className="text-sm underline" to={ROLE_DASHBOARD_PATH[user.role]}>
-                      {ROLE_DASHBOARD_PATH[user.role]}
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+      <Can permission="admin.users.view">
+        <AdminUsersBrowser />
+      </Can>
+
+      <Can permission="admin.listings.view">
+        <AdminListingsBrowser />
+      </Can>
 
       <Card>
         <CardHeader>

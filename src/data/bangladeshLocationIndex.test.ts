@@ -18,7 +18,7 @@ describe('bangladeshLocationIndex', () => {
   })
 
   it('appends Demo suffix only for demo_synthetic unions', () => {
-    const synthetic = getBangladeshLocationById('bd-uni-barishal-barisal-uzirpur-sample-1')
+    const synthetic = getBangladeshLocationById('bd-uni-barishal-bhola-daulatkhan-sample-1')
     expect(synthetic?.dataSource).toBe('demo_synthetic')
     expect(formatBangladeshLocationLabel(synthetic!, 'en', '(Demo sample)')).toContain('(Demo sample)')
 

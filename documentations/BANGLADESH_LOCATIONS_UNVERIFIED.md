@@ -9,11 +9,11 @@ Latest import stats: [`BANGLADESH_UNION_IMPORT_STATS.json`](./BANGLADESH_UNION_I
 | Metric | Value |
 |--------|-------|
 | `upazilasTotal` | 493 |
-| `upazilasMatched` | 384 |
-| `upazilasUnmatched` | 109 |
-| `unionsImported` | 3984 |
-| `syntheticUnionsAdded` | 328 |
-| `upazilasFilledWithSynthetic` | 109 |
+| `upazilasMatched` | 407 |
+| `upazilasUnmatched` | 86 |
+| `unionsImported` | 4059 |
+| `syntheticUnionsAdded` | 259 |
+| `upazilasFilledWithSynthetic` | 86 |
 | Phase 9 baseline unmatched | 198 (target: lower after alias pass) |
 
 **Named demo corridor unions (centroids for map):**
@@ -39,27 +39,27 @@ Regenerate via `node scripts/build-bangladesh-locations.mjs`. Policy in [`BANGLA
 | division | 8 |
 | district | 64 |
 | upazila | 493 |
-| union | 3984 |
+| union | 4059 |
 
 Admin nodes with Bangla fallback (`nameBn === nameEn`): **0** (div/district/upazila only).
 
 ## Unmatched samples (up to 15)
 
-- `bd-upz-barishal-barisal-uzirpur`
 - `bd-upz-barishal-bhola-daulatkhan`
 - `bd-upz-barishal-patuakhali-mirjaganj`
-- `bd-upz-chattogram-feni-chhagalniya`
-- `bd-upz-chattogram-feni-porshuram`
-- `bd-upz-chattogram-khagrachari-dighinala`
 - `bd-upz-chattogram-khagrachari-guimara`
-- `bd-upz-chattogram-khagrachari-khagrachari-s`
-- `bd-upz-chattogram-khagrachari-laxmichari`
-- `bd-upz-chattogram-khagrachari-mahalchari`
-- `bd-upz-chattogram-khagrachari-manikchari`
-- `bd-upz-chattogram-khagrachari-matiranga`
-- `bd-upz-chattogram-khagrachari-panchari`
-- `bd-upz-chattogram-khagrachari-ramgarh`
-- `bd-upz-chattogram-laxmipur-komol-nagar`
+- `bd-upz-chattogram-laxmipur-laxmipur-s`
+- `bd-upz-dhaka-gazipur-kaliakoir`
+- `bd-upz-dhaka-gopalganj-kasiani`
+- `bd-upz-dhaka-gopalganj-kotwalipara`
+- `bd-upz-dhaka-kishoreganj-karimganj`
+- `bd-upz-dhaka-manikganj-daulatpur`
+- `bd-upz-dhaka-manikganj-ghior`
+- `bd-upz-dhaka-manikganj-shivalaya`
+- `bd-upz-dhaka-manikganj-singair`
+- `bd-upz-dhaka-munshiganj-gazaria`
+- `bd-upz-dhaka-munshiganj-lauhajong`
+- `bd-upz-dhaka-narshingdi-belabo`
 
 ## Upazila naming quirks (Jumman04 source)
 

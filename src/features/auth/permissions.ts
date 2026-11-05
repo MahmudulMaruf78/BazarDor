@@ -38,6 +38,9 @@ export const ROLE_PERMISSIONS: Record<RoleKey, readonly PermissionKey[]> = {
     'admin.locations.view',
     'admin.products.view',
     'admin.units.view',
+    'admin.users.view',
+    'admin.listings.view',
+    'admin.listings.moderate',
     'notifications.view',
   ],
 }

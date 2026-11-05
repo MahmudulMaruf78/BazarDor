@@ -302,7 +302,7 @@ Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Mast
 
 ## Phase 9 — Slice A (location metadata + aliases)
 
-**Done in repo (November 2026):** Slice A — `Location.dataSource`, schema **3**, aliases, unmatched **155** (baseline 198), synthetic UI labels. **Slice B** — uncapped BD-JSON unions, JSON schema **4**. **Slice C** — Comilla/Cox’s aliases + `-s` slug fix; unmatched **109** (was 129); **3984** unions.
+**Done in repo (November 2026):** Slices A–E — `dataSource`, full union import, aliases (unmatched **86**, was 198 baseline); **4059** bd_json unions in JSON (`phase9SliceDUnmatched` baseline **94** for Slice E regression).
 
 **Still Phase 9:** BBS from OD-10, national Bangla tree — see [Phase 9–13 roadmap](./BazarDor_Remaining_Roadmap_Phase_9_13.md).
 
@@ -310,7 +310,7 @@ Full wording: [`BazarDor_Project_Master_Plan_v2.0.docx`](./BazarDor_Project_Mast
 
 ## Phase 10 — Admin (started)
 
-**Done:** Read-only **location**, **product**, and **unit** browsers on [`/admin`](src/features/admin/AdminDemoPage.tsx) — `admin.locations.view`, `admin.products.view`, `admin.units.view`; filters + paginated tables via `catalog` repo. Location/product/unit CRUD and other Admin modules still roadmap.
+**Done:** Read-only **location**, **product**, **unit**, **user**, and **listing** browsers on `/admin` (`admin.*.view`). **Listing moderation (demo):** `admin.listings.moderate` — approve/reject toggles `inactive` ↔ `active`/`sold_out` with reservation guard. CRUD and audit log browser still roadmap.
 
 ---
 
