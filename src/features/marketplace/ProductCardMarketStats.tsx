@@ -34,22 +34,33 @@ export function ProductCardMarketStats({
           <span className="text-sm font-medium text-muted-foreground">/{unitLabel}</span>
         </dd>
       </div>
-      <div className="space-y-2 rounded-md border border-border/60 bg-muted/20 px-3 py-2 text-xs leading-snug">
-        <div>
-          <dt className="font-medium text-muted-foreground">{t('location')}</dt>
-          <dd className="mt-0.5 line-clamp-2 text-foreground">{locationChain}</dd>
-        </div>
-        <div className="border-t border-border/50 pt-2">
-          <dt className="font-medium text-muted-foreground">{t('officialMarketAvg')}</dt>
-          <dd
-            className={cn(
-              'mt-0.5 font-semibold tabular-nums',
-              officialAverage.status === 'calculated' ? 'text-primary' : 'text-muted-foreground',
-            )}
-          >
-            {officialText}
-          </dd>
-        </div>
+      <div className="rounded-md border border-border/70 bg-secondary/30 px-2.5 py-2">
+        <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-muted-foreground">
+          {t('location')}
+        </dt>
+        <dd className="mt-1 line-clamp-2 text-sm font-medium leading-snug text-foreground">{locationChain}</dd>
+      </div>
+      <div
+        className={cn(
+          'rounded-md border px-2.5 py-2',
+          officialAverage.status === 'calculated'
+            ? 'border-primary/35 bg-primary/10'
+            : 'border-border/50 bg-muted/30',
+        )}
+      >
+        <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-muted-foreground">
+          {t('officialMarketAvg')}
+        </dt>
+        <dd
+          className={cn(
+            'mt-1 tabular-nums leading-none tracking-tight',
+            officialAverage.status === 'calculated'
+              ? 'text-xl font-semibold text-primary'
+              : 'text-sm font-medium text-muted-foreground',
+          )}
+        >
+          {officialText}
+        </dd>
       </div>
     </dl>
   )

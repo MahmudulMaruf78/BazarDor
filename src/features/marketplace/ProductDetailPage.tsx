@@ -25,9 +25,7 @@ import {
   formatVariantSummary,
   isDefaultStandardVariant,
 } from '@/services/productVariantCatalog'
-import { Badge } from '@/components/ui/badge'
 import { Button, buttonVariants } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -190,8 +188,16 @@ export function ProductDetailPage() {
 
   const backPath = useMemo(() => (role ? ROLE_DASHBOARD_PATH[role] : '/'), [role])
 
+  const canSelectOffer = session?.role === 'buyer'
+
+  useEffect(() => {
+    if (!canSelectOffer && selectedListingId) {
+      setSelectedListingId(null)
+    }
+  }, [canSelectOffer, selectedListingId])
+
   const isBuyerWithOffers =
-    session?.role === 'buyer' && data !== null && data.offers.some(isProductSellerOfferSelectable)
+    canSelectOffer && data !== null && data.offers.some(isProductSellerOfferSelectable)
 
   const showMobileBidBar = isBuyerWithOffers && selectedOfferSelectable && selectedOffer
 
@@ -286,32 +292,26 @@ export function ProductDetailPage() {
           className="min-w-0 lg:col-start-2 lg:row-start-1"
         />
 
-        <Card size="sm" className="min-w-0 gap-2 border-primary/15 py-3 shadow-sm lg:col-span-2 lg:row-start-2 [--card-spacing:--spacing(3)]">
-        <CardHeader className="gap-2 border-b border-primary/10 bg-secondary/30 pb-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="min-w-0 space-y-0.5">
-            <div className="flex flex-wrap items-center gap-1.5">
-              <CardTitle className="text-sm">{t('productDetailSellersTitle')}</CardTitle>
-              <Badge variant="secondary" className="h-5 px-1.5 text-[0.65rem] font-normal">
-                {t('demoLabel')}
-              </Badge>
-            </div>
-            <CardDescription className="text-xs">{sellerCountLine}</CardDescription>
+        <Card size="sm" className="min-w-0 gap-0 border-primary/15 py-2 shadow-sm lg:col-span-2 lg:row-start-2 [--card-spacing:--spacing(2.5)]">
+        <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-primary/10 bg-secondary/30 py-2 pb-2">
+          <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
+            <CardTitle className="text-sm leading-none">{t('productDetailSellersTitle')}</CardTitle>
+            <span className="text-[0.6875rem] text-muted-foreground">{sellerCountLine}</span>
           </div>
-          <div className="flex w-full items-center gap-2 sm:w-auto sm:min-w-[10rem]">
-            <Label htmlFor="product-sort" className="shrink-0 text-xs text-muted-foreground">
-              {t('productDetailSort')}
-            </Label>
-            <Select value={sort} onValueChange={(v) => setSort(v as ProductSellerCompareSort)}>
-              <SelectTrigger id="product-sort" className="h-8 w-full text-xs sm:w-[10rem]">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="price-asc">{t('productDetailSortPriceAsc')}</SelectItem>
-                <SelectItem value="price-desc">{t('productDetailSortPriceDesc')}</SelectItem>
-                <SelectItem value="newest">{t('productDetailSortNewest')}</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          <Select value={sort} onValueChange={(v) => setSort(v as ProductSellerCompareSort)}>
+            <SelectTrigger
+              id="product-sort"
+              aria-label={t('productDetailSort')}
+              className="h-7 w-full min-w-[8.5rem] shrink-0 text-xs sm:w-[9.25rem]"
+            >
+              <SelectValue placeholder={t('productDetailSort')} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="price-asc">{t('productDetailSortPriceAsc')}</SelectItem>
+              <SelectItem value="price-desc">{t('productDetailSortPriceDesc')}</SelectItem>
+              <SelectItem value="newest">{t('productDetailSortNewest')}</SelectItem>
+            </SelectContent>
+          </Select>
         </CardHeader>
         <CardContent className="min-w-0 overflow-x-auto px-0 pt-0 pb-0">
           {data.offers.length === 0 ? (
@@ -340,7 +340,9 @@ export function ProductDetailPage() {
                       className={cn(
                         index % 2 === 1 ? 'bg-muted/20' : undefined,
                         isBestPriceRow(index, offer) && 'bg-primary/5',
-                        selectedListingId === offer.listingId && 'ring-1 ring-inset ring-primary',
+                        canSelectOffer &&
+                          selectedListingId === offer.listingId &&
+                          'ring-1 ring-inset ring-primary',
                         !isProductSellerOfferSelectable(offer) && 'opacity-60',
                       )}
                     >
@@ -360,14 +362,11 @@ export function ProductDetailPage() {
                         {chain}
                       </TableCell>
                       <TableCell className="whitespace-normal align-middle text-[0.6875rem]">
-                        <span className="font-mono">{offer.phonePlaceholder}</span>{' '}
-                        <Badge className="h-4 px-1 text-[0.6rem]" variant="secondary">
-                          {t('demoLabel')}
-                        </Badge>
+                        <span className="font-mono">{offer.phonePlaceholder}</span>
                       </TableCell>
                       <TableCell className="whitespace-normal align-middle">
                         <div className="flex flex-wrap gap-1">
-                          {renderSelectOfferControl(offer)}
+                          {canSelectOffer ? renderSelectOfferControl(offer) : null}
                           <Link
                             to={`/listing/${offer.listingId}`}
                             className={buttonVariants({
@@ -396,7 +395,9 @@ export function ProductDetailPage() {
                     className={cn(
                       'rounded-md border p-2.5 text-xs',
                       isBestPriceRow(index, offer) && 'border-primary/30 bg-primary/5',
-                      selectedListingId === offer.listingId && 'ring-2 ring-primary',
+                      canSelectOffer &&
+                        selectedListingId === offer.listingId &&
+                        'ring-2 ring-primary',
                       !selectable && 'opacity-60',
                     )}
                   >
@@ -409,14 +410,9 @@ export function ProductDetailPage() {
                       {statusLabel(locale, 'listingStatus', offer.listingStatus)}
                     </p>
                     <p className="mt-0.5 text-[0.6875rem] leading-snug break-words">{chain}</p>
-                    <p className="mt-0.5 font-mono text-[0.6875rem]">
-                      {offer.phonePlaceholder}{' '}
-                      <Badge className="h-4 px-1 text-[0.6rem]" variant="secondary">
-                        {t('demoLabel')}
-                      </Badge>
-                    </p>
+                    <p className="mt-0.5 font-mono text-[0.6875rem]">{offer.phonePlaceholder}</p>
                     <div className="mt-1.5 flex flex-wrap gap-1">
-                      {renderSelectOfferControl(offer)}
+                      {canSelectOffer ? renderSelectOfferControl(offer) : null}
                       <Link
                         to={`/listing/${offer.listingId}`}
                         className={buttonVariants({ variant: 'outline', size: 'sm', className: 'h-7 px-2 text-xs' })}

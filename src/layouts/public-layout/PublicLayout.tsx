@@ -26,8 +26,10 @@ export function PublicLayout() {
     >
       <header
         className={cn(
-          'border-b',
-          isHome ? 'border-primary/20 bg-primary/[0.07] backdrop-blur-sm' : 'border-border bg-card',
+          'sticky top-0 z-50 w-full border-b',
+          isHome
+            ? 'border-primary/20 bg-primary/[0.07] backdrop-blur-md'
+            : 'border-border bg-card/95 backdrop-blur-md',
         )}
       >
         <div className={cn('mx-auto flex items-center justify-between gap-4 px-4 py-3', shellMax)}>
